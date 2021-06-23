@@ -1,5 +1,4 @@
-{
-    "products": [
+products = [
         {
             "product_id": "1036630-1082",
             "product_name": "Mulo - Suede Espadrilles - Men - Neutrals",
@@ -785,4 +784,3 @@
             "additional_image_link": "https://cache.mrporter.com/variants/images/10375442618765204/in/w1000.jpg,https://cache.mrporter.com/variants/images/10375442618765204/e2/w1000.jpg,https://cache.mrporter.com/variants/images/10375442618765204/ou/w1000.jpg,https://cache.mrporter.com/variants/images/10375442618765204/e1/w1000.jpg,https://cache.mrporter.com/variants/images/10375442618765204/bk/w1000.jpg"
         }
     ]
-}
