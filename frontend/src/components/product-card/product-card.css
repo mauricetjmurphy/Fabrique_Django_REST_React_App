@@ -1,0 +1,15 @@
+.card {
+    border: none !important;
+}
+
+a:link {
+    text-decoration: none !important;
+}
+
+.card-title {
+    font-size: 14px;
+}
+
+.card-text {
+    font-size: 14px;
+}

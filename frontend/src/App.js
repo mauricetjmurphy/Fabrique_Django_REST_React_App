@@ -24,7 +24,6 @@ function App() {
                     <Route path="/product/:id" component={ProductPage} />
                 </Container>
             </main>
-            <Footer />
         </Router>
     );
 }
