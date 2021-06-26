@@ -8,7 +8,7 @@ import products from "../../products";
 function ProductsPage() {
     return (
         <div>
-            <h2 className="text-center">Latest Products</h2>
+            <h2 className="text-center p-5">Latest Products</h2>
             <Row>
                 {[
                     ...products

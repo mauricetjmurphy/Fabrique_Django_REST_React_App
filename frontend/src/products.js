@@ -1,7 +1,7 @@
 const products = [
     {
         product_id: "1036630-1082",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -21,7 +21,7 @@ const products = [
     },
     {
         product_id: "1036630-1084",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -41,7 +41,7 @@ const products = [
     },
     {
         product_id: "1036630-1085",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -61,7 +61,7 @@ const products = [
     },
     {
         product_id: "1036630-1086",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -81,7 +81,7 @@ const products = [
     },
     {
         product_id: "1036630-1087",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -101,7 +101,7 @@ const products = [
     },
     {
         product_id: "1036630-1088",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -121,7 +121,7 @@ const products = [
     },
     {
         product_id: "1036630-1089",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -141,7 +141,7 @@ const products = [
     },
     {
         product_id: "1036630-1090",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -161,7 +161,7 @@ const products = [
     },
     {
         product_id: "1036630-1091",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -181,7 +181,7 @@ const products = [
     },
     {
         product_id: "1036630-1092",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -201,7 +201,7 @@ const products = [
     },
     {
         product_id: "1036630-1094",
-        product_name: "Mulo - Suede Espadrilles - Men - Neutrals",
+        product_name: "Suede Espadrilles",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -221,7 +221,7 @@ const products = [
     },
     {
         product_id: "1036632-1082",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -241,7 +241,7 @@ const products = [
     },
     {
         product_id: "1036632-1084",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -261,7 +261,7 @@ const products = [
     },
     {
         product_id: "1036632-1085",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -281,7 +281,7 @@ const products = [
     },
     {
         product_id: "1036632-1086",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -301,7 +301,7 @@ const products = [
     },
     {
         product_id: "1036632-1087",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -321,7 +321,7 @@ const products = [
     },
     {
         product_id: "1036632-1088",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -341,7 +341,7 @@ const products = [
     },
     {
         product_id: "1036632-1089",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",
@@ -361,7 +361,7 @@ const products = [
     },
     {
         product_id: "1036632-1090",
-        product_name: "Mulo - Suede Loafers - Men - Neutrals",
+        product_name: "Suede Loafers",
         availability: "in stock",
         product_category: "Shoes > Suede Shoes",
         brand: "Mulo",

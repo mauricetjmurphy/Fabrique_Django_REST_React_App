@@ -16,9 +16,6 @@ function App() {
             <Header />
             <main>
                 <Container>
-                    <h1 className="text-center p-5">
-                        Hello world, welcome to the Fabrique app!
-                    </h1>
                     <Route path="/" component={HomePage} exact />
                     <Route path="/products" component={ProductsPage} />
                     <Route path="/product/:id" component={ProductPage} />
