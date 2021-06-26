@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import axios from "axios";
 
 import ProductCard from "../../components/product-card/Product-card";
 
-import products from "../../products";
-
 function ProductsPage() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        async function fetchProducts() {
+            //Destructuring the awaited response. Await need to be wrapped in an async function
+            const { data } = await axios.get(
+                "http://localhost:8000/api/products/"
+            );
+            setProducts(data);
+        }
+
+        fetchProducts();
+    }, []);
+
     return (
         <div>
             <h2 className="text-center p-5">Latest Products</h2>
