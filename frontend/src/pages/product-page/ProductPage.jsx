@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
+import axios from "axios";
 import Rating from "../../components/rating/Rating";
-import products from "../../products";
 import "./product-page.css";
 
 function ProductPage({ match }) {
-    // Find the product in the products array, that has the same id as the one passed in  as url parameter
-    const product = products.find((p) => p.product_id == match.params.id);
+    const [product, setProduct] = useState([]);
+
+    useEffect(() => {
+        async function fetchProduct() {
+            //Destructuring the awaited response. Await need to be wrapped in an async function
+            const { data } = await axios.get(
+                `http://localhost:8000/api/products/${match.params.id}`
+            );
+            setProduct(data);
+        }
+
+        fetchProduct();
+    }, []);
+
     return (
         <div>
-            <Link to="/" className="btn btn-light my-3">
+            <Link to="/products" className="btn btn-light my-3">
                 Go Back
             </Link>
             <Row>

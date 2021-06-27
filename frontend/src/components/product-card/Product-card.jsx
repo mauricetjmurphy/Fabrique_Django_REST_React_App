@@ -6,12 +6,12 @@ import "./product-card.css";
 
 function ProductCard({ product }) {
     return (
-        <Card bsClass="product-card" className="my-3">
+        <Card bsclass="product-card" className="my-3">
             <Link to={`/product/${product.product_id}`}>
                 <Card.Img src={product.product_image_url} />
                 <Card.Body>
                     <Card.Title
-                        bsClass="card-title"
+                        bsclass="card-title"
                         className="text-center text-secondary "
                     >
                         {product.product_name}

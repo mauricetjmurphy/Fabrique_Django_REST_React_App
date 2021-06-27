@@ -10,10 +10,10 @@ def getProducts(request):
     return Response(products)
 
 @api_view(['GET'])
-def getProduct(request, _id):
+def getProduct(request, pk):
     product = None
     for i in products:
-        if i['product_id'] == _id:
+        if i['product_id'] == pk:
             product = i
             break
 

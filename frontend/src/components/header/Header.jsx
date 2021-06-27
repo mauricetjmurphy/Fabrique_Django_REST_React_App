@@ -39,7 +39,7 @@ function Header() {
                             </LinkContainer>
                             <LinkContainer to="/whishlist">
                                 <Nav.Link>
-                                    <i class="far fa-heart pl-2 pr-2"></i>
+                                    <i className="far fa-heart pl-2 pr-2"></i>
                                 </Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/cart">
