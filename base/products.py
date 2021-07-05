@@ -1,7 +1,7 @@
 products = [
         {
             "product_id": "1036630-1082",
-            "product_name": "Mulo - Suede Espadrilles - Men - Neutrals",
+            "product_name": "Suede Espadrilles",
             "availability": "in stock",
             "product_category": "Shoes > Suede Shoes",
             "brand": "Mulo",
