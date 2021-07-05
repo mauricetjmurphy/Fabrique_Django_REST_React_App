@@ -1,41 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../../actions/productActions";
 
+import { Preloader } from "../../components/PreLoader/Preloader";
+import { Message } from "../../components/Message/Message";
 import ProductCard from "../../components/product-card/Product-card";
 
 function ProductsPage() {
-    const [products, setProducts] = useState([]);
+    const dispatch = useDispatch();
+    const productList = useSelector((state) => state.productList);
+    const { error, loading, products } = productList;
 
     useEffect(() => {
-        async function fetchProducts() {
-            //Destructuring the awaited response. Await need to be wrapped in an async function
-            const { data } = await axios.get(
-                "http://localhost:8000/api/products/"
-            );
-            setProducts(data);
-        }
-
-        fetchProducts();
-    }, []);
+        dispatch(listProducts());
+    }, [dispatch]);
 
     return (
         <div>
             <h2 className="text-center p-5">Latest Products</h2>
-            <Row>
-                {[
-                    ...products
-                        .reduce(
-                            (map, obj) => map.set(obj.product_name, obj),
-                            new Map()
-                        )
-                        .values(),
-                ].map((product, i) => (
-                    <Col key={product.product_id} sm={12} md={6} lg={4} xl={3}>
-                        <ProductCard product={product} />
-                    </Col>
-                ))}
-            </Row>
+            {loading ? (
+                <Preloader />
+            ) : error ? (
+                <Message variant="danger">{error}</Message>
+            ) : (
+                <Row>
+                    {[
+                        ...products
+                            .reduce(
+                                (map, obj) => map.set(obj.product_name, obj),
+                                new Map()
+                            )
+                            .values(),
+                    ].map((product, i) => (
+                        <Col
+                            key={product.product_id}
+                            sm={12}
+                            md={6}
+                            lg={4}
+                            xl={3}
+                        >
+                            <ProductCard product={product} />
+                        </Col>
+                    ))}
+                </Row>
+            )}
         </div>
     );
 }

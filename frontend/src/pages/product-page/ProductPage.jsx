@@ -21,12 +21,22 @@ function ProductPage({ match }) {
     }, []);
 
     return (
-        <div>
+        <div
+            style={{
+                height: "800px",
+            }}
+        >
             <Link to="/products" className="btn btn-light my-3">
                 Go Back
             </Link>
             <Row>
-                <Col md={6}>
+                <Col
+                    md={6}
+                    style={{
+                        height: "650px",
+                        overflow: "hidden",
+                    }}
+                >
                     <Image
                         className="product-img"
                         src={product.product_image_url}
