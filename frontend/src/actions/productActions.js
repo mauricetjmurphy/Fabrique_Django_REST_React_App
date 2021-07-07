@@ -7,9 +7,10 @@ import {
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
 } from "../constants/productConstants";
-
+//Redux-thunk allows us call an async function within a function and will call the dispatch
 export const listProducts = () => async (dispatch) => {
     try {
+        //Pass an object into dispatch to action the reducer
         dispatch({ type: PRODUCT_LIST_REQUEST });
         //Destructuring the awaited response. Await need to be wrapped in an async function
         const { data } = await axios.get("/api/products/");
@@ -17,6 +18,7 @@ export const listProducts = () => async (dispatch) => {
             type: PRODUCT_LIST_SUCCESS,
             payload: data,
         });
+        // Return error message if there are issues with the data
     } catch (error) {
         dispatch({
             type: PRODUCT_LIST_FAIL,

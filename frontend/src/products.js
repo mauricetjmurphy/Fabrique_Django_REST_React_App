@@ -662,14 +662,13 @@ const products = [
     },
     {
         product_id: "1054231-966",
-        product_name:
-            "Gucci - Appliqu\u00e9d Logo-Print Loopback Cotton-Jersey Hoodie - Men - Pink",
+        product_name: "Appliqu Logo-Print Loopback Cotton-Jersey Hoodie",
         availability: "in stock",
         product_category: "Clothing > Sweats > Hoodies",
         brand: "Gucci",
         color: "pink",
         description:
-            "Multicoloured Loopback Cotton-jersey, Drawstring Hood, Multicoloured Appliqu\u00e9s, Ribbed Trims, 100% Cotton, Made In ItalyGucci 's loopback cotton-jersey hoodie has been made in Italy with not just one, but three distinct brand signatures: two logos and an intricately embroidered dragon appliqu\u00e9 along the shoulderIt's cut for a loose fit and is slightly long in the sleeves, so it feels particularly relaxed and comfyShown here with Gucci trousers, Gucci sneakers.",
+            "Multicoloured Loopback Cotton-jersey, Drawstring Hood, Multicoloured Appliqs, Ribbed Trims, 100% Cotton, Made In ItalyGucci 's loopback cotton-jersey hoodie has been made in Italy with not just one, but three distinct brand signatures: two logos and an intricately embroidered dragon appliqu along the shoulderIt's cut for a loose fit and is slightly long in the sleeves, so it feels particularly relaxed and comfyShown here with Gucci trousers, Gucci sneakers.",
         gender: "male",
         size: "XXXL",
         material: "100%cotton / embroidery: 100% viscose",
@@ -974,7 +973,7 @@ const products = [
     },
     {
         product_id: "1111984-1013",
-        product_name: "AMIRI - Embellished Suede Jodhpur Boots - Men - Brown",
+        product_name: "Embellished Suede Jodhpur Boots",
         availability: "in stock",
         product_category: "Shoes > Boots > Biker Boots",
         brand: "AMIRI",

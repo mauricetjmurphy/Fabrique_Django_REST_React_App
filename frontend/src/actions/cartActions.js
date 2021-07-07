@@ -1,9 +1,12 @@
 import axios from "axios";
-import { CART_ADD_ITEM } from "../constants/cartConstants";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
 
+// Actions are objects that represent the intention to change the state
+//Action creator function  sends the fetched data in the form of a payload in the dispatch
 export const addToCart = (id, qty) => async (dispatch, getState) => {
     const { data } = await axios.get(`/api/products/${id}`);
 
+    //Dispatch an action to the reducer
     dispatch({
         type: CART_ADD_ITEM,
         payload: {
@@ -14,6 +17,18 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
             price: data.retail_price,
             qty,
         },
+    });
+
+    localStorage.setItem(
+        "cartItems",
+        JSON.stringify(getState().cart.cartItems)
+    );
+};
+
+export const removeFromCart = (id) => (dispatch, getState) => {
+    dispatch({
+        type: CART_REMOVE_ITEM,
+        payload: id,
     });
 
     localStorage.setItem(

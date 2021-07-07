@@ -9,6 +9,7 @@ import {
 
 export const productListReducer = (state = { products: [] }, action) => {
     switch (action.type) {
+        // Do something here based on the different types of actions
         case PRODUCT_LIST_REQUEST:
             return { loading: true, products: [] };
 
@@ -17,7 +18,8 @@ export const productListReducer = (state = { products: [] }, action) => {
 
         case PRODUCT_LIST_FAIL:
             return { loading: false, error: action.payload };
-
+        // If this reducer doesn't recognize the action type, or doesn't
+        // care about this specific action, return the existing state unchanged
         default:
             return state;
     }

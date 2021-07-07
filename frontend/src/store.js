@@ -13,7 +13,7 @@ const reducer = combineReducers({
     cart: cartReducer,
 });
 
-const cartItemsFromStorage = localStorage.getItem("cartItmes")
+const cartItemsFromStorage = localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [];
 
@@ -22,7 +22,9 @@ const initialState = {
 };
 const middleware = [thunk];
 
+//Creates a Redux store that holds the complete state tree of your app.
 const store = createStore(
+    //A reducing function that returns the next state tree, given the current state tree and an action to handle.
     reducer,
     initialState,
     composeWithDevTools(applyMiddleware(...middleware))

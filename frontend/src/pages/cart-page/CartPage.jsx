@@ -11,7 +11,7 @@ import {
     Button,
     Card,
 } from "react-bootstrap";
-import { addToCart } from "../../actions/cartActions";
+import { addToCart, removeFromCart } from "../../actions/cartActions";
 
 const CartPage = ({ match, location, history }) => {
     // Options for the product select values
@@ -38,7 +38,9 @@ const CartPage = ({ match, location, history }) => {
         history.push("/login?redirect=shipping");
     };
 
-    const removeFromCartHandler = (id) => {};
+    const removeFromCartHandler = (id) => {
+        dispatch(removeFromCart(id));
+    };
 
     return (
         <Row>
