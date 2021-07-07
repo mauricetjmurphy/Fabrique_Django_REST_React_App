@@ -21,6 +21,7 @@ function App() {
                     <Route path="/" component={HomePage} exact />
                     <Route path="/products" component={ProductsPage} />
                     <Route path="/product/:id" component={ProductPage} />
+                    {/* The ? in the url make the id parameter optional */}
                     <Route path="/cart/:id?" component={CartPage} />
                 </Container>
             </main>

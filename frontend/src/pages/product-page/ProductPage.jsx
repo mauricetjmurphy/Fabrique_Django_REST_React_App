@@ -2,17 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../../actions/productActions";
 import { Link } from "react-router-dom";
-import {
-    Row,
-    Col,
-    Image,
-    ListGroup,
-    Button,
-    Card,
-    Form,
-} from "react-bootstrap";
+import { Row, Col, Image, ListGroup, Button, Form } from "react-bootstrap";
 import { Preloader } from "../../components/PreLoader/Preloader";
-import { Message } from "../../components/Message/Message";
+import Message from "../../components/Message/Message";
 import Rating from "../../components/rating/Rating";
 import "./product-page.css";
 
