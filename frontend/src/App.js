@@ -10,16 +10,18 @@ import Footer from "./components/footer/Footer";
 import HomePage from "./pages/home-page/HomePage";
 import ProductsPage from "./pages/products-page/ProductsPage";
 import ProductPage from "./pages/product-page/ProductPage";
+import CartPage from "./pages/cart-page/CartPage";
 
 function App() {
     return (
         <Router>
             <Header />
-            <main>
+            <main className="mb-2">
                 <Container>
                     <Route path="/" component={HomePage} exact />
                     <Route path="/products" component={ProductsPage} />
                     <Route path="/product/:id" component={ProductPage} />
+                    <Route path="/cart/:id?" component={CartPage} />
                 </Container>
             </main>
             <Footer />

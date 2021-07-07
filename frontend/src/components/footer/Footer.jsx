@@ -3,11 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function Footer() {
     const style = {
-        backgroundColor: "#F8F8F8",
+        background: "#343a40",
+        color: "#fff",
         borderTop: "1px solid #E7E7E7",
         textAlign: "center",
         padding: "20px",
-        position: "fixed",
         left: "0",
         bottom: "0",
         height: "60px",
@@ -15,7 +15,6 @@ function Footer() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        opacity: "50%",
     };
 
     return (

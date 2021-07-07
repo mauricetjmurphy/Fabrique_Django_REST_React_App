@@ -2,13 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../../actions/productActions";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
+import {
+    Row,
+    Col,
+    Image,
+    ListGroup,
+    Button,
+    Card,
+    Form,
+} from "react-bootstrap";
 import { Preloader } from "../../components/PreLoader/Preloader";
 import { Message } from "../../components/Message/Message";
 import Rating from "../../components/rating/Rating";
 import "./product-page.css";
 
-function ProductPage({ match }) {
+function ProductPage({ match, history }) {
+    const [qty, setQty] = useState(1);
+
     const dispatch = useDispatch();
     const productDetails = useSelector((state) => state.productDetails);
     const { error, loading, product } = productDetails;
@@ -16,6 +26,14 @@ function ProductPage({ match }) {
     useEffect(() => {
         dispatch(listProductDetails(match.params.id));
     }, []);
+
+    const options = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    ];
+
+    const addToCartHandler = () => {
+        history.push(`/cart/${match.params.id}?qty=${qty}`);
+    };
 
     return (
         <div
@@ -66,9 +84,36 @@ function ProductPage({ match }) {
                             </ListGroup.Item>
 
                             <ListGroup.Item>
+                                <Form.Control
+                                    as="select"
+                                    value={qty}
+                                    onChange={(e) => {
+                                        setQty(e.target.value);
+                                    }}
+                                >
+                                    {options.map((e) => (
+                                        <option key={e} label={e} value={e}>
+                                            {e}
+                                        </option>
+                                    ))}
+                                </Form.Control>
+                            </ListGroup.Item>
+
+                            <ListGroup.Item>
                                 <Button
                                     className="btn btn-block btn-dark"
                                     type="button"
+                                    onClick={addToCartHandler}
+                                >
+                                    Add to Cart
+                                </Button>
+                                <Button
+                                    className="btn btn-block btn-light"
+                                    type="button"
+                                    style={{
+                                        marginTop: "15px",
+                                        border: "1px solid #343a40",
+                                    }}
                                 >
                                     Add to Wish List
                                 </Button>
