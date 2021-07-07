@@ -17,6 +17,7 @@ import Rating from "../../components/rating/Rating";
 import "./product-page.css";
 
 function ProductPage({ match, history }) {
+    // Set the product quantity in the component state
     const [qty, setQty] = useState(1);
 
     const dispatch = useDispatch();
@@ -27,10 +28,12 @@ function ProductPage({ match, history }) {
         dispatch(listProductDetails(match.params.id));
     }, []);
 
+    // Options for the product select values
     const options = [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     ];
 
+    // Using the history prop to redirect us to the cart page, passing in the id and quantity
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`);
     };
@@ -44,6 +47,7 @@ function ProductPage({ match, history }) {
             <Link to="/products" className="btn btn-light my-3">
                 Go Back
             </Link>
+            {/* Using a ternary operator to check if the app is loading or if we nned to display an error message */}
             {loading ? (
                 <Preloader />
             ) : error ? (
