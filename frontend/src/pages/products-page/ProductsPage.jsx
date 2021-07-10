@@ -8,6 +8,7 @@ import ProductCard from "../../components/product-card/Product-card";
 
 function ProductsPage() {
     const dispatch = useDispatch();
+    // useSelector is used to get specific parts of the state
     const productList = useSelector((state) => state.productList);
     const { error, loading, products } = productList;
 
