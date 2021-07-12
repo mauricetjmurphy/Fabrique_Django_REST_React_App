@@ -12,7 +12,7 @@ export const listProducts = () => async (dispatch) => {
     try {
         //Pass an object into dispatch to action the reducer
         dispatch({ type: PRODUCT_LIST_REQUEST });
-        //Destructuring the awaited response. Await need to be wrapped in an async function
+        //Destructuring the awaited response. Await needs to be wrapped in an async function
         const { data } = await axios.get("/api/products/");
         dispatch({
             type: PRODUCT_LIST_SUCCESS,

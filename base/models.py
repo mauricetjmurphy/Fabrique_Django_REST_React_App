@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.fields.files import ImageField
+
 # Create your models here.
 
-
 class Product(models.Model):
+    # Set the relationship to the User model (one-to-many relationship). 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     product_id = models.AutoField(primary_key=True, editable=False)
     product_name = models.CharField(max_length=200, null=True, blank=True)
@@ -27,6 +27,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    # Set the relationship to the User model (one-to-many relationship). 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     paymentMethod = models.CharField(max_length=200, null=True, blank=True)
     taxPrice = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
@@ -44,6 +45,7 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    # Set the relationship to the User model (one-to-many relationship). 
     product_id = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
@@ -57,6 +59,7 @@ class OrderItem(models.Model):
 
 
 class ShippingAddress(models.Model):
+    # Set the relationship to the User model (one-to-many relationship). 
     order = models.OneToOneField(Order, on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=200, null=True, blank=True)
