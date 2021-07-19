@@ -55,7 +55,7 @@ export const logout = () => (dispatch) => {
     dispatch({ type: USER_LOGOUT });
 };
 
-export const Register = (name, email, password) => async (dispatch) => {
+export const register = (name, email, password) => async (dispatch) => {
     try {
         // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
         dispatch({
@@ -74,7 +74,7 @@ export const Register = (name, email, password) => async (dispatch) => {
             "/api/users/register/",
             {
                 name: name,
-                username: email,
+                email: email,
                 password: password,
             },
             config
@@ -82,6 +82,11 @@ export const Register = (name, email, password) => async (dispatch) => {
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
+            payload: data,
+        });
+
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
             payload: data,
         });
 

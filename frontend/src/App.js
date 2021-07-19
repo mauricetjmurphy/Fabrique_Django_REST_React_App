@@ -9,6 +9,7 @@ import Footer from "./components/footer/Footer";
 
 import HomePage from "./pages/home-page/HomePage";
 import LoginPage from "./pages/login-page/LoginPage";
+import RegisterPage from "./pages/register-page/RegisterPage";
 import ProductsPage from "./pages/products-page/ProductsPage";
 import ProductPage from "./pages/product-page/ProductPage";
 import CartPage from "./pages/cart-page/CartPage";
@@ -20,6 +21,7 @@ function App() {
             <main className="mb-2">
                 <Container>
                     <Route path="/login" component={LoginPage} />
+                    <Route path="/register" component={RegisterPage} />
                     <Route path="/" component={HomePage} exact />
                     <Route path="/products" component={ProductsPage} />
                     <Route path="/product/:id" component={ProductPage} />

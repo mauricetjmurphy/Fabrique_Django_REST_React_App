@@ -32,7 +32,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 def registerUser(request):
     data = request.data
     try:

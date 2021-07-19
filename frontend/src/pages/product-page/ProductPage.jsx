@@ -4,7 +4,7 @@ import { listProductDetails } from "../../actions/productActions";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Form } from "react-bootstrap";
 import { Preloader } from "../../components/PreLoader/Preloader";
-import Message from "../../components/Message/Message";
+import Message from "../../components/message/Message";
 import Rating from "../../components/rating/Rating";
 import "./product-page.css";
 
