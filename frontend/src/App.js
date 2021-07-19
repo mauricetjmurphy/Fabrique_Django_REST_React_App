@@ -16,7 +16,7 @@ import CartPage from "./pages/cart-page/CartPage";
 
 function App() {
     return (
-        <Router>
+        <Router id="root">
             <Navbar />
             <main className="mb-2">
                 <Container>
