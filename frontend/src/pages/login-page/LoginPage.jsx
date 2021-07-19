@@ -11,7 +11,6 @@ const LoginPage = ({ location, history, match }) => {
 
     const dispatch = useDispatch();
 
-    console.log(location);
     const redirect = location.search ? location.search.split("=")[1] : "/";
 
     //Getting the userLogin state from the store.js

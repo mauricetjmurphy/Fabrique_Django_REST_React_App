@@ -26,10 +26,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSerializerWithToken(UserSerializer):
-    name = serializers.SerializerMethodField(read_only=True)
+    token = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = User
-        Fields = ['id', '_id', 'username', 'email', 'name', 'isAdmin']
+        fields = '__all__'
 
     def get_token(self,obj):
         token = RefreshToken.for_user(obj)
