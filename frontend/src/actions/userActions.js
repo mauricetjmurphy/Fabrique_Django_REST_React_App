@@ -13,12 +13,14 @@ export const login = (email, password) => async (dispatch) => {
             type: USER_LOGIN_REQUEST,
         });
 
+        // Axios post request will require a header. This variable is passed in below.
         const config = {
             header: {
                 "Content-type": "application/json",
             },
         };
 
+        //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
         const { data } = await axios.post(
             "/api/users/login/",
             {
