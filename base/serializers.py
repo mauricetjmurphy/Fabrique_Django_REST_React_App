@@ -33,6 +33,7 @@ class UserSerializerWithToken(UserSerializer):
 
     def get_token(self,obj):
         token = RefreshToken.for_user(obj)
+        # Make the token type an access token. You can use a refresh token for Auth.
         return str(token.access_token)
 
 class ProductSerializer(serializers.ModelSerializer):

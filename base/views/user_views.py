@@ -48,7 +48,7 @@ def registerUser(request):
         message = {'detail': 'User with this email already exists'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET'])
+@api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def updateUserProfile(request):
     user = request.user
@@ -61,6 +61,8 @@ def updateUserProfile(request):
 
     if data['password'] != '':
         user.password = make_password(data['password'])
+    
+    user.save()
 
     return Response(serializer.data)
 
