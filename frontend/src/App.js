@@ -13,6 +13,7 @@ import RegisterPage from "./pages/register-page/RegisterPage";
 import ProductsPage from "./pages/products-page/ProductsPage";
 import ProductPage from "./pages/product-page/ProductPage";
 import CartPage from "./pages/cart-page/CartPage";
+import ProfilePage from "./pages/profile-page/ProfilePage";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Container>
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={RegisterPage} />
+                    <Route path="/profile" component={ProfilePage} />
                     <Route path="/" component={HomePage} exact />
                     <Route path="/products" component={ProductsPage} />
                     <Route path="/product/:id" component={ProductPage} />
