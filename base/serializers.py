@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from .models import Product
 from rest_framework_simplejwt.tokens import RefreshToken
 
+"""Serializers are sending all the specified data out on the API"""
+
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only=True)
     _id = serializers.SerializerMethodField(read_only=True)
@@ -19,12 +21,12 @@ class UserSerializer(serializers.ModelSerializer):
         return obj.is_staff
 
     def get_name(self, obj):
-        name = obj.first_name
+        name = obj.first_name + ' ' + obj.last_name
         if name == '':
             name = obj.email
         return name
 
-
+# This serializer is similar to the User serializer but it also sends a refresh token with the data.
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
     class Meta:
@@ -33,7 +35,7 @@ class UserSerializerWithToken(UserSerializer):
 
     def get_token(self,obj):
         token = RefreshToken.for_user(obj)
-        # Make the token type an access token. You cant use a refresh token for Auth.
+        # Make the token type an access token. You can't use a refresh token for Auth.
         return str(token.access_token)
 
 class ProductSerializer(serializers.ModelSerializer):

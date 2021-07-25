@@ -2,6 +2,7 @@ from django.urls import path
 from base.views import user_views as views
 
 urlpatterns = [
+    # Route for obtaining the web token. Generates a new token every time it accessed.
     path('login/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
 
     path('register/', views.registerUser, name='register'),

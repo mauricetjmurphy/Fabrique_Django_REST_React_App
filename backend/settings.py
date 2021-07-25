@@ -43,15 +43,14 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
 ]
 
+# Changing the default Auth Class to rest framework simple JWT. Using the JWT library for producing Auth web tokens that will be stored in local storage.
 REST_FRAMEWORK = {
-
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
 
-# Django project settings.py
-
+# Settings for customizing the web token.
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
