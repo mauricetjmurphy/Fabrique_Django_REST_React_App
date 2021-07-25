@@ -1,3 +1,4 @@
+// Import the constants
 import {
     USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
@@ -16,6 +17,8 @@ import {
     USER_UPDATE_PROFILE_RESET,
 } from "../constants/userConstants";
 import axios from "axios";
+import { getState } from "react-redux";
+// Actions are plain JavaScript objects that have a type field. An action is an event that describes something that happened in the application.
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -31,22 +34,26 @@ export const login = (email, password) => async (dispatch) => {
             },
         };
 
-        //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
+        // Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
+        // Destructure the response from the axios API call
         const { data } = await axios.post(
             "/api/users/login/",
             {
                 username: email,
                 password: password,
             },
+            // Pass in the header as an argument
             config
         );
-
+        // If the post request is successful, a dispatch is sent with the returned data in its payload
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data,
         });
 
+        // Update the local storeage with the users details and the token. Data stored as a key valse pair.
         localStorage.setItem("userInfo", JSON.stringify(data));
+        // If the is an issue with the request, a dispatch is sent with the error message in its payload
     } catch (error) {
         dispatch({
             type: USER_LOGIN_FAIL,
@@ -59,8 +66,11 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
+    // Remove items from local storage
     localStorage.removeItem("userInfo");
+    // Set the state object to an empty object
     dispatch({ type: USER_LOGOUT });
+    // Reset the user details state object
     dispatch({ type: USER_DETAILS_RESET });
 };
 
@@ -118,6 +128,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             type: USER_DETAILS_REQUEST,
         });
 
+        // // Get the current global state
         const {
             userLogin: { userInfo },
         } = getState();

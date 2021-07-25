@@ -14,6 +14,7 @@ import ProductsPage from "./pages/products-page/ProductsPage";
 import ProductPage from "./pages/product-page/ProductPage";
 import CartPage from "./pages/cart-page/CartPage";
 import ProfilePage from "./pages/profile-page/ProfilePage";
+import ShippingPage from "./pages/shipping-page/ShippingPage";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/product/:id" component={ProductPage} />
                     {/* The ? in the url make the id parameter optional */}
                     <Route path="/cart/:id?" component={CartPage} />
+                    <Route path="/shipping/:id?" component={ShippingPage} />
                 </Container>
             </main>
             <Footer />

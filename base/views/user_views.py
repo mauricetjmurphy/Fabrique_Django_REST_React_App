@@ -54,6 +54,7 @@ def registerUser(request):
 # Decorator checks if the user is authenticated before allowing access
 @permission_classes([IsAuthenticated])
 def updateUserProfile(request):
+    # Get user object from the token that is sent
     user = request.user
     serializer = UserSerializerWithToken(user, many=False)
 
@@ -85,6 +86,5 @@ def getUserProfile(request):
 @permission_classes([IsAdminUser])
 def getUsers(request):
     users = User.objects.all()
-    print(users)
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)

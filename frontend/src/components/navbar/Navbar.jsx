@@ -7,8 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 
 function Header() {
+    // Use history hook to access the react router history object
     const history = useHistory();
 
+    // Initializing the useDispatch object
     const dispatch = useDispatch();
 
     //Getting the userLogin state from the store.js
@@ -17,6 +19,7 @@ function Header() {
     const { loading, userInfo, error } = userLogin;
 
     const logoutHandler = (e) => {
+        // dispatch the logout action and redirect the user to the login page
         dispatch(logout());
         history.push("/login");
     };

@@ -13,6 +13,7 @@ import {
     userUpdateProfileReducer,
 } from "./reducers/userReducers";
 
+// Listing the projects reducers and assigning them to a variable
 const reducers = {
     productList: productListReducer,
     productDetails: productDetailsReducer,
@@ -23,12 +24,14 @@ const reducers = {
     userUpdateProfile: userUpdateProfileReducer,
 };
 
+// The combineReducers helper function turns an object whose values are different reducing functions into a single reducing function you can pass to createStore. The resulting reducer calls every child reducer, and gathers their results into a single state object.
 const rootReducer = combineReducers(reducers);
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [];
 
+// The user data needs to be taken from local storage to set the initial state.
 const userInfoFromStorage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : null;

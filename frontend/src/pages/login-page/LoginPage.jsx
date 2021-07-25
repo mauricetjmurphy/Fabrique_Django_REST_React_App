@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Form, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/userActions";
+import Message from "../../components/message/Message";
+import { Preloader } from "../../components/PreLoader/Preloader";
 
-const LoginPage = ({ location }) => {
+const LoginPage = () => {
     const history = useHistory();
-    //Setting component state
+    const location = useLocation();
+    // Setting component state
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // Initializing the dispatch object
     const dispatch = useDispatch();
-
+    // Split the query sring on = and return the value in index 1
     const redirect = location.search ? location.search.split("=")[1] : "/";
 
     //Getting the userLogin state from the store.js
@@ -19,22 +23,32 @@ const LoginPage = ({ location }) => {
     //The userLogin variable holds the userReducer and from this we can destructure the data from the variable
     const { loading, userInfo, error } = userLogin;
 
-    // If user is loggied in redirect to homepage
+    // If user is logged in redirect to homepage
     useEffect(() => {
         if (userInfo) {
             history.push(redirect);
         }
+        // The dependency array ensures that useEffect is only called if the data in the dependency array changes.
     }, [history, userInfo, redirect]);
 
-    //Send an axios request to the backend to login when the form submit button is clicked, passing in the email and password as params
+    // Send an axios request to the backend to login when the form submit button is clicked, passing in the email and password as params
+    // The submit handler dispatches the login action passing it the email and password from the form. The reducer then updates the state with the actions payload.
     const submitHandler = (e) => {
+        // Prevent the page from refreshing
         e.preventDefault();
+        // Dispatching the login action
         dispatch(login(email, password));
     };
 
     return (
         <div>
             <Container>
+                <Row className="m-5 justify-content-md-center">
+                    {error && <Message variant="danger">{error}</Message>}
+                </Row>
+                <Row className="m-5 justify-content-md-center">
+                    {loading && <Preloader />}
+                </Row>
                 <Row className="m-5 justify-content-md-center">
                     <h1>Login</h1>
                 </Row>

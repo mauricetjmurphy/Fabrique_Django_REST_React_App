@@ -1,5 +1,11 @@
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
 
+// A reducer is a function that takes an action and the previous state of the application and returns the new state.
+
+// The reducer does not modify the state, it creates a new state object that is merged merged with the existing state object.
+
+// The reducer function takes the empty state and the action as arguments. It then uses a switch statement, based on the action type, returns an object
+
 // Reducer changes the state and passes it down to components
 export const cartReducer = (state = { cartItems: [] }, action) => {
     switch (action.type) {
