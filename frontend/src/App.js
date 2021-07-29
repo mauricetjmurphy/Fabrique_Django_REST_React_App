@@ -30,7 +30,7 @@ function App() {
                     <Route path="/product/:id" component={ProductPage} />
                     {/* The ? in the url make the id parameter optional */}
                     <Route path="/cart/:id?" component={CartPage} />
-                    <Route path="/shipping/:id?" component={ShippingPage} />
+                    <Route path="/shipping/" component={ShippingPage} />
                 </Container>
             </main>
             <Footer />
