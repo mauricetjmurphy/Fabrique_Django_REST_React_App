@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
+import { CART_SAVE_SHIPPING_ADDRESS } from "../constants/cartConstants";
 
 // Actions are objects that represent the intention to change the state
 //Action creator function  sends the fetched data in the form of a payload in the dispatch
@@ -35,4 +36,13 @@ export const removeFromCart = (id) => (dispatch, getState) => {
         "cartItems",
         JSON.stringify(getState().cart.cartItems)
     );
+};
+
+export const saveShippingAddress = (data) => (dispatch) => {
+    dispatch({
+        type: CART_SAVE_SHIPPING_ADDRESS,
+        payload: data,
+    });
+
+    localStorage.setItem("shippingAddress", JSON.stringify(data));
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
@@ -16,7 +16,7 @@ function Header() {
     //Getting the userLogin state from the store.js
     const userLogin = useSelector((state) => state.userLogin);
     //The userLogin variable holds the userReducer and from this we can destructure the data from the variable
-    const { loading, userInfo, error } = userLogin;
+    const { userInfo } = userLogin;
 
     const logoutHandler = (e) => {
         // dispatch the logout action and redirect the user to the login page
@@ -35,10 +35,7 @@ function Header() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <LinkContainer to="/products/men">
-                            <Nav.Link>Men</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/products/women">
-                            <Nav.Link>Women</Nav.Link>
+                            <Nav.Link>SHOP</Nav.Link>
                         </LinkContainer>
                     </Nav>
                     <Nav>

@@ -14,10 +14,9 @@ import {
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
-    USER_UPDATE_PROFILE_RESET,
 } from "../constants/userConstants";
 import axios from "axios";
-import { getState } from "react-redux";
+
 // Actions are plain JavaScript objects that have a type field. An action is an event that describes something that happened in the application.
 
 export const login = (email, password) => async (dispatch) => {

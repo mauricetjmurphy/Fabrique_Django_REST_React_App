@@ -1,4 +1,5 @@
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
+import { CART_SAVE_SHIPPING_ADDRESS } from "../constants/cartConstants";
 
 // A reducer is a function that takes an action and the previous state of the application and returns the new state.
 
@@ -7,7 +8,10 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
 // The reducer function takes the empty state and the action as arguments. It then uses a switch statement, based on the action type, returns an object
 
 // Reducer changes the state and passes it down to components
-export const cartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (
+    state = { cartItems: [], shipppingAddress: {} },
+    action
+) => {
     switch (action.type) {
         case CART_ADD_ITEM:
             const item = action.payload;
@@ -35,6 +39,11 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
                 ),
             };
 
+        case CART_SAVE_SHIPPING_ADDRESS:
+            return {
+                ...state,
+                shippingAddress: action.payload,
+            };
         default:
             return state;
     }

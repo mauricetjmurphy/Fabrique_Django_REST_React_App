@@ -22,7 +22,7 @@ const RegisterPage = () => {
     //Getting the userLogin state from the store.js
     const userRegister = useSelector((state) => state.userRegister);
     //The userLogin variable holds the userReducer and from this we can destructure the data from the variable
-    const { loading, userInfo, error } = userRegister;
+    const { userInfo, error } = userRegister;
 
     // If user is loggied in redirect to homepage
     useEffect(() => {
