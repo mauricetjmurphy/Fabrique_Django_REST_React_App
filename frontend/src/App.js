@@ -15,6 +15,7 @@ import ProductPage from "./pages/product-page/ProductPage";
 import CartPage from "./pages/cart-page/CartPage";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import ShippingPage from "./pages/shipping-page/ShippingPage";
+import PaymentPage from "./pages/payment-page/PaymentPage";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                     {/* The ? in the url make the id parameter optional */}
                     <Route path="/cart/:id?" component={CartPage} />
                     <Route path="/shipping/" component={ShippingPage} />
+                    <Route path="/payment/" component={PaymentPage} />
                 </Container>
             </main>
             <Footer />

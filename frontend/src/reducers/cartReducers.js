@@ -1,5 +1,9 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
-import { CART_SAVE_SHIPPING_ADDRESS } from "../constants/cartConstants";
+import {
+    CART_ADD_ITEM,
+    CART_REMOVE_ITEM,
+    CART_SAVE_SHIPPING_ADDRESS,
+    CART_SAVE_PAYMENT_METHOD,
+} from "../constants/cartConstants";
 
 // A reducer is a function that takes an action and the previous state of the application and returns the new state.
 
@@ -43,6 +47,12 @@ export const cartReducer = (
             return {
                 ...state,
                 shippingAddress: action.payload,
+            };
+
+        case CART_SAVE_PAYMENT_METHOD:
+            return {
+                ...state,
+                paymentMethod: action.payload,
             };
         default:
             return state;
