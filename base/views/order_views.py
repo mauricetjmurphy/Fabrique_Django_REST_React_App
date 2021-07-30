@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from base.models import Product, User, Order, OrderItem, ShippingAddress
-from base.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
+from base.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken, OrderSerializer
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -51,5 +51,5 @@ def addOrderItems(request):
                 image=product.image.url,
             )
         
-
-    return Response('ORDER')
+    serializer = OrderSerializer(order, many=True)
+    return Response(serializer.data)
