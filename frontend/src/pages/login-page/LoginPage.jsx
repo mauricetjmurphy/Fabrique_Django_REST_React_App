@@ -4,7 +4,7 @@ import { Form, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/userActions";
 import Message from "../../components/message/Message";
-import { Preloader } from "../../components/PreLoader/Preloader";
+import { Preloader } from "../../components/preloader/Preloader";
 
 const LoginPage = () => {
     const history = useHistory();

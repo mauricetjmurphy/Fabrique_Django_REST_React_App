@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
-import { Preloader } from "../../components/PreLoader/Preloader";
+import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import ProductCard from "../../components/product-card/Product-card";
 
