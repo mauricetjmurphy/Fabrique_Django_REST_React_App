@@ -14,10 +14,12 @@ from django.contrib.auth.hashers import make_password
 from rest_framework import status
 
 @api_view(['POST'])
-@permission_classes(['IsAuthenticated'])
+@permission_classes([IsAuthenticated])
 def addOrderItems(request):
+    print('yes')
     user = request.user
     data = request.data
+
 
     orderItems = data['orderItems']
     if(orderItems and len(orderItems) == 0):
@@ -26,8 +28,8 @@ def addOrderItems(request):
         # Create order
         order = Order.objects.create(
             user = user,
-            paymentMethos = data['paymentMethod'],
-            taxtPrice = data['taxPrice'],
+            paymentMethod = data['paymentMethod'],
+            taxPrice = data['taxPrice'],
             shippingPrice = data['shippingPrice'],
             totalPrice = data['totalPrice']
         )
@@ -41,15 +43,15 @@ def addOrderItems(request):
         )
         # Create order items and set the order to orderItem relationship
         for i in orderItems:
-            product = Product.objects.get(_id=i['product'])
+            product = Product.objects.get(product_id=i['id'])
             item = OrderItem.objects.create(
-                product=product,
+                product_id=product,
                 order=order,
-                name=product.name,
+                name=product.product_name,
                 qty=i['qty'],
                 price=i['price'],
-                image=product.image.url,
+                image=product.product_image_url,
             )
         
-    serializer = OrderSerializer(order, many=True)
-    return Response(serializer.data)
+        serializer = OrderSerializer(order, many=False)
+        return Response(serializer.data)

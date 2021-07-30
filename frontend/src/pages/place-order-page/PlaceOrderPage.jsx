@@ -15,8 +15,14 @@ import { useDispatch, useSelector } from "react-redux";
 import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";
 import { savePaymentMethod } from "../../actions/cartActions";
 import Message from "../../components/message/Message";
+import { createOrder } from "../../actions/orderActions";
 
 function PlaceOrderPage() {
+    const history = useHistory();
+    const orderCreate = useSelector((state) => state.orderCreate);
+    const { order, error, success } = orderCreate;
+
+    const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
 
     // Setting an attribute in the the cart object. It will only be available to this page.
@@ -33,9 +39,28 @@ function PlaceOrderPage() {
         Number(cart.shippingPrice) +
         Number(cart.taxPrice);
 
+    if (!cart.paymentMethod) {
+        history.push("/payment");
+    }
+
+    useEffect(() => {
+        if (success) {
+            history.push(`/order/${order._id}`);
+        }
+    }, [success, history]);
+
     const placeOrder = (e) => {
-        e.preventDefault();
-        console.log("order placed");
+        dispatch(
+            createOrder({
+                orderItems: cart.cartItems,
+                shippingAddress: cart.shippingAddress,
+                paymentMethod: cart.paymentMethod,
+                itemsPrice: cart.itemsPrice,
+                shippingPrice: cart.shippingPrice,
+                taxPrice: cart.taxPrice,
+                totalPrice: cart.totalPrice,
+            })
+        );
     };
 
     return (
@@ -132,6 +157,13 @@ function PlaceOrderPage() {
                                     <Col>€ {cart.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
+
+                            <ListGroup.Item>
+                                {error && (
+                                    <Message variant="danger">{error}</Message>
+                                )}
+                            </ListGroup.Item>
+
                             <ListGroup.Item>
                                 <Button
                                     disabled={cart.cartItems === 0}
