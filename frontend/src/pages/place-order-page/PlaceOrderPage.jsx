@@ -16,6 +16,7 @@ import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";
 import { savePaymentMethod } from "../../actions/cartActions";
 import Message from "../../components/message/Message";
 import { createOrder } from "../../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
 
 function PlaceOrderPage() {
     const history = useHistory();
@@ -46,6 +47,7 @@ function PlaceOrderPage() {
     useEffect(() => {
         if (success) {
             history.push(`/order/${order._id}`);
+            dispatch({ type: ORDER_CREATE_RESET });
         }
     }, [success, history]);
 
@@ -61,6 +63,7 @@ function PlaceOrderPage() {
                 totalPrice: cart.totalPrice,
             })
         );
+        history.push("/products");
     };
 
     return (
