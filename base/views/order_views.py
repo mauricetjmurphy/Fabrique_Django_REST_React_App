@@ -11,12 +11,11 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from django.contrib.auth.hashers import make_password
-from rest_framework import status
+from rest_framework import serializers, status
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addOrderItems(request):
-    print('yes')
     user = request.user
     data = request.data
 
@@ -55,3 +54,17 @@ def addOrderItems(request):
         
         serializer = OrderSerializer(order, many=False)
         return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getOrderById(request, pk):
+    user = request.user
+    try:
+        order = Order.objects.get(product_id=pk)
+        if user.is_staff or order.user == user:
+            serializer = OrderSerializer(order, many=False)
+            return Response(serializer.data)
+        else:
+            Response({'detail': 'NotAuthorized to view this order'}, status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response({'detail': 'Order does not exist'}, status=status.HTTP_400_BAD_REQUEST)
