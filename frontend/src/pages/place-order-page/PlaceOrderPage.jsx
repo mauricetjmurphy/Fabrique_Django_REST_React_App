@@ -63,7 +63,6 @@ function PlaceOrderPage() {
                 totalPrice: cart.totalPrice,
             })
         );
-        history.push("/products");
     };
 
     return (

@@ -13,12 +13,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers, status
 
+from datetime import datetime
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addOrderItems(request):
     user = request.user
     data = request.data
-
 
     orderItems = data['orderItems']
     if(orderItems and len(orderItems) == 0):
@@ -68,3 +69,14 @@ def getOrderById(request, pk):
             Response({'detail': 'NotAuthorized to view this order'}, status=status.HTTP_400_BAD_REQUEST)
     except:
         return Response({'detail': 'Order does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def updateOrderToPaid(request, pk):
+    order = Order.objects.get(product_id=pk)
+
+    order.isPaid = True
+    order.paidAt = datetime.now()
+    order.save()
+    return Response('Order was paid')
