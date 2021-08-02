@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import {
-    Form,
-    Button,
-    Row,
-    Container,
-    Col,
-    FormCheck,
-    Image,
-    Card,
-    ListGroup,
-} from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { Button, Row, Col, Image, Card, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";
-import { savePaymentMethod } from "../../actions/cartActions";
 import Message from "../../components/message/Message";
 import { createOrder } from "../../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../../constants/orderConstants";

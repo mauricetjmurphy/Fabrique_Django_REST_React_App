@@ -20,8 +20,9 @@ from datetime import datetime
 def addOrderItems(request):
     user = request.user
     data = request.data
-
     orderItems = data['orderItems']
+    print(orderItems)
+
     if(orderItems and len(orderItems) == 0):
         return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
     else:
@@ -43,7 +44,7 @@ def addOrderItems(request):
         )
         # Create order items and set the order to orderItem relationship
         for i in orderItems:
-            product = Product.objects.get(product_id=i['id'])
+            product = Product.objects.get(product_name=i['name'])
             item = OrderItem.objects.create(
                 product_id=product,
                 order=order,
