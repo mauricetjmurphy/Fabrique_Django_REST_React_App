@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { Form, Button, Row, Container, Col, FormCheck } from "react-bootstrap";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Form, Button, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";
 import { savePaymentMethod } from "../../actions/cartActions";
@@ -33,12 +33,21 @@ function PaymentPage() {
                     <Form.Label as="legend">Select Payment Method</Form.Label>
                     <Col>
                         <Form.Check
-                            required
                             type="radio"
-                            label="Paypal or Credit Card"
+                            label="Paypal"
                             id="paypal"
-                            name="paymentMethod"
+                            name="paymentMethod1"
                             value="PayPal"
+                            onChange={(e) => {
+                                setPaymentMethod(e.target.value);
+                            }}
+                        ></Form.Check>
+                        <Form.Check
+                            type="radio"
+                            label="Credit or Debit Card"
+                            id="stripe"
+                            name="paymentMethod2"
+                            value="Stripe"
                             onChange={(e) => {
                                 setPaymentMethod(e.target.value);
                             }}

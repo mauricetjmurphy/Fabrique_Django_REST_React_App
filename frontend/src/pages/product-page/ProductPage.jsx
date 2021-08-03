@@ -7,6 +7,7 @@ import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import Rating from "../../components/rating/Rating";
 import "./product-page.css";
+import { addToCart } from "../../actions/cartActions";
 
 function ProductPage({ match, history }) {
     // Set the product quantity in the component state
@@ -27,7 +28,7 @@ function ProductPage({ match, history }) {
 
     // Using the history prop to redirect us to the cart page, passing in the id and quantity
     const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?qty=${qty}`);
+        dispatch(addToCart(match.params.id, qty));
     };
 
     return (

@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', '_id', 'username', 'email', 'name', 'isAdmin']
+        fields = '__all__'
 
     def get__id(self, obj):
         return obj.id
@@ -26,6 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
             name = obj.email
         return name
 
+
 # This serializer is similar to the User serializer but it also sends a refresh token with the data.
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
@@ -38,20 +39,24 @@ class UserSerializerWithToken(UserSerializer):
         # Make the token type an access token. You can't use a refresh token for Auth.
         return str(token.access_token)
 
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
 
 class ShippingAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShippingAddress
         fields = '__all__'
 
+
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = '__all__'
+
 
 class OrderSerializer(serializers.ModelSerializer):
     orderItems = serializers.SerializerMethodField(read_only=True)

@@ -6,6 +6,7 @@ import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";
 import Message from "../../components/message/Message";
 import { createOrder } from "../../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
+import CheckoutBtn from "../../components/checkout-button/CheckoutBtn";
 
 function PlaceOrderPage() {
     const history = useHistory();
@@ -24,10 +25,10 @@ function PlaceOrderPage() {
 
     cart.taxPrice = (0.082 * cart.itemsPrice).toFixed(2);
 
-    cart.totalPrice =
+    const total = (cart.totalPrice =
         Number(cart.itemsPrice) +
         Number(cart.shippingPrice) +
-        Number(cart.taxPrice);
+        Number(cart.taxPrice));
 
     if (!cart.paymentMethod) {
         history.push("/payment");
@@ -49,7 +50,7 @@ function PlaceOrderPage() {
                 itemsPrice: cart.itemsPrice,
                 shippingPrice: cart.shippingPrice,
                 taxPrice: cart.taxPrice,
-                totalPrice: cart.totalPrice,
+                totalPrice: total,
             })
         );
     };
@@ -156,14 +157,15 @@ function PlaceOrderPage() {
                             </ListGroup.Item>
 
                             <ListGroup.Item>
-                                <Button
+                                {/* <Button
                                     disabled={cart.cartItems === 0}
                                     type="button"
                                     className="btn-block"
                                     onClick={placeOrder}
                                 >
                                     Place Order
-                                </Button>
+                                </Button> */}
+                                <CheckoutBtn price={total} width="100%" />
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>

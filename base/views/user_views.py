@@ -13,6 +13,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
 
+
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     # Customizing the serializer to obtain any user data that we require.
     def validate(self, attrs):
@@ -77,13 +79,13 @@ def updateUserProfile(request):
 def getUserProfile(request):
     # user will be the user from the web token
     user = request.user
-    serializer = UserSerializer(user, many=False)
+    serializer = UserSerializerWithToken(user, many=False)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 # Decorator checks if the user is authenticated and assigned admin privilages before allowing access
-@permission_classes([IsAdminUser])
+# @permission_classes([IsAdmin])
 def getUsers(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)

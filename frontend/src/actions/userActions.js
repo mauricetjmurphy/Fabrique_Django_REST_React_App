@@ -131,16 +131,16 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             type: USER_DETAILS_REQUEST,
         });
 
-        // // Get the current global state
+        // Getting the auth token for sending in the headers
         const {
             userLogin: { userInfo },
         } = getState();
 
         // Axios post request will require a header. This variable is passed in below.
         const config = {
-            header: {
+            headers: {
                 "Content-type": "application/json",
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `JWT ${userInfo.token}`,
             },
         };
 
@@ -177,7 +177,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         const config = {
             header: {
                 "Content-type": "application/json",
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `JWT ${userInfo.token}`,
             },
         };
 

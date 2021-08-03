@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { Form, Button, Row, Container, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Form, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../../actions/cartActions";
 import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";

@@ -15,6 +15,13 @@ from rest_framework import serializers, status
 
 from datetime import datetime
 
+@api_view(['GET'])
+def getOrders(request):
+    orders = Order.objects.all()
+    serializer = OrderSerializer(orders, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addOrderItems(request):
@@ -57,6 +64,7 @@ def addOrderItems(request):
         serializer = OrderSerializer(order, many=False)
         return Response(serializer.data)
 
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getMyOrders(request):
@@ -70,7 +78,7 @@ def getMyOrders(request):
 def getOrderById(request, pk):
     user = request.user
     try:
-        order = Order.objects.get(product_id=pk)
+        order = Order.objects.get(_id=pk)
         if user.is_staff or order.user == user:
             serializer = OrderSerializer(order, many=False)
             return Response(serializer.data)
@@ -89,3 +97,15 @@ def updateOrderToPaid(request, pk):
     order.paidAt = datetime.now()
     order.save()
     return Response('Order was paid')
+
+
+@api_view(['PUT'])
+@permission_classes([IsAdminUser])
+def updateOrderToDelivered(request, pk):
+    order = Order.objects.get(_id=pk)
+
+    order.isDelivered = True
+    order.deliveredAt = datetime.now()
+    order.save()
+
+    return Response('Order was delivered')

@@ -26,7 +26,7 @@ export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
         // Do something here based on the different types of actions
         case USER_LOGIN_REQUEST:
-            return { loading: true };
+            return { ...state, loading: true };
 
         case USER_LOGIN_SUCCESS:
             // action.payload is the data returned form the API call
@@ -44,6 +44,7 @@ export const userLoginReducer = (state = {}, action) => {
     }
 };
 
+// state = {}, if state is ever null set the default to an empty object
 export const userRegisterReducer = (state = {}, action) => {
     switch (action.type) {
         // Do something here based on the different types of actions

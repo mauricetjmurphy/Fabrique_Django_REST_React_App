@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import logger from "redux-logger";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
@@ -58,7 +59,7 @@ const initialState = {
 
     userLogin: { userInfo: userInfoFromStorage },
 };
-const middleware = [thunk];
+const middleware = [thunk, logger];
 
 //Creates a Redux store that holds the complete state tree of your app.
 export const configStore = createStore(

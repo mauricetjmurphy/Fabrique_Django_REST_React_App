@@ -41,12 +41,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'base.apps.BaseConfig',
+    
 ]
 
 # Changing the default Auth Class to rest framework simple JWT. Using the JWT library for producing Auth web tokens that will be stored in local storage.
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+        
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
     )
 }
 
@@ -59,12 +65,12 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
 
     'ALGORITHM': 'HS256',
-    # 'SIGNING_KEY': settings.SECRET_KEY,
+    # 'SIGNING_KEY': config('SECRET_KEY'),
     'VERIFYING_KEY': None,
     'AUDIENCE': None,
     'ISSUER': None,
 
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_TYPES': ('JWT',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
