@@ -35,7 +35,7 @@ function Header() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <LinkContainer to="/products/men">
-                            <Nav.Link>SHOP</Nav.Link>
+                            <Nav.Link>Shop</Nav.Link>
                         </LinkContainer>
                     </Nav>
                     <Nav>
@@ -67,7 +67,7 @@ function Header() {
                         </LinkContainer>
                         <LinkContainer to="/cart">
                             <Nav.Link>
-                                <i className="fas fa-shopping-cart pl-2 pr-2"></i>
+                                <i className="fas fa-shopping-bag pl-2 pr-2"></i>
                             </Nav.Link>
                         </LinkContainer>
                     </Nav>

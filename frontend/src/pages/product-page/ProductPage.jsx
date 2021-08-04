@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../../actions/productActions";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Button, Form } from "react-bootstrap";
+import {
+    Row,
+    Col,
+    Image,
+    ListGroup,
+    Button,
+    Form,
+    Container,
+} from "react-bootstrap";
 import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import Rating from "../../components/rating/Rating";
@@ -10,12 +18,23 @@ import "./product-page.css";
 import { addToCart } from "../../actions/cartActions";
 
 function ProductPage({ match, history }) {
+    const textStyles = {};
+    const style = {
+        border: "none",
+    };
+    const rowStyle = {
+        marginBottom: "50px",
+    };
+
     // Set the product quantity in the component state
     const [qty, setQty] = useState(1);
 
     const dispatch = useDispatch();
     const productDetails = useSelector((state) => state.productDetails);
     const { error, loading, product } = productDetails;
+
+    // console.log(product);
+    // const productName = product.product_name.split("-")[1];
 
     useEffect(() => {
         dispatch(listProductDetails(match.params.id));
@@ -31,12 +50,18 @@ function ProductPage({ match, history }) {
         dispatch(addToCart(match.params.id, qty));
     };
 
+    const {
+        product_name,
+        product_image_url,
+        product_category,
+        retail_price,
+        color,
+    } = product;
+
+    console.log(`Prod: ${product_name}`);
+
     return (
-        <div
-            style={{
-                height: "800px",
-            }}
-        >
+        <Container>
             <Link to="/products" className="btn btn-light my-3">
                 Go Back
             </Link>
@@ -46,7 +71,7 @@ function ProductPage({ match, history }) {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
-                <Row>
+                <Row style={rowStyle}>
                     <Col
                         md={6}
                         style={{
@@ -56,31 +81,31 @@ function ProductPage({ match, history }) {
                     >
                         <Image
                             className="product-img"
-                            src={product.product_image_url}
-                            alt={product.product_name}
+                            src={product_image_url}
+                            alt={product_name}
                             fluid
                         ></Image>
                     </Col>
 
                     <Col md={6}>
-                        <ListGroup variant="flush">
-                            <ListGroup.Item>
-                                <h2>{product.brand}</h2>
+                        <ListGroup>
+                            <ListGroup.Item style={style}>
+                                <h3>{product_category}</h3>
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
-                                <h4>{product.product_name}</h4>
+                            <ListGroup.Item style={style}>
+                                <h4>{product_name}</h4>
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
-                                €{product.retail_price}
+                            <ListGroup.Item style={style}>
+                                €{retail_price}
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
-                                Colour: {product.color}
+                            <ListGroup.Item style={style}>
+                                Colour: {color}
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
+                            <ListGroup.Item style={style}>
                                 <Form.Control
                                     as="select"
                                     value={qty}
@@ -96,7 +121,7 @@ function ProductPage({ match, history }) {
                                 </Form.Control>
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
+                            <ListGroup.Item style={style}>
                                 <Button
                                     className="btn btn-block btn-dark"
                                     type="button"
@@ -117,18 +142,18 @@ function ProductPage({ match, history }) {
                             </ListGroup.Item>
 
                             <h4 className="pt-3 pl-3 m-0 pb-0">Description</h4>
-                            <ListGroup.Item>
+                            <ListGroup.Item style={style}>
                                 <p>{product.description}</p>
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
+                            <ListGroup.Item style={style}>
                                 <Rating />
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
                 </Row>
             )}
-        </div>
+        </Container>
     );
 }
 

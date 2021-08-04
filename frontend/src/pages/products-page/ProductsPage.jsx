@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
 import { Preloader } from "../../components/preloader/Preloader";
@@ -17,8 +17,11 @@ function ProductsPage() {
     }, [dispatch]);
 
     return (
-        <div>
-            <h2 className="text-center p-5">Latest Products</h2>
+        <Container fluid>
+            <Row className="justify-content-md-center">
+                <h2>Latest Products</h2>
+            </Row>
+
             {loading ? (
                 <Preloader />
             ) : error ? (
@@ -34,19 +37,13 @@ function ProductsPage() {
                             )
                             .values(),
                     ].map((product, i) => (
-                        <Col
-                            key={product.product_id}
-                            sm={12}
-                            md={6}
-                            lg={4}
-                            xl={3}
-                        >
+                        <Col key={product.product_id} sm={12} md={6} lg={3}>
                             <ProductCard product={product} />
                         </Col>
                     ))}
                 </Row>
             )}
-        </div>
+        </Container>
     );
 }
 

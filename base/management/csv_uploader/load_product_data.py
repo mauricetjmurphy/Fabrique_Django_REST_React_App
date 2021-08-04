@@ -45,11 +45,7 @@ class Command(BaseCommand):
             product.product_image_url = row['product_image_url']
             product.additional_image_link = row['additional_image_link']
             product.createdAt = datetime.now()
-
-            # raw_submission_date = row['submission date']
-            # submission_date = UTC.localize(
-            #     datetime.strptime(raw_submission_date, DATETIME_FORMAT))
-            # product.submission_date = submission_date
+            
             product.save()
 
 
