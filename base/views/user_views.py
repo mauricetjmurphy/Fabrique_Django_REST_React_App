@@ -85,8 +85,15 @@ def getUserProfile(request):
 
 @api_view(['GET'])
 # Decorator checks if the user is authenticated and assigned admin privilages before allowing access
-# @permission_classes([IsAdmin])
+@permission_classes([IsAdminUser])
 def getUsers(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteUsers(request,pk):
+    usersForDelete = User.objects.get(id=pk)
+    usersForDelete.delete()
+    return Response('User was deleted')    

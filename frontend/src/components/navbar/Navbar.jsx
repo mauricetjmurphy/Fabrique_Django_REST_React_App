@@ -38,6 +38,17 @@ function Header() {
                             <Nav.Link>Shop</Nav.Link>
                         </LinkContainer>
                     </Nav>
+                    {userInfo && userInfo.isAdmin && (
+                        <NavDropdown title="Admin" id="adminmenu">
+                            <LinkContainer to="/admin/user-list/">
+                                <NavDropdown.Item>Users</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to="/admin/products/">
+                                <NavDropdown.Item>Products</NavDropdown.Item>
+                            </LinkContainer>
+                        </NavDropdown>
+                    )}
+
                     <Nav>
                         {userInfo ? (
                             <NavDropdown
