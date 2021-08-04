@@ -19,6 +19,9 @@ import {
     USER_LIST_DETAILS_SUCCESS,
     USER_LIST_DETAILS_FAIL,
     USER_LIST_DETAILS_RESET,
+    USER_DELETE_REQUEST,
+    USER_DELETE_SUCCESS,
+    USER_DELETE_FAIL,
 } from "../constants/userConstants";
 
 // A reducer is a function that takes an action and the previous state of the application and returns the new state.
@@ -132,6 +135,26 @@ export const userUpdateProfileReducer = (state = {}, action) => {
 
         case USER_UPDATE_PROFILE_RESET:
             return {};
+
+        // If this reducer doesn't recognize the action type, or doesn't
+        // care about this specific action, return the existing state unchanged
+        default:
+            return state;
+    }
+};
+
+export const userDeleteProfileReducer = (state = {}, action) => {
+    switch (action.type) {
+        // Do something here based on the different types of actions
+        case USER_DELETE_REQUEST:
+            return { loading: true };
+
+        case USER_DELETE_SUCCESS:
+            // action.payload is the data returned form the API call
+            return { loading: false, success: true };
+
+        case USER_DELETE_FAIL:
+            return { loading: false, error: action.payload };
 
         // If this reducer doesn't recognize the action type, or doesn't
         // care about this specific action, return the existing state unchanged

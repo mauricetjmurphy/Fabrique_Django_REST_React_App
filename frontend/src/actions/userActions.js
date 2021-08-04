@@ -18,6 +18,9 @@ import {
     USER_LIST_DETAILS_SUCCESS,
     USER_LIST_DETAILS_FAIL,
     USER_LIST_DETAILS_RESET,
+    USER_DELETE_REQUEST,
+    USER_DELETE_SUCCESS,
+    USER_DELETE_FAIL,
 } from "../constants/userConstants";
 
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
@@ -245,6 +248,44 @@ export const listUsers = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: USER_LIST_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.detail
+                    ? error.response.data.detail
+                    : error.message,
+        });
+    }
+};
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+    try {
+        // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
+        dispatch({
+            type: USER_DELETE_REQUEST,
+        });
+
+        // Getting the auth token for sending in the headers
+        const {
+            userLogin: { userInfo },
+        } = getState();
+
+        // Axios post request will require a header. This variable is passed in below.
+        const config = {
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `JWT ${userInfo.token}`,
+            },
+        };
+
+        //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
+        const { data } = await axios.delete(`/api/users/delete/${id}`, config);
+
+        dispatch({
+            type: USER_DELETE_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: USER_DELETE_FAIL,
             payload:
                 error.response && error.response.data.detail
                     ? error.response.data.detail
