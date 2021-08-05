@@ -55,39 +55,40 @@ export const listProductDetails = (id) => async (dispatch) => {
     }
 };
 
-export const createProductReview = (product_id, review) => async (dispatch) => {
-    try {
-        dispatch({ type: PRODUCT_CREATE_REVIEW_REQUEST });
+export const createProductReview =
+    (product_id, review) => async (dispatch, getState) => {
+        try {
+            dispatch({ type: PRODUCT_CREATE_REVIEW_REQUEST });
 
-        // Getting the auth token for sending in the headers
-        const {
-            userLogin: { userInfo },
-        } = getState();
+            // Getting the auth token for sending in the headers
+            const {
+                userLogin: { userInfo },
+            } = getState();
 
-        // Axios post request will require a header. This variable is passed in below.
-        const config = {
-            headers: {
-                "Content-type": "application/json",
-                Authorization: `JWT ${userInfo.token}`,
-            },
-        };
-        //Destructuring the awaited response. Await need to be wrapped in an async function
-        const { data } = await axios.get(
-            `/api/products/${product_id}/reviews/`,
-            review,
-            config
-        );
-        dispatch({
-            type: PRODUCT_CREATE_REVIEW_SUCCESS,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: PRODUCT_CREATE_REVIEW_FAIL,
-            payload:
-                error.response && error.response.data.detail
-                    ? error.response.data.detail
-                    : error.message,
-        });
-    }
-};
+            // Axios post request will require a header. This variable is passed in below.
+            const config = {
+                headers: {
+                    "Content-type": "application/json",
+                    Authorization: `JWT ${userInfo.token}`,
+                },
+            };
+            //Destructuring the awaited response. Await need to be wrapped in an async function
+            const { data } = await axios.post(
+                `/api/products/${product_id}/reviews/`,
+                review,
+                config
+            );
+            dispatch({
+                type: PRODUCT_CREATE_REVIEW_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: PRODUCT_CREATE_REVIEW_FAIL,
+                payload:
+                    error.response && error.response.data.detail
+                        ? error.response.data.detail
+                        : error.message,
+            });
+        }
+    };

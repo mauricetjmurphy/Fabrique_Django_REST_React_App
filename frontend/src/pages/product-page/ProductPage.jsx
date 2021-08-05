@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listProductDetails } from "../../actions/productActions";
 import { Link } from "react-router-dom";
 import {
     Row,
@@ -11,32 +10,58 @@ import {
     Form,
     Container,
 } from "react-bootstrap";
+
 import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import Rating from "../../components/rating/Rating";
-import "./product-page.css";
+
 import { addToCart } from "../../actions/cartActions";
+import {
+    listProductDetails,
+    createProductReview,
+} from "../../actions/productActions";
+
+import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
+
+import "./product-page.css";
 
 function ProductPage({ match, history }) {
-    const textStyles = {};
+    //----------------Styles---------------//
     const style = {
         border: "none",
     };
     const rowStyle = {
         marginBottom: "50px",
     };
+    //------------------------------------//
+    const dispatch = useDispatch();
 
     // Set the product quantity in the component state
     const [qty, setQty] = useState(1);
+    const [rating, setrating] = useState(0);
+    const [comment, setComment] = useState("");
 
-    const dispatch = useDispatch();
     const productDetails = useSelector((state) => state.productDetails);
     const { error, loading, product } = productDetails;
 
-    // console.log(product);
-    // const productName = product.product_name.split("-")[1];
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    const productReviewCreate = useSelector(
+        (state) => state.productReviewCreate
+    );
+    const {
+        loading: loadingProductReview,
+        error: errorProductReview,
+        success: successProductReview,
+    } = productReviewCreate;
 
     useEffect(() => {
+        if (successProductReview) {
+            setrating(0);
+            setComment("");
+            dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+        }
         dispatch(listProductDetails(match.params.id));
     }, []);
 
@@ -58,7 +83,15 @@ function ProductPage({ match, history }) {
         color,
     } = product;
 
-    console.log(`Prod: ${product_name}`);
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(
+            createProductReview(match.params.id, {
+                rating,
+                comment,
+            })
+        );
+    };
 
     return (
         <Container style={{ marginTop: "70px" }}>
@@ -71,87 +104,218 @@ function ProductPage({ match, history }) {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
-                <Row style={rowStyle}>
-                    <Col
-                        md={6}
-                        style={{
-                            height: "650px",
-                            overflow: "hidden",
-                        }}
-                    >
-                        <Image
-                            className="product-img"
-                            src={product_image_url}
-                            alt={product_name}
-                            fluid
-                        ></Image>
-                    </Col>
+                <div>
+                    <Row style={rowStyle}>
+                        <Col
+                            md={6}
+                            style={{
+                                height: "650px",
+                                overflow: "hidden",
+                            }}
+                        >
+                            <Image
+                                className="product-img"
+                                src={product_image_url}
+                                alt={product_name}
+                                fluid
+                            ></Image>
+                        </Col>
 
-                    <Col md={6}>
-                        <ListGroup>
-                            <ListGroup.Item style={style}>
-                                <h3>{product_category}</h3>
-                            </ListGroup.Item>
+                        <Col md={6}>
+                            <ListGroup>
+                                <ListGroup.Item style={style}>
+                                    <h3
+                                        style={{
+                                            fontSize: "14px",
+                                            letterSpacing: "1px",
+                                        }}
+                                    >
+                                        {product_category}
+                                    </h3>
+                                </ListGroup.Item>
 
-                            <ListGroup.Item style={style}>
-                                <h4>{product_name}</h4>
-                            </ListGroup.Item>
+                                <ListGroup.Item style={style}>
+                                    <h4
+                                        style={{
+                                            fontSize: "18px",
+                                            letterSpacing: "1px",
+                                            fontWeight: "bold",
+                                        }}
+                                    >
+                                        {product_name}
+                                    </h4>
+                                </ListGroup.Item>
 
-                            <ListGroup.Item style={style}>
-                                €{retail_price}
-                            </ListGroup.Item>
+                                <ListGroup.Item style={style}>
+                                    €{retail_price}
+                                </ListGroup.Item>
 
-                            <ListGroup.Item style={style}>
-                                Colour: {color}
-                            </ListGroup.Item>
+                                <ListGroup.Item style={style}>
+                                    Colour: {color}
+                                </ListGroup.Item>
 
-                            <ListGroup.Item style={style}>
-                                <Form.Control
-                                    as="select"
-                                    value={qty}
-                                    onChange={(e) => {
-                                        setQty(e.target.value);
-                                    }}
-                                >
-                                    {options.map((e) => (
-                                        <option key={e} label={e} value={e}>
-                                            {e}
-                                        </option>
-                                    ))}
-                                </Form.Control>
-                            </ListGroup.Item>
+                                <ListGroup.Item style={style}>
+                                    <Form.Control
+                                        as="select"
+                                        value={qty}
+                                        onChange={(e) => {
+                                            setQty(e.target.value);
+                                        }}
+                                    >
+                                        {options.map((e) => (
+                                            <option key={e} label={e} value={e}>
+                                                {e}
+                                            </option>
+                                        ))}
+                                    </Form.Control>
+                                </ListGroup.Item>
 
-                            <ListGroup.Item style={style}>
-                                <Button
-                                    className="btn btn-block btn-dark"
-                                    type="button"
-                                    onClick={addToCartHandler}
-                                >
-                                    Add to Cart
-                                </Button>
-                                <Button
-                                    className="btn btn-block btn-light"
-                                    type="button"
-                                    style={{
-                                        marginTop: "15px",
-                                        border: "1px solid #343a40",
-                                    }}
-                                >
-                                    Add to Wish List
-                                </Button>
-                            </ListGroup.Item>
+                                <ListGroup.Item style={style}>
+                                    <Button
+                                        className="btn btn-block btn-dark"
+                                        type="button"
+                                        onClick={addToCartHandler}
+                                    >
+                                        Add to Cart
+                                    </Button>
+                                    <Button
+                                        className="btn btn-block btn-light"
+                                        type="button"
+                                        style={{
+                                            marginTop: "15px",
+                                            border: "1px solid #343a40",
+                                        }}
+                                    >
+                                        Add to Wish List
+                                    </Button>
+                                </ListGroup.Item>
 
-                            <h4 className="pt-3 pl-3 m-0 pb-0">Description</h4>
-                            <ListGroup.Item style={style}>
-                                <p>{product.description}</p>
-                            </ListGroup.Item>
+                                <ListGroup.Item style={style}>
+                                    <Rating />
+                                </ListGroup.Item>
 
-                            <ListGroup.Item style={style}>
-                                <Rating />
-                            </ListGroup.Item>
-                        </ListGroup>
-                    </Col>
-                </Row>
+                                <ListGroup.Item style={style}>
+                                    <h4
+                                        style={{
+                                            fontSize: "18px",
+                                            letterSpacing: "1px",
+                                        }}
+                                        className="pt-3 pb-3 m-0"
+                                    >
+                                        Description
+                                    </h4>
+                                    <p
+                                        style={{
+                                            fontSize: "12px",
+                                            letterSpacing: "1px",
+                                        }}
+                                    >
+                                        {product.description}
+                                    </p>
+                                </ListGroup.Item>
+                            </ListGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            <h4>Reviews</h4>
+                            {product.reviews.lenght === 0 && (
+                                <Message variant="info">No Reviews</Message>
+                            )}
+                            <ListGroup variant="flush">
+                                {product.reviews.map((review, index) => (
+                                    <ListGroup.Item key={index}>
+                                        <strong>{review.name}</strong>
+                                        <Rating
+                                            value={review.rating}
+                                            color="#f8e825"
+                                        />
+                                        <p>
+                                            {review.createdAt.substring(0, 10)}
+                                        </p>
+                                        <p>{review.comment}</p>
+                                    </ListGroup.Item>
+                                ))}
+
+                                <ListGroup.Item style={{ padding: "0" }}>
+                                    <h4>Write a review</h4>
+
+                                    {loadingProductReview && <Preloader />}
+                                    {successProductReview && (
+                                        <Message variant="success">
+                                            Review Submitted
+                                        </Message>
+                                    )}
+                                    {errorProductReview && (
+                                        <Message variant="danger">
+                                            Review Submitted
+                                        </Message>
+                                    )}
+
+                                    {userInfo ? (
+                                        <Form onSubmit={submitHandler}>
+                                            <Form.Group controlId="rating">
+                                                <Form.Label>Rating</Form.Label>
+                                                <Form.Control
+                                                    as="select"
+                                                    value={rating}
+                                                    onChange={(e) =>
+                                                        setrating(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                >
+                                                    <option value="select rating"></option>
+                                                    <option value="1">
+                                                        1 - Poor
+                                                    </option>
+                                                    <option value="2">
+                                                        2 - Ok
+                                                    </option>
+                                                    <option value="3">
+                                                        3 - Goog
+                                                    </option>
+                                                    <option value="4">
+                                                        4 - Ver good
+                                                    </option>
+                                                    <option value="5">
+                                                        5 - Excellent
+                                                    </option>
+                                                </Form.Control>
+                                            </Form.Group>
+                                            <Form.Group controlId="comment">
+                                                <Form.Label>Review</Form.Label>
+                                                <Form.Control
+                                                    as="textarea"
+                                                    row="5"
+                                                    value={comment}
+                                                    onChange={(e) =>
+                                                        setComment(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                ></Form.Control>
+                                            </Form.Group>
+
+                                            <Button
+                                                disabled={loadingProductReview}
+                                                type="submit"
+                                                className="btn-dark btn-block mb-5"
+                                            >
+                                                Submit
+                                            </Button>
+                                        </Form>
+                                    ) : (
+                                        <Message variant="info">
+                                            Plaes login <Link>Login</Link> to
+                                            write a review
+                                        </Message>
+                                    )}
+                                </ListGroup.Item>
+                            </ListGroup>
+                        </Col>
+                    </Row>
+                </div>
             )}
         </Container>
     );
