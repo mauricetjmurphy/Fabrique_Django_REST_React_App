@@ -63,11 +63,12 @@ function ProfileScreen({ history }) {
         }
     };
     return (
-        <Container>
+        <Container style={{ marginTop: "70px" }}>
+            <Row className="justify-content-md-center">
+                <h2 className="text-center mt-5">User Profile</h2>
+            </Row>
             <Row className="m-5 justify-content-md-center">
                 <Col md={6}>
-                    <h2 className="text-center">User Profile</h2>
-
                     {message && <Message variant="danger">{message}</Message>}
                     {error && <Message variant="danger">{error}</Message>}
                     {loading && <Preloader />}

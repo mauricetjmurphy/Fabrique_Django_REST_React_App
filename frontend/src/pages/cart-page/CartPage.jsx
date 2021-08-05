@@ -10,6 +10,7 @@ import {
     Form,
     Button,
     Card,
+    Container,
 } from "react-bootstrap";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
 
@@ -42,111 +43,118 @@ const CartPage = ({ match, location, history }) => {
     };
 
     return (
-        <Row>
-            <Col md={8}>
-                <h1 className="mt-5 mb-5">Shopping Cart</h1>
-                {cartItems.length === 0 ? (
-                    <Message variant="info">
-                        Your cart is empty <Link to="/">Go Back</Link>
-                    </Message>
-                ) : (
-                    <ListGroup variant="flush">
-                        {cartItems.map((item, index) => (
-                            <ListGroup.Item key={index}>
-                                <Row>
-                                    <Col md={2}>
-                                        <Image
-                                            src={item.image}
-                                            alt={item.name}
-                                            fluid
-                                            rounded
-                                        ></Image>
-                                    </Col>
-                                    <Col md={3}>
-                                        <Link to={`/product/${item.id}`}>
-                                            {item.name}
-                                        </Link>
-                                    </Col>
-                                    <Col md={2}>{`€ ${item.price}`}</Col>
-                                    <Col md={3}>
-                                        <Form.Control
-                                            as="select"
-                                            value={item.qty}
-                                            onChange={(e) => {
-                                                dispatch(
-                                                    addToCart(
-                                                        item.id,
-                                                        Number(e.target.value)
+        <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
+            <Row>
+                <Col md={8}>
+                    <h1 className="mt-5 mb-5">Shopping Cart</h1>
+                    {cartItems.length === 0 ? (
+                        <Message variant="info">
+                            Your cart is empty <Link to="/">Go Back</Link>
+                        </Message>
+                    ) : (
+                        <ListGroup variant="flush">
+                            {cartItems.map((item, index) => (
+                                <ListGroup.Item key={index}>
+                                    <Row>
+                                        <Col md={2}>
+                                            <Image
+                                                src={item.image}
+                                                alt={item.name}
+                                                fluid
+                                                rounded
+                                            ></Image>
+                                        </Col>
+                                        <Col md={3}>
+                                            <Link to={`/product/${item.id}`}>
+                                                {item.name}
+                                            </Link>
+                                        </Col>
+                                        <Col md={2}>{`€ ${item.price}`}</Col>
+                                        <Col md={3}>
+                                            <Form.Control
+                                                as="select"
+                                                value={item.qty}
+                                                onChange={(e) => {
+                                                    dispatch(
+                                                        addToCart(
+                                                            item.id,
+                                                            Number(
+                                                                e.target.value
+                                                            )
+                                                        )
+                                                    );
+                                                }}
+                                            >
+                                                {options.map((e) => (
+                                                    <option
+                                                        key={e}
+                                                        label={e}
+                                                        value={e}
+                                                    >
+                                                        {e}
+                                                    </option>
+                                                ))}
+                                            </Form.Control>
+                                        </Col>
+                                        <Col>
+                                            <Button
+                                                type="button"
+                                                variant="light"
+                                                onClick={() =>
+                                                    removeFromCartHandler(
+                                                        item.id
                                                     )
-                                                );
-                                            }}
-                                        >
-                                            {options.map((e) => (
-                                                <option
-                                                    key={e}
-                                                    label={e}
-                                                    value={e}
-                                                >
-                                                    {e}
-                                                </option>
-                                            ))}
-                                        </Form.Control>
-                                    </Col>
-                                    <Col>
-                                        <Button
-                                            type="button"
-                                            variant="light"
-                                            onClick={() =>
-                                                removeFromCartHandler(item.id)
-                                            }
-                                        >
-                                            <i
-                                                style={{ color: "red" }}
-                                                className="fas fa-trash"
-                                            ></i>
-                                        </Button>
-                                    </Col>
-                                </Row>
+                                                }
+                                            >
+                                                <i
+                                                    style={{ color: "red" }}
+                                                    className="fas fa-trash"
+                                                ></i>
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+                    )}
+                </Col>
+                <Col md={4}>
+                    <Card>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                <h2 className="mt-5 mb-5">
+                                    Subtotal (
+                                    {cartItems.reduce(
+                                        (acc, item) => acc + item.qty,
+                                        0
+                                    )}
+                                    ) items
+                                </h2>
+                                $
+                                {cartItems
+                                    .reduce(
+                                        (acc, item) =>
+                                            acc + item.qty * item.price,
+                                        0
+                                    )
+                                    .toFixed(2)}
                             </ListGroup.Item>
-                        ))}
-                    </ListGroup>
-                )}
-            </Col>
-            <Col md={4}>
-                <Card>
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>
-                            <h2 className="mt-5 mb-5">
-                                Subtotal (
-                                {cartItems.reduce(
-                                    (acc, item) => acc + item.qty,
-                                    0
-                                )}
-                                ) items
-                            </h2>
-                            $
-                            {cartItems
-                                .reduce(
-                                    (acc, item) => acc + item.qty * item.price,
-                                    0
-                                )
-                                .toFixed(2)}
-                        </ListGroup.Item>
 
-                        <ListGroup.Item>
-                            <Button
-                                type="button"
-                                className="btn-block btn-dark"
-                                disabled={cartItems.length === 0}
-                                onClick={checkoutHandler}
-                            >
-                                Proceed to checkout
-                            </Button>
-                        </ListGroup.Item>
-                    </ListGroup>
-                </Card>
-            </Col>
-        </Row>
+                            <ListGroup.Item>
+                                <Button
+                                    type="button"
+                                    className="btn-block btn-dark"
+                                    disabled={cartItems.length === 0}
+                                    onClick={checkoutHandler}
+                                >
+                                    Proceed to checkout
+                                </Button>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

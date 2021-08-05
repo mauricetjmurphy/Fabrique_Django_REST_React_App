@@ -17,7 +17,7 @@ function ProductsPage() {
     }, [dispatch]);
 
     return (
-        <Container fluid>
+        <Container style={{ marginTop: "70px" }} fluid>
             <Row className="justify-content-md-center">
                 <h2 className="m-5">Latest Products</h2>
             </Row>
