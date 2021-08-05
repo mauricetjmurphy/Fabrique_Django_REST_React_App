@@ -61,7 +61,7 @@ function ProductPage({ match, history }) {
     console.log(`Prod: ${product_name}`);
 
     return (
-        <Container>
+        <Container style={{ marginTop: "70px" }}>
             <Link to="/products" className="btn btn-light my-3">
                 Go Back
             </Link>
