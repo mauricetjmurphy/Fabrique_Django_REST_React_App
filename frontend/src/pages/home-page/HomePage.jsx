@@ -1,8 +1,9 @@
 import React from "react";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 
 function HomePage() {
     return (
-        <div>
+        <Container style={{ marginTop: "70px" }}>
             <h1 className="text-center p-5">
                 Hello world, welcome to the Fabrique app!
             </h1>
@@ -10,7 +11,7 @@ function HomePage() {
             <section>Section 2</section>
             <section>Section 3</section>
             <section>Section 4</section>
-        </div>
+        </Container>
     );
 }
 

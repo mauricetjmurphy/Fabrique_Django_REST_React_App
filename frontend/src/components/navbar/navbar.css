@@ -1,0 +1,23 @@
+.navbar {
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.navbar.active {
+    opacity: 0.6;
+    transition: opacity 1s ease-in-out;
+}
+
+#adminmenu {
+    color: white;
+}
+
+#username {
+    color: white;
+}
+
+i {
+    color: white;
+}

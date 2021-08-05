@@ -21,6 +21,7 @@ import {
     orderPayReducer,
     orderListMyReducer,
 } from "./reducers/orderReducers";
+import { toggleSidemenuReducer } from "./reducers/pageReducer";
 
 // Listing the projects reducers and assigning them to a variable
 const reducers = {
@@ -37,6 +38,7 @@ const reducers = {
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     orderListMy: orderListMyReducer,
+    toggleSidemenu: toggleSidemenuReducer,
 };
 
 // The combineReducers helper function turns an object whose values are different reducing functions into a single reducing function you can pass to createStore. The resulting reducer calls every child reducer, and gathers their results into a single state object.

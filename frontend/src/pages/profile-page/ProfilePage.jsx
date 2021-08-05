@@ -124,7 +124,7 @@ function ProfileScreen({ history }) {
             </Row>
             <Row className="m-5 justify-content-md-center">
                 <Col md={9}>
-                    <h2>My Orders</h2>
+                    <h2 className="text-center m-5">My Orders</h2>
                     {loadingOrders ? (
                         <Preloader />
                     ) : errorOrders ? (

@@ -44,7 +44,7 @@ const CartPage = ({ match, location, history }) => {
     return (
         <Row>
             <Col md={8}>
-                <h1>Shopping Cart</h1>
+                <h1 className="mt-5 mb-5">Shopping Cart</h1>
                 {cartItems.length === 0 ? (
                     <Message variant="info">
                         Your cart is empty <Link to="/">Go Back</Link>
@@ -100,7 +100,10 @@ const CartPage = ({ match, location, history }) => {
                                                 removeFromCartHandler(item.id)
                                             }
                                         >
-                                            <i className="fas fa-trash"></i>
+                                            <i
+                                                style={{ color: "red" }}
+                                                className="fas fa-trash"
+                                            ></i>
                                         </Button>
                                     </Col>
                                 </Row>
@@ -113,7 +116,7 @@ const CartPage = ({ match, location, history }) => {
                 <Card>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <h2>
+                            <h2 className="mt-5 mb-5">
                                 Subtotal (
                                 {cartItems.reduce(
                                     (acc, item) => acc + item.qty,

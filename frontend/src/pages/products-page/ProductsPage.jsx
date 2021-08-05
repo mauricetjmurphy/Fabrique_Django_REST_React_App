@@ -19,7 +19,7 @@ function ProductsPage() {
     return (
         <Container fluid>
             <Row className="justify-content-md-center">
-                <h2>Latest Products</h2>
+                <h2 className="m-5">Latest Products</h2>
             </Row>
 
             {loading ? (
