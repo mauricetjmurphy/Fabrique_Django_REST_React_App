@@ -33,7 +33,7 @@ def createProductReview(request, pk):
     user = request.user
     data = request.data
     
-    alreadyExists = product.review_set.filter(user=user).exits()
+    alreadyExists = product.review_set.filter(user=user).exists()
 
     if alreadyExists:
         content = {'details': 'Product already reviewed'}
