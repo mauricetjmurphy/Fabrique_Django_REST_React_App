@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Row, Col, Image, Card, ListGroup } from "react-bootstrap";
+import {
+    Button,
+    Row,
+    Col,
+    Image,
+    Card,
+    ListGroup,
+    Container,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";
 import Message from "../../components/message/Message";
@@ -56,7 +64,7 @@ function PlaceOrderPage() {
     };
 
     return (
-        <div>
+        <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
             <CheckoutProcess step1 step2 step3 step4 />
             <Row>
                 <Col md={8}>
@@ -171,7 +179,7 @@ function PlaceOrderPage() {
                     </Card>
                 </Col>
             </Row>
-        </div>
+        </Container>
     );
 }
 

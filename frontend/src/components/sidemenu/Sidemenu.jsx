@@ -15,44 +15,76 @@ function Sidemenu(height) {
     const toggleSidemenuState = useSelector((state) => state.toggleSidemenu);
     const { toggle } = toggleSidemenuState;
 
+    const closeSideMenu = () => {
+        dispatch(toggleSidemenu());
+    };
+
     return (
         <ul
             style={{ height: height }}
             className={toggle ? "product-menu show" : "product-menu"}
         >
             <li>
-                <Link to={`/products/`} className="link">
+                <Link
+                    to={`/products/?category=&page=1`}
+                    className="link"
+                    onClick={closeSideMenu}
+                >
                     All categories
                 </Link>
             </li>
             <li>
-                <Link to={`/products/?category=Coats`} className="link">
+                <Link
+                    to={`/products/?category=Coats`}
+                    className="link"
+                    onClick={closeSideMenu}
+                >
                     Coats
                 </Link>
             </li>
             <li>
-                <Link to="/products/?category=Jackets" className="link">
-                    Jackets
+                <Link
+                    to="/products/?category=Hoodies"
+                    className="link"
+                    onClick={closeSideMenu}
+                >
+                    Hoodies
                 </Link>
             </li>
             <li>
-                <Link to="/products/?category=Shirts" className="link">
+                <Link
+                    to="/products/?category=Shirts"
+                    className="link"
+                    onClick={closeSideMenu}
+                >
                     Shirts
                 </Link>
             </li>
             <li>
-                <Link to="/products/?category=Shoes" className="link">
+                <Link
+                    to="/products/?category=Shoes"
+                    className="link"
+                    onClick={closeSideMenu}
+                >
                     Shoes
                 </Link>
             </li>
             <li>
-                <Link to="/products/?category=Shorts" className="link">
+                <Link
+                    to="/products/?category=Shorts"
+                    className="link"
+                    onClick={closeSideMenu}
+                >
                     Shorts
                 </Link>
             </li>
             <li>
-                <Link to="/products/?category=Trousers" className="link">
-                    Trousers
+                <Link
+                    to="/products/?category=Ties"
+                    className="link"
+                    onClick={closeSideMenu}
+                >
+                    Ties
                 </Link>
             </li>
         </ul>

@@ -5,12 +5,14 @@ import { listProducts, searchProducts } from "../../actions/productActions";
 import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import ProductCard from "../../components/product-card/Product-card";
+import PageNumbers from "../../components/page-numbers/PageNumbers";
+import { toggleSidemenu } from "../../actions/pageActions";
 
 function ProductsPage({ history, loc }) {
     const dispatch = useDispatch();
     // useSelector is used to get specific parts of the state
     const productList = useSelector((state) => state.productList);
-    const { error, loading, products } = productList;
+    const { error, loading, products, page, pages } = productList;
 
     // useSelector is used to get specific parts of the state
     const productSearch = useSelector((state) => state.productSearch);
@@ -18,20 +20,21 @@ function ProductsPage({ history, loc }) {
         error: searchError,
         loading: searchLoading,
         products: searchedProducts,
+        page: searchPage,
+        pages: searchPages,
     } = productSearch;
 
     const searchParam = history.location.search;
 
-    let keyword = searchParam.split("=")[0] == "?keyword";
-    console.log("Keyword:", keyword);
+    let keyword = searchParam.split("=")[0] === "?keyword";
 
     useEffect(() => {
-        if (searchParam.split("=")[0] == "?keyword") {
+        if (searchParam.split("=")[0] === "?keyword") {
             dispatch(searchProducts(searchParam));
         } else {
             dispatch(listProducts(searchParam));
         }
-    }, [dispatch, searchParam]);
+    }, [history, dispatch, searchParam]);
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }} fluid>
@@ -63,6 +66,19 @@ function ProductsPage({ history, loc }) {
                         </Col>
                     ))}
                 </Row>
+            )}
+            {keyword ? (
+                <PageNumbers
+                    page={searchPage}
+                    pages={searchPages}
+                    keyword={searchParam}
+                />
+            ) : (
+                <PageNumbers
+                    page={page}
+                    pages={pages}
+                    searchParam={searchParam}
+                />
             )}
         </Container>
     );

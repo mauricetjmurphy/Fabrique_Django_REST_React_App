@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from base.models import Product, User, Review
 from base.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken, ReviewSerializer
@@ -16,11 +17,25 @@ from rest_framework import status
 @api_view(['GET'])
 def searchProducts(request):
     query = request.query_params.get('keyword')
-    print(f'Query: {query}')
     if query == None:
         query = ''
-
     products = Product.objects.filter(product_name__icontains=query)
+
+    page = request.query_params.get('page')
+    paginator = Paginator(products, 12)
+    
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    if page == None:
+        page = 1
+    
+    page = int(page)
+
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
@@ -28,13 +43,29 @@ def searchProducts(request):
 @api_view(['GET'])
 def getProducts(request):
     query = request.query_params.get('category')
-    print(f'Query: {query}')
     if query == None:
-        query = ''
+        products = Product.objects.all()
+    else:
+        products = Product.objects.filter(product_category__icontains=query)
 
-    products = Product.objects.filter(product_category__icontains=query)
+    page = request.query_params.get('page')
+    paginator = Paginator(products, 12)
+    
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    if page == None:
+        page = 1
+    
+    page = int(page)
+
+
     serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
+    return Response({'products':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
 
 @api_view(['GET'])

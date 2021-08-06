@@ -22,8 +22,15 @@ export const listProducts =
             //Pass an object into dispatch to action the reducer
             dispatch({ type: PRODUCT_LIST_REQUEST });
 
-            //Destructuring the awaited response. Await needs to be wrapped in an async function
-            const { data } = await axios.get(`/api/products/${category}`);
+            if (category === "") {
+                var data = await axios.get(`/api/products/`);
+            } else {
+                //Destructuring the awaited response. Await needs to be wrapped in an async function
+                var data = await axios.get(`/api/products/${category}`);
+            }
+
+            const { data } = data;
+
             dispatch({
                 type: PRODUCT_LIST_SUCCESS,
                 payload: data,

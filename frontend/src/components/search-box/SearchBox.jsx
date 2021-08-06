@@ -18,10 +18,11 @@ function SearchBox() {
     const submitHandler = (e) => {
         e.preventDefault();
         if (keyword) {
-            history.push(`/products/search/?keyword=${keyword}`);
+            history.push(`/products/search/?keyword=${keyword}&page=1`);
         } else {
             history.push(history.push(history.location.pathname));
         }
+        setKeyword("");
     };
 
     return (
@@ -36,6 +37,7 @@ function SearchBox() {
                     borderBottomRightRadius: "0px",
                     height: "30px",
                 }}
+                value={keyword}
             ></Form.Control>
             <Button
                 style={{

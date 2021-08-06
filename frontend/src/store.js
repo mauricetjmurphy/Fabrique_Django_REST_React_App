@@ -69,7 +69,7 @@ const initialState = {
 
     userLogin: { userInfo: userInfoFromStorage },
 };
-const middleware = [thunk, logger];
+const middleware = [thunk];
 
 //Creates a Redux store that holds the complete state tree of your app.
 export const configStore = createStore(
