@@ -38,7 +38,7 @@ function ProductPage({ match, history }) {
 
     // Set the product quantity in the component state
     const [qty, setQty] = useState(1);
-    const [rating, setrating] = useState(0);
+    const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
 
     const productDetails = useSelector((state) => state.productDetails);
@@ -58,7 +58,7 @@ function ProductPage({ match, history }) {
 
     useEffect(() => {
         if (successProductReview) {
-            setrating(0);
+            setRating(0);
             setComment("");
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
         }
@@ -150,7 +150,9 @@ function ProductPage({ match, history }) {
                                     €{retail_price}
                                 </ListGroup.Item>
 
-                                <ListGroup.Item style={style}>
+                                <ListGroup.Item
+                                    style={{ fontSize: "14px", border: "none" }}
+                                >
                                     Colour: {color}
                                 </ListGroup.Item>
 
@@ -206,8 +208,7 @@ function ProductPage({ match, history }) {
                                     </h4>
                                     <p
                                         style={{
-                                            fontSize: "12px",
-                                            letterSpacing: "1px",
+                                            fontSize: "13px",
                                         }}
                                     >
                                         {product.description}
@@ -218,25 +219,7 @@ function ProductPage({ match, history }) {
                     </Row>
                     <Row>
                         <Col md={6}>
-                            <h4>Reviews</h4>
-                            {product.reviews.lenght === 0 && (
-                                <Message variant="info">No Reviews</Message>
-                            )}
                             <ListGroup variant="flush">
-                                {product.reviews.map((review, index) => (
-                                    <ListGroup.Item key={index}>
-                                        <strong>{review.name}</strong>
-                                        <Rating
-                                            value={review.rating}
-                                            color="#f8e825"
-                                        />
-                                        <p>
-                                            {review.createdAt.substring(0, 10)}
-                                        </p>
-                                        <p>{review.comment}</p>
-                                    </ListGroup.Item>
-                                ))}
-
                                 <ListGroup.Item style={{ padding: "0" }}>
                                     <h4>Write a review</h4>
 
@@ -247,8 +230,8 @@ function ProductPage({ match, history }) {
                                         </Message>
                                     )}
                                     {errorProductReview && (
-                                        <Message variant="danger">
-                                            Review Submitted
+                                        <Message variant="success">
+                                            {errorProductReview}
                                         </Message>
                                     )}
 
@@ -260,7 +243,7 @@ function ProductPage({ match, history }) {
                                                     as="select"
                                                     value={rating}
                                                     onChange={(e) =>
-                                                        setrating(
+                                                        setRating(
                                                             e.target.value
                                                         )
                                                     }
@@ -312,6 +295,31 @@ function ProductPage({ match, history }) {
                                         </Message>
                                     )}
                                 </ListGroup.Item>
+                            </ListGroup>
+                        </Col>
+
+                        <Col md={6}>
+                            {product.reviews.length === 0 && (
+                                <Message variant="info">No Reviews</Message>
+                            )}
+                            <ListGroup variant="flush">
+                                <ListGroup.Item style={style}>
+                                    <h4>Reviews</h4>
+                                </ListGroup.Item>
+
+                                {product.reviews.map((review, index) => (
+                                    <ListGroup.Item key={index}>
+                                        <strong>{review.name}</strong>
+                                        <Rating
+                                            value={review.rating}
+                                            color="#f8e825"
+                                        />
+                                        <p>
+                                            {review.createdAt.substring(0, 10)}
+                                        </p>
+                                        <p>{review.comment}</p>
+                                    </ListGroup.Item>
+                                ))}
                             </ListGroup>
                         </Col>
                     </Row>

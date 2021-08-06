@@ -10,7 +10,7 @@ const ShippingPage = () => {
     const { shippingAddress } = cart;
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    let history = useHistory();
 
     const [address, setAddress] = useState(shippingAddress.address);
     const [city, setCity] = useState(shippingAddress.city);

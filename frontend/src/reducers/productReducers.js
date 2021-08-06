@@ -2,6 +2,9 @@ import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
     PRODUCT_LIST_FAIL,
+    PRODUCT_SEARCH_REQUEST,
+    PRODUCT_SEARCH_SUCCESS,
+    PRODUCT_SEARCH_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
@@ -27,6 +30,24 @@ export const productListReducer = (state = { products: [] }, action) => {
             return { loading: false, products: action.payload };
 
         case PRODUCT_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        // If this reducer doesn't recognize the action type, or doesn't
+        // care about this specific action, return the existing state unchanged
+        default:
+            return state;
+    }
+};
+
+export const productSearchReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+        // Do something here based on the different types of actions
+        case PRODUCT_SEARCH_REQUEST:
+            return { loading: true, products: [] };
+
+        case PRODUCT_SEARCH_SUCCESS:
+            return { loading: false, products: action.payload };
+
+        case PRODUCT_SEARCH_FAIL:
             return { loading: false, error: action.payload };
         // If this reducer doesn't recognize the action type, or doesn't
         // care about this specific action, return the existing state unchanged

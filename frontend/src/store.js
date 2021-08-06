@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
     productListReducer,
+    productSearchReducer,
     productDetailsReducer,
     productReviewCreateReducer,
 } from "./reducers/productReducers";
@@ -27,6 +28,7 @@ import { toggleSidemenuReducer } from "./reducers/pageReducer";
 // Listing the projects reducers and assigning them to a variable
 const reducers = {
     productList: productListReducer,
+    productSearch: productSearchReducer,
     productDetails: productDetailsReducer,
     productReviewCreate: productReviewCreateReducer,
     cart: cartReducer,

@@ -7,7 +7,7 @@ import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
 
 const LoginPage = () => {
-    const history = useHistory();
+    let history = useHistory();
     const location = useLocation();
     // Setting component state
     const [email, setEmail] = useState("");

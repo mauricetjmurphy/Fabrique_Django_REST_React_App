@@ -28,7 +28,7 @@ def addOrderItems(request):
     user = request.user
     data = request.data
     orderItems = data['orderItems']
-    print(orderItems)
+    
 
     if(orderItems and len(orderItems) == 0):
         return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)

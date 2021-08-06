@@ -6,7 +6,7 @@ import { register } from "../../actions/userActions";
 import Message from "../../components/message/Message";
 
 const RegisterPage = () => {
-    const history = useHistory();
+    let history = useHistory();
     const location = useLocation();
     //Setting component state
     const [name, setName] = useState("");

@@ -9,7 +9,7 @@ import { Preloader } from "../../components/preloader/Preloader";
 
 function UserListPage() {
     const dispatch = useDispatch();
-    const history = useHistory();
+    let history = useHistory();
 
     const userLogin = useSelector((state) => state.userList);
     const { userInfo } = userLogin;

@@ -10,7 +10,7 @@ function PaymentPage() {
     const { shippingAddress } = cart;
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    let history = useHistory();
 
     const [paymentMethod, setPaymentMethod] = useState("PayPal");
 

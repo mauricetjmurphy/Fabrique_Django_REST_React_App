@@ -9,7 +9,7 @@ import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
 import CheckoutBtn from "../../components/checkout-button/CheckoutBtn";
 
 function PlaceOrderPage() {
-    const history = useHistory();
+    let history = useHistory();
     const orderCreate = useSelector((state) => state.orderCreate);
     const { order, error, success } = orderCreate;
 

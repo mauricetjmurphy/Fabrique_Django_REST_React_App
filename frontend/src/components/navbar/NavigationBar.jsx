@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { toggleSidemenu } from "../../actions/pageActions";
 import "./navbar.css";
+import SearchBox from "../search-box/SearchBox";
 
 function NavigationBar() {
     // Use history hook to access the react router history object
@@ -65,8 +66,12 @@ function NavigationBar() {
                             Shop
                         </Nav.Link>
                     </Nav>
+                    <SearchBox />
                     {userInfo && userInfo.isAdmin && (
-                        <NavDropdown title="Admin" id="adminmenu">
+                        <NavDropdown
+                            title={<i className="fas fa-user-cog"></i>}
+                            id="adminmenu"
+                        >
                             <LinkContainer to="/admin/user-list/">
                                 <NavDropdown.Item>Users</NavDropdown.Item>
                             </LinkContainer>
@@ -79,7 +84,7 @@ function NavigationBar() {
                     <Nav>
                         {userInfo ? (
                             <NavDropdown
-                                title={userInfo.first_name}
+                                title={<i className="far fa-user"></i>}
                                 id="username"
                             >
                                 <LinkContainer to="/profile">

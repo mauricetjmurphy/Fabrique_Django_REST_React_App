@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from base.models import Product, User, Review
-from base.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
+from base.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken, ReviewSerializer
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -14,10 +14,28 @@ from django.contrib.auth.hashers import make_password
 from rest_framework import status
 
 @api_view(['GET'])
-def getProducts(request):
-    products = Product.objects.all()
+def searchProducts(request):
+    query = request.query_params.get('keyword')
+    print(f'Query: {query}')
+    if query == None:
+        query = ''
+
+    products = Product.objects.filter(product_name__icontains=query)
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getProducts(request):
+    query = request.query_params.get('category')
+    print(f'Query: {query}')
+    if query == None:
+        query = ''
+
+    products = Product.objects.filter(product_category__icontains=query)
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 def getProduct(request, pk):
@@ -25,6 +43,7 @@ def getProduct(request, pk):
     serializer = ProductSerializer(product, many=False)
 
     return Response(serializer.data)
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -36,20 +55,24 @@ def createProductReview(request, pk):
     alreadyExists = product.review_set.filter(user=user).exists()
 
     if alreadyExists:
-        content = {'details': 'Product already reviewed'}
+        content = {'detail': 'Product already reviewed'}
         return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
     elif data['rating'] == 0:
-        content = {'details': 'Please select a rating'}
+        content = {'detail': 'Please select a rating'}
         return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
     else:
         review = Review.objects.create(
+            user=user,
             product = product,
             name = user.first_name,
             rating=data['rating'],
             comment=data['comment'],
         )
+
+        review.save()
+
 
         reviews = product.review_set.all()
         product.numReviews = len(reviews)

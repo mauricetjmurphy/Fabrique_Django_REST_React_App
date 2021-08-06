@@ -3,6 +3,9 @@ import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
     PRODUCT_LIST_FAIL,
+    PRODUCT_SEARCH_REQUEST,
+    PRODUCT_SEARCH_SUCCESS,
+    PRODUCT_SEARCH_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
@@ -12,28 +15,55 @@ import {
     PRODUCT_CREATE_REVIEW_RESET,
 } from "../constants/productConstants";
 //Redux-thunk allows us call an async function within a function and will call the dispatch
-export const listProducts = () => async (dispatch) => {
-    try {
-        //Pass an object into dispatch to action the reducer
-        dispatch({ type: PRODUCT_LIST_REQUEST });
+export const listProducts =
+    (category = "") =>
+    async (dispatch) => {
+        try {
+            //Pass an object into dispatch to action the reducer
+            dispatch({ type: PRODUCT_LIST_REQUEST });
 
-        //Destructuring the awaited response. Await needs to be wrapped in an async function
-        const { data } = await axios.get("/api/products/");
-        dispatch({
-            type: PRODUCT_LIST_SUCCESS,
-            payload: data,
-        });
-        // Return error message if there are issues with the data
-    } catch (error) {
-        dispatch({
-            type: PRODUCT_LIST_FAIL,
-            payload:
-                error.response && error.response.data.detail
-                    ? error.response.data.detail
-                    : error.message,
-        });
-    }
-};
+            //Destructuring the awaited response. Await needs to be wrapped in an async function
+            const { data } = await axios.get(`/api/products/${category}`);
+            dispatch({
+                type: PRODUCT_LIST_SUCCESS,
+                payload: data,
+            });
+            // Return error message if there are issues with the data
+        } catch (error) {
+            dispatch({
+                type: PRODUCT_LIST_FAIL,
+                payload:
+                    error.response && error.response.data.detail
+                        ? error.response.data.detail
+                        : error.message,
+            });
+        }
+    };
+
+export const searchProducts =
+    (keyword = "") =>
+    async (dispatch) => {
+        try {
+            //Pass an object into dispatch to action the reducer
+            dispatch({ type: PRODUCT_SEARCH_REQUEST });
+
+            //Destructuring the awaited response. Await needs to be wrapped in an async function
+            const { data } = await axios.get(`/api/products/search/${keyword}`);
+            dispatch({
+                type: PRODUCT_SEARCH_SUCCESS,
+                payload: data,
+            });
+            // Return error message if there are issues with the data
+        } catch (error) {
+            dispatch({
+                type: PRODUCT_SEARCH_FAIL,
+                payload:
+                    error.response && error.response.data.detail
+                        ? error.response.data.detail
+                        : error.message,
+            });
+        }
+    };
 
 export const listProductDetails = (id) => async (dispatch) => {
     try {
