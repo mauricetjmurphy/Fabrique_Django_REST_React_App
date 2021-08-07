@@ -12,7 +12,7 @@ function PageNumbers({ pages, page, searchParam, isAdmin = false }) {
     const keyword = history.location.search.split("&")[0];
 
     return pages > 1 && searchParam ? (
-        <Pagination>
+        <Pagination className="m-3 justify-content-md-center">
             {[...Array(pages).keys()].map((x, i) => (
                 <LinkContainer key={i} to={`${searchParam}&page=${x + 1}`}>
                     <Pagination.Item active={x + 1 === page}>

@@ -29,8 +29,8 @@ function UserListPage() {
         // } else {
         //     history.push("/login");
         // }
+        // ---------Insert Modal to check if the action is intended-------//
         dispatch(listUsers(searchParam));
-        console.log("search", searchParam);
     }, [dispatch, history, successDelete, searchParam]);
 
     const deleteHandler = (id) => {

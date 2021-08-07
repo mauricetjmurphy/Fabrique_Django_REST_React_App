@@ -41,76 +41,68 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
-            <Container>
-                <Row className="m-5 justify-content-md-center">
-                    {error && <Message variant="danger">{error}</Message>}
-                </Row>
-                <Row className="m-5 justify-content-md-center">
-                    {loading && <Preloader />}
-                </Row>
-                <Row className="m-5 justify-content-md-center">
-                    <h1>Login</h1>
-                </Row>
-                <Row className="justify-content-md-center">
-                    <Col lg={4}>
-                        <Form onSubmit={submitHandler}>
-                            <Form.Group
-                                className="mb-3"
-                                controlId="formBasicEmail"
-                            >
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="Enter email"
-                                    //value is set to the email state
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                                <Form.Text className="text-muted">
-                                    We'll never share your email with anyone
-                                    else.
-                                </Form.Text>
-                            </Form.Group>
+        <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
+            <Row className="m-5 justify-content-md-center">
+                {error && <Message variant="danger">{error}</Message>}
+            </Row>
+            <Row className="m-5 justify-content-md-center">
+                {loading && <Preloader />}
+            </Row>
+            <Row className="m-5 justify-content-md-center">
+                <h1>Login</h1>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col lg={4}>
+                    <Form onSubmit={submitHandler}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Enter email"
+                                //value is set to the email state
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
 
-                            <Form.Group
-                                className="mb-3"
-                                controlId="formBasicPassword"
-                            >
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    placeholder="Password"
-                                    //value is set to the password state
-                                    value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                />
-                            </Form.Group>
-
-                            <Button variant="primary" type="submit">
-                                Sign In
-                            </Button>
-                        </Form>
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-center">
-                    <Col lg={4} className="mt-3">
-                        New Customer?{" "}
-                        <Link
-                            to={
-                                redirect
-                                    ? `/register?redirect=${redirect}`
-                                    : "/register"
-                            }
+                        <Form.Group
+                            className="mb-3"
+                            controlId="formBasicPassword"
                         >
-                            Register
-                        </Link>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                //value is set to the password state
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit">
+                            Sign In
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col lg={4} className="mt-3">
+                    New Customer?{" "}
+                    <Link
+                        to={
+                            redirect
+                                ? `/register?redirect=${redirect}`
+                                : "/register"
+                        }
+                    >
+                        Register
+                    </Link>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

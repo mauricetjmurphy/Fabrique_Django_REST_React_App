@@ -15,7 +15,6 @@ function Footer() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: "70px",
     };
 
     return (
