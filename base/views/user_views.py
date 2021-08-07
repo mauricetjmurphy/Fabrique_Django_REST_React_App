@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from base.models import User
 from base.serializers import UserSerializer, UserSerializerWithToken
@@ -88,8 +89,23 @@ def getUserProfile(request):
 @permission_classes([IsAdminUser])
 def getUsers(request):
     users = User.objects.all()
+
+    page = request.query_params.get('page')
+    paginator = Paginator(users, 2)
+    
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
+    if page == None:
+        page = 1
+    
+    page = int(page)
     serializer = UserSerializer(users, many=True)
-    return Response(serializer.data)
+    return Response({'users':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
 @api_view(['DELETE'])
 @permission_classes([IsAdminUser])

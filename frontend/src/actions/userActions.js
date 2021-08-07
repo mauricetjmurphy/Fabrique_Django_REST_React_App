@@ -218,43 +218,45 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     }
 };
 
-export const listUsers = () => async (dispatch, getState) => {
-    try {
-        // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
-        dispatch({
-            type: USER_LIST_DETAILS_REQUEST,
-        });
+export const listUsers =
+    (param = "") =>
+    async (dispatch, getState) => {
+        try {
+            // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
+            dispatch({
+                type: USER_LIST_DETAILS_REQUEST,
+            });
 
-        // Getting the auth token for sending in the headers
-        const {
-            userLogin: { userInfo },
-        } = getState();
+            // Getting the auth token for sending in the headers
+            const {
+                userLogin: { userInfo },
+            } = getState();
 
-        // Axios post request will require a header. This variable is passed in below.
-        const config = {
-            headers: {
-                "Content-type": "application/json",
-                Authorization: `JWT ${userInfo.token}`,
-            },
-        };
+            // Axios post request will require a header. This variable is passed in below.
+            const config = {
+                headers: {
+                    "Content-type": "application/json",
+                    Authorization: `JWT ${userInfo.token}`,
+                },
+            };
 
-        //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
-        const { data } = await axios.get(`/api/users/`, config);
+            //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
+            const { data } = await axios.get(`/api/users/${param}`, config);
 
-        dispatch({
-            type: USER_LIST_DETAILS_SUCCESS,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: USER_LIST_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.detail
-                    ? error.response.data.detail
-                    : error.message,
-        });
-    }
-};
+            dispatch({
+                type: USER_LIST_DETAILS_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: USER_LIST_DETAILS_FAIL,
+                payload:
+                    error.response && error.response.data.detail
+                        ? error.response.data.detail
+                        : error.message,
+            });
+        }
+    };
 
 export const deleteUser = (id) => async (dispatch, getState) => {
     try {

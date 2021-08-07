@@ -6,16 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { listUsers, deleteUser } from "../../actions/userActions";
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
+import PageNumbers from "../../components/page-numbers/PageNumbers";
 
 function UserListPage() {
     const dispatch = useDispatch();
     let history = useHistory();
 
+    const searchParam = history.location.search;
+
     const userLogin = useSelector((state) => state.userList);
     const { userInfo } = userLogin;
 
     const userList = useSelector((state) => state.userList);
-    const { loading, error, users } = userList;
+    const { loading, error, users, page, pages } = userList;
 
     const userDelete = useSelector((state) => state.userDelete);
     const { success: successDelete } = userDelete;
@@ -26,8 +29,9 @@ function UserListPage() {
         // } else {
         //     history.push("/login");
         // }
-        dispatch(listUsers());
-    }, [dispatch, history, successDelete]);
+        dispatch(listUsers(searchParam));
+        console.log("search", searchParam);
+    }, [dispatch, history, successDelete, searchParam]);
 
     const deleteHandler = (id) => {
         dispatch(deleteUser(id));
@@ -95,6 +99,7 @@ function UserListPage() {
                     </tbody>
                 </Table>
             )}
+            <PageNumbers page={page} pages={pages} keyword={searchParam} />
         </Container>
     );
 }

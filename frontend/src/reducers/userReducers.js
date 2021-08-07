@@ -105,7 +105,12 @@ export const userListReducer = (state = { users: [] }, action) => {
 
         case USER_LIST_DETAILS_SUCCESS:
             // action.payload is the data returned form the API call
-            return { loading: false, users: action.payload };
+            return {
+                loading: false,
+                users: action.payload.users,
+                page: action.payload.page,
+                pages: action.payload.pages,
+            };
 
         case USER_LIST_DETAILS_FAIL:
             return { loading: false, error: action.payload };
