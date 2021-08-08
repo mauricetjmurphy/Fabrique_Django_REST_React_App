@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Form, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails, updateUser } from "../../actions/userActions";
+import {
+    getLoggedInUserDetails,
+    getUserDetails,
+    updateUser,
+} from "../../actions/userActions";
 import {
     USER_UPDATE_RESET,
     USER_UPDATE_PROFILE_RESET,
@@ -11,23 +15,24 @@ import {
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
 
-const UpdateUserPage = (match) => {
+const UpdateUserPage = ({ match }) => {
     // Initialising Hooks
     let history = useHistory();
     const location = useLocation();
     const dispatch = useDispatch();
 
     //Setting component state
+    const [id, setId] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
 
-    const userId = history.location.pathname.split("/")[3];
+    // const userId = history.location.pathname.split("/")[3];
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
-    // const userId = match.params.id;
+    const userId = match.params.id;
 
     //Getting the userLogin state from the store.js
     const userDetails = useSelector((state) => state.userDetails);
@@ -45,38 +50,45 @@ const UpdateUserPage = (match) => {
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: USER_UPDATE_RESET });
-            history.push("/admin/userlist");
+            history.push("/user-list/");
         } else {
-            setName(user.name);
-            setEmail(user.email);
-            setIsAdmin(user.isAdmin);
+            if (!user.name || user._id !== Number(userId)) {
+                dispatch(getUserDetails(userId));
+            } else {
+                setId(user._id);
+                setName(user.name);
+                setEmail(user.email);
+                setIsAdmin(user.isAdmin);
+            }
         }
     }, [dispatch, userInfo, user, userId, successUpdate, history]);
 
     //Send an axios request to the backend to login when the form submit button is clicked, passing in the email and password as params
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(updateUser({ _id: user._id, name, email, isAdmin }));
+        dispatch(getLoggedInUserDetails());
+        dispatch(updateUser({ id: id, name, email, isAdmin }));
+    };
+
+    const goBack = (e) => {
+        e.preventDefault();
+        dispatch(getLoggedInUserDetails());
+        history.push("/user-list/?param=");
     };
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
             <Row>
                 <Button
+                    type="button"
+                    onClick={goBack}
                     style={{
                         margin: "20px",
                         border: "none",
                         backgroundColor: "#343a40",
                     }}
                 >
-                    <Link
-                        style={{
-                            color: "#fff",
-                        }}
-                        to={`/admin/users/?param=`}
-                    >
-                        Go Back
-                    </Link>
+                    Go Back
                 </Button>
             </Row>
 

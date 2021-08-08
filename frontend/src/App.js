@@ -12,13 +12,13 @@ import HomePage from "./pages/home-page/HomePage";
 import LoginPage from "./pages/login-page/LoginPage";
 import RegisterPage from "./pages/register-page/RegisterPage";
 import ProductsPage from "./pages/products-page/ProductsPage";
+import ProductListPage from "./pages/product-list-page/ProductListPage";
 import ProductPage from "./pages/product-page/ProductPage";
 import CartPage from "./pages/cart-page/CartPage";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import ShippingPage from "./pages/shipping-page/ShippingPage";
 import PaymentPage from "./pages/payment-page/PaymentPage";
 import PlaceOrderPage from "./pages/place-order-page/PlaceOrderPage";
-import OrderPage from "./pages/order-page/OrderPage";
 import UserListPage from "./pages/user-list-page/UserListPage";
 import UpdateUserPage from "./pages/update-user/UpdateUserPage";
 
@@ -34,16 +34,16 @@ function App() {
                 <Route path="/profile" component={ProfilePage} />
                 <Route path="/" component={HomePage} exact />
                 <Route path="/products" component={ProductsPage} />
+                <Route path="/product-list/" component={ProductListPage} />
                 <Route path="/product/:id" component={ProductPage} />
                 {/* The ? in the url make the id parameter optional */}
                 <Route path="/cart/:id?" component={CartPage} />
                 <Route path="/shipping/" component={ShippingPage} />
                 <Route path="/payment/" component={PaymentPage} />
                 <Route path="/place-order/" component={PlaceOrderPage} />
-                <Route path="/order/:id" component={OrderPage} />
 
-                <Route path="/admin/users/" component={UserListPage} />
-                <Route path="/admin/user/:id/" component={UpdateUserPage} />
+                <Route path="/user-list/" component={UserListPage} />
+                <Route path="/user/:id/" component={UpdateUserPage} />
             </Container>
 
             <Footer />

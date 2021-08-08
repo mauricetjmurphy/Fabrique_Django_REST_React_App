@@ -13,11 +13,11 @@ urlpatterns = [
     path('profile/update/', views.updateUserProfile, name="user-profile-update"),
 
     path('', views.getUsers, name="users"),
-    
+
     # Make sure urls with dynamic values are towards the end of the list
     path('<str:pk>/', views.getUserById, name="user"),
 
-    path('update/<str:pk>/', views.updateUser, name="user-update"),
+    path('update/<str:pk>', views.updateUser, name="user-update"),
 
     path('delete/<str:pk>/', views.deleteUser, name="user-delete"),
     

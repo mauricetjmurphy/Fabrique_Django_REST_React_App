@@ -7,6 +7,7 @@ import {
     listUsers,
     deleteUser,
     getUserDetails,
+    getLoggedInUserDetails,
 } from "../../actions/userActions";
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
@@ -28,6 +29,9 @@ function UserListPage() {
     const { success: successDelete } = userDelete;
 
     useEffect(() => {
+        if (!userInfo.token) {
+            dispatch(getLoggedInUserDetails());
+        }
         // ---------Insert Modal to check if the action is intended-------//
         dispatch(listUsers(searchParam));
     }, [dispatch, userInfo, history, successDelete, searchParam]);
@@ -79,9 +83,7 @@ function UserListPage() {
                                 </td>
 
                                 <td>
-                                    <LinkContainer
-                                        to={`/admin/user/${user.id}/`}
-                                    >
+                                    <LinkContainer to={`/user/${user.id}/`}>
                                         <Button variant="light" className="btn">
                                             Edit
                                         </Button>

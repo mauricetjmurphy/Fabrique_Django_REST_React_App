@@ -26,8 +26,8 @@ function PaymentPage() {
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-            <CheckoutProcess step1 step2 step3 />
-            <h1>Shipping</h1>
+            <CheckoutProcess step1 step2 />
+            <h1>Payment</h1>
             <Form onSubmit={submitHandler}>
                 <Form.Group>
                     <Form.Label as="legend">Select Payment Method</Form.Label>

@@ -36,6 +36,7 @@ const reducers = {
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
+
     userUpdateProfile: userUpdateProfileReducer,
     userDelete: userDeleteProfileReducer,
     userList: userListReducer,

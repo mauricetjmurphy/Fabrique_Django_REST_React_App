@@ -135,6 +135,32 @@ export const register = (name, email, password) => async (dispatch) => {
     }
 };
 
+export const getLoggedInUserDetails = (id) => async (dispatch, getState) => {
+    try {
+        // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
+        dispatch({
+            type: USER_DETAILS_REQUEST,
+        });
+
+        const userInfoFromStorage = localStorage.getItem("userInfo");
+        const data = JSON.parse(userInfoFromStorage);
+        console.log(data);
+
+        dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: USER_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.detail
+                    ? error.response.data.detail
+                    : error.message,
+        });
+    }
+};
+
 export const getUserDetails = (id) => async (dispatch, getState) => {
     try {
         // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
@@ -157,7 +183,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
         //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
         const { data } = await axios.get(`/api/users/${id}/`, config);
-        console.log("Data:", data);
+        console.log(data);
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -181,13 +207,14 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
             type: USER_UPDATE_PROFILE_REQUEST,
         });
 
+        // Getting the auth token for sending in the headers
         const {
             userLogin: { userInfo },
         } = getState();
 
         // Axios post request will require a header. This variable is passed in below.
         const config = {
-            header: {
+            headers: {
                 "Content-type": "application/json",
                 Authorization: `JWT ${userInfo.token}`,
             },
@@ -300,7 +327,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     }
 };
 
-export const updateUser = (user, id) => async (dispatch, getState) => {
+export const updateUser = (user) => async (dispatch, getState) => {
     try {
         // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
         dispatch({
@@ -322,14 +349,13 @@ export const updateUser = (user, id) => async (dispatch, getState) => {
 
         //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
         const { data } = await axios.put(
-            `/api/users/update/${id}`,
+            `/api/users/update/${user.id}`,
             user,
             config
         );
 
         dispatch({
             type: USER_UPDATE_SUCCESS,
-            payload: data,
         });
 
         dispatch({

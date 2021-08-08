@@ -59,8 +59,7 @@ def registerUser(request):
 def updateUserProfile(request):
     # Get user object from the token that is sent
     user = request.user
-    serializer = UserSerializerWithToken(user, many=False)
-
+    
     data = request.data
     user.first_name = data['name']
     user.username = data['email']
@@ -70,7 +69,7 @@ def updateUserProfile(request):
         user.password = make_password(data['password'])
     
     user.save()
-
+    serializer = UserSerializerWithToken(user, many=False)
     return Response(serializer.data)
 
 
@@ -86,7 +85,7 @@ def getUserProfile(request):
 
 @api_view(['GET'])
 # Decorator checks if the user is authenticated and assigned admin privilages before allowing access
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def getUsers(request):
     users = User.objects.all()
 
@@ -108,7 +107,7 @@ def getUsers(request):
     return Response({'users':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def getUserById(request, pk):
     user = User.objects.get(id=pk)
     serializer = UserSerializer(user, many=False)
@@ -116,8 +115,9 @@ def getUserById(request, pk):
 
 
 @api_view(['PUT'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 def updateUser(request, pk):
+    print('PK:', pk)
     user = User.objects.get(id=pk)
     
     data = request.data
@@ -133,7 +133,7 @@ def updateUser(request, pk):
 
 
 @api_view(['DELETE'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 def deleteUser(request,pk):
     usersForDelete = User.objects.get(id=pk)
     usersForDelete.delete()

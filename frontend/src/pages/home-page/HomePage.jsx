@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { listUsers, deleteUser } from "../../actions/userActions";
+import {
+    listUsers,
+    deleteUser,
+    getLoggedInUserDetails,
+} from "../../actions/userActions";
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -15,6 +19,7 @@ function HomePage() {
         if (!userInfo) {
             history.push("/login");
         }
+
         // ---------Insert Modal to check if the action is intended-------//
         dispatch(listUsers());
     }, [dispatch]);

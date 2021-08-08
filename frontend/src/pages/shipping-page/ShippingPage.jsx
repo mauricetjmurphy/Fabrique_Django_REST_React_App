@@ -25,7 +25,7 @@ const ShippingPage = () => {
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-            <CheckoutProcess step1 step2 />
+            <CheckoutProcess step1 />
             <h1>Shipping</h1>
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId="address">
