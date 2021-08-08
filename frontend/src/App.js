@@ -20,6 +20,7 @@ import PaymentPage from "./pages/payment-page/PaymentPage";
 import PlaceOrderPage from "./pages/place-order-page/PlaceOrderPage";
 import OrderPage from "./pages/order-page/OrderPage";
 import UserListPage from "./pages/user-list-page/UserListPage";
+import UpdateUserPage from "./pages/update-user/UpdateUserPage";
 
 function App() {
     return (
@@ -41,7 +42,8 @@ function App() {
                 <Route path="/place-order/" component={PlaceOrderPage} />
                 <Route path="/order/:id" component={OrderPage} />
 
-                <Route path="/admin/user-list/" component={UserListPage} />
+                <Route path="/admin/users/" component={UserListPage} />
+                <Route path="/admin/user/:id/" component={UpdateUserPage} />
             </Container>
 
             <Footer />

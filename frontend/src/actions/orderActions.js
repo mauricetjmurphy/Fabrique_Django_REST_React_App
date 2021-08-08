@@ -139,7 +139,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
     }
 };
 
-export const listMyOrders = (id) => async (dispatch, getState) => {
+export const listMyOrders = () => async (dispatch, getState) => {
     try {
         // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
         dispatch({
@@ -155,7 +155,7 @@ export const listMyOrders = (id) => async (dispatch, getState) => {
         const config = {
             headers: {
                 "Content-type": "application/json",
-                Authorization: `JWT ${userInfo.access}`,
+                Authorization: `JWT ${userInfo.token}`,
             },
         };
 

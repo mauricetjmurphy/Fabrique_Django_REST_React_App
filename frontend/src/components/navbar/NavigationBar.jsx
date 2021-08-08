@@ -72,7 +72,7 @@ function NavigationBar() {
                             title={<i className="fas fa-user-cog"></i>}
                             id="adminmenu"
                         >
-                            <LinkContainer to="/admin/user-list/?param=">
+                            <LinkContainer to="/admin/users/?param=">
                                 <NavDropdown.Item>Users</NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer to="/admin/products/">

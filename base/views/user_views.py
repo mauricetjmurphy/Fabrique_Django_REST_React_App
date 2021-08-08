@@ -86,7 +86,7 @@ def getUserProfile(request):
 
 @api_view(['GET'])
 # Decorator checks if the user is authenticated and assigned admin privilages before allowing access
-@permission_classes([IsAdminUser])
+@permission_classes([IsAuthenticated])
 def getUsers(request):
     users = User.objects.all()
 
@@ -108,16 +108,15 @@ def getUsers(request):
     return Response({'users':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
 @api_view(['GET'])
-@permission_classes([IsAdminUser])
+# @permission_classes([IsAuthenticated])
 def getUserById(request, pk):
     user = User.objects.get(id=pk)
-    serializer = UserSerializer(user, many=True)
+    serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
 
 @api_view(['PUT'])
-
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def updateUser(request, pk):
     user = User.objects.get(id=pk)
     
@@ -134,7 +133,7 @@ def updateUser(request, pk):
 
 
 @api_view(['DELETE'])
-@permission_classes([IsAdminUser])
+# @permission_classes([IsAuthenticated])
 def deleteUser(request,pk):
     usersForDelete = User.objects.get(id=pk)
     usersForDelete.delete()

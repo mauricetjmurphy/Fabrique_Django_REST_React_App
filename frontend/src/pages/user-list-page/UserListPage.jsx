@@ -3,7 +3,11 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { listUsers, deleteUser } from "../../actions/userActions";
+import {
+    listUsers,
+    deleteUser,
+    getUserDetails,
+} from "../../actions/userActions";
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
 import PageNumbers from "../../components/page-numbers/PageNumbers";
@@ -14,7 +18,7 @@ function UserListPage() {
 
     const searchParam = history.location.search;
 
-    const userLogin = useSelector((state) => state.userList);
+    const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
     const userList = useSelector((state) => state.userList);
@@ -24,14 +28,9 @@ function UserListPage() {
     const { success: successDelete } = userDelete;
 
     useEffect(() => {
-        // if (userInfo) {
-        //     dispatch(listUsers());
-        // } else {
-        //     history.push("/login");
-        // }
         // ---------Insert Modal to check if the action is intended-------//
         dispatch(listUsers(searchParam));
-    }, [dispatch, history, successDelete, searchParam]);
+    }, [dispatch, userInfo, history, successDelete, searchParam]);
 
     const deleteHandler = (id) => {
         dispatch(deleteUser(id));
@@ -81,7 +80,7 @@ function UserListPage() {
 
                                 <td>
                                     <LinkContainer
-                                        to={`/admin/user/${user.id}`}
+                                        to={`/admin/user/${user.id}/`}
                                     >
                                         <Button variant="light" className="btn">
                                             Edit

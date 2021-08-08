@@ -45,7 +45,7 @@ const RegisterPage = () => {
 
     return (
         <div>
-            <Container>
+            <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
                 <Row className="m-5 justify-content-md-center">
                     <h1>Register</h1>
                 </Row>
