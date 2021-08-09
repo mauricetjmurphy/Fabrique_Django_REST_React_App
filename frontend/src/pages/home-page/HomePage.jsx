@@ -2,11 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    listUsers,
-    deleteUser,
-    getLoggedInUserDetails,
-} from "../../actions/userActions";
+import Hero from "../../components/hero/Hero";
+import SlideData from "../../static/data/SlideData";
+import styled from "styled-components";
+import SectionTwo_ImageOne from "../../static/images/s2_img1.jpg";
+import SectionTwo_ImageTwo from "../../static/images/s2_img2.jpg";
+
+const SectionTwo = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin: 20px 0 10px 0;
+`;
+
+const SectionTwoImg = styled.img`
+    object-fit: cover;
+`;
+
+const SectionThree = styled.div``;
+
+const SectionFour = styled.div``;
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -19,23 +34,24 @@ function HomePage() {
         if (!userInfo) {
             history.push("/login");
         }
-
-        // ---------Insert Modal to check if the action is intended-------//
-        dispatch(listUsers());
-    }, [dispatch]);
+    }, []);
 
     return (
-        <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
-            <Row className="justify-content-md-center">
-                <h1 className="text-center p-5">
-                    Hello world, welcome to the Fabrique app!
-                </h1>
-            </Row>
+        <Container style={{ marginTop: "70px" }}>
+            <Hero SlideData={SlideData} />
 
-            <section>Section 1</section>
-            <section>Section 2</section>
-            <section>Section 3</section>
-            <section>Section 4</section>
+            <SectionTwo>
+                <SectionTwoImg src={SectionTwo_ImageOne} alt="" />
+                <SectionTwoImg src={SectionTwo_ImageTwo} alt="" />
+            </SectionTwo>
+
+            <SectionThree>
+                <img src="" alt="" />
+            </SectionThree>
+
+            <SectionFour>
+                <img src="" alt="" />
+            </SectionFour>
         </Container>
     );
 }

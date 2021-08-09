@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts, searchProducts } from "../../actions/productActions";
@@ -7,12 +7,16 @@ import Message from "../../components/message/Message";
 import ProductCard from "../../components/product-card/Product-card";
 import PageNumbers from "../../components/page-numbers/PageNumbers";
 import { toggleSidemenu } from "../../actions/pageActions";
+import SkeletonCard from "../../components/skeleton/SkeletonCard";
+import "./products-page.css";
 
-function ProductsPage({ history, loc }) {
+function ProductsPage({ history, match }) {
     const dispatch = useDispatch();
     // useSelector is used to get specific parts of the state
     const productList = useSelector((state) => state.productList);
     const { error, loading, products, page, pages } = productList;
+
+    const [skeleton, setSkeleton] = useState(true);
 
     // useSelector is used to get specific parts of the state
     const productSearch = useSelector((state) => state.productSearch);
@@ -24,7 +28,9 @@ function ProductsPage({ history, loc }) {
         pages: searchPages,
     } = productSearch;
 
-    const searchParam = history.location.search;
+    const searchParam = history.location.search.split("&")[0];
+
+    console.log(skeleton);
 
     let keyword = searchParam.split("=")[0] === "?keyword";
 
@@ -34,7 +40,11 @@ function ProductsPage({ history, loc }) {
         } else {
             dispatch(listProducts(searchParam));
         }
-    }, [history, dispatch, searchParam]);
+        const skeletonDisplay = setTimeout(() => {
+            setSkeleton(false);
+        }, 1000);
+        return () => clearTimeout(skeletonDisplay);
+    }, [skeleton, history, dispatch, searchParam]);
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }} fluid>
@@ -42,10 +52,14 @@ function ProductsPage({ history, loc }) {
                 <h2 className="m-5">Latest Products</h2>
             </Row>
 
-            {loading ? (
-                <Preloader />
-            ) : searchLoading ? (
-                <Preloader />
+            {skeleton || loading || searchLoading ? (
+                <Row>
+                    {products.map((product, i) => (
+                        <Col key={i} sm={12} md={6} lg={3}>
+                            <SkeletonCard />
+                        </Col>
+                    ))}
+                </Row>
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : searchError ? (
@@ -53,7 +67,13 @@ function ProductsPage({ history, loc }) {
             ) : keyword ? (
                 <Row>
                     {searchedProducts.map((product, i) => (
-                        <Col key={product.product_id} sm={12} md={6} lg={3}>
+                        <Col
+                            style={{ marginBottom: "30px" }}
+                            key={product.product_id}
+                            sm={12}
+                            md={6}
+                            lg={3}
+                        >
                             <ProductCard product={product} />
                         </Col>
                     ))}
@@ -61,7 +81,13 @@ function ProductsPage({ history, loc }) {
             ) : (
                 <Row>
                     {products.map((product, i) => (
-                        <Col key={product.product_id} sm={12} md={6} lg={3}>
+                        <Col
+                            style={{ marginBottom: "30px" }}
+                            key={product.product_id}
+                            sm={12}
+                            md={6}
+                            lg={3}
+                        >
                             <ProductCard product={product} />
                         </Col>
                     ))}

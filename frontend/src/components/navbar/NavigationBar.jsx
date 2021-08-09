@@ -7,6 +7,7 @@ import { logout } from "../../actions/userActions";
 import { toggleSidemenu } from "../../actions/pageActions";
 import "./navbar.css";
 import SearchBox from "../search-box/SearchBox";
+import styled, { css } from "styled-components";
 
 function NavigationBar() {
     // Use history hook to access the react router history object
@@ -15,7 +16,8 @@ function NavigationBar() {
     // Initializing the useDispatch object
     const dispatch = useDispatch();
 
-    const [navbar, setNavBar] = useState(false);
+    const [navbarFade, setNavBarFade] = useState(false);
+    const [toggle, setToggle] = useState(false);
 
     //Getting the userLogin state from the store.js
     const userLogin = useSelector((state) => state.userLogin);
@@ -32,11 +34,15 @@ function NavigationBar() {
         dispatch(toggleSidemenu());
     };
 
+    const toggleHandler = () => {
+        setToggle(!toggle);
+    };
+
     const fadeNav = () => {
         if (window.scrollY >= 35) {
-            setNavBar(true);
+            setNavBarFade(true);
         } else {
-            setNavBar(false);
+            setNavBarFade(false);
         }
     };
 
@@ -44,19 +50,22 @@ function NavigationBar() {
 
     return (
         <Navbar
-            className={navbar ? "navbar active" : "navbar"}
+            className={`${navbarFade ? "navbar active" : "navbar"}, ${
+                toggle && "toggle"
+            }`}
             collapseOnSelect
             expand="lg"
-            bg="dark"
-            variant="dark"
             id="navbar"
         >
             <Container>
-                <LinkContainer to="/">
+                <LinkContainer style={{ color: "#fff" }} to="/">
                     <Navbar.Brand>FABRIQUE</Navbar.Brand>
                 </LinkContainer>
 
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Toggle
+                    onClick={toggleHandler}
+                    aria-controls="responsive-navbar-nav"
+                />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link
@@ -73,10 +82,18 @@ function NavigationBar() {
                             id="adminmenu"
                         >
                             <LinkContainer to="/user-list/?param=">
-                                <NavDropdown.Item>Users</NavDropdown.Item>
+                                <NavDropdown.Item
+                                    onClick={toggle && { toggleHandler }}
+                                >
+                                    Users
+                                </NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer to="/product-list/?category=">
-                                <NavDropdown.Item>Products</NavDropdown.Item>
+                                <NavDropdown.Item
+                                    onClick={toggle && { toggleHandler }}
+                                >
+                                    Products
+                                </NavDropdown.Item>
                             </LinkContainer>
                         </NavDropdown>
                     )}
@@ -88,7 +105,11 @@ function NavigationBar() {
                                 id="username"
                             >
                                 <LinkContainer to="/profile">
-                                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                                    <NavDropdown.Item
+                                        onClick={toggle && { toggleHandler }}
+                                    >
+                                        Profile
+                                    </NavDropdown.Item>
                                 </LinkContainer>
                                 <NavDropdown.Item onClick={logoutHandler}>
                                     Logout
@@ -96,7 +117,7 @@ function NavigationBar() {
                             </NavDropdown>
                         ) : (
                             <LinkContainer to="/login">
-                                <Nav.Link>
+                                <Nav.Link onClick={toggle && { toggleHandler }}>
                                     <i className="fas fa-user pl-2 pr-2"></i>
                                     Login
                                 </Nav.Link>
@@ -104,12 +125,12 @@ function NavigationBar() {
                         )}
 
                         <LinkContainer to="/whishlist">
-                            <Nav.Link>
+                            <Nav.Link onClick={toggle && { toggleHandler }}>
                                 <i className="far fa-heart pl-2 pr-2"></i>
                             </Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/cart">
-                            <Nav.Link>
+                            <Nav.Link onClick={toggle && { toggleHandler }}>
                                 <i className="fas fa-shopping-bag pl-2 pr-2"></i>
                             </Nav.Link>
                         </LinkContainer>

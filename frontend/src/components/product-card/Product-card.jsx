@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import "./product-card.css";
 
 function ProductCard({ product }) {
@@ -11,6 +10,7 @@ function ProductCard({ product }) {
         <Card bsclass="product-card" className="my-3">
             <Link to={`/product/${product.product_id}`}>
                 <Card.Img
+                    className="fade-img-in"
                     src={product.product_image_url}
                     onMouseOver={(e) => (e.currentTarget.src = additionalImage)}
                     onMouseOut={(e) =>

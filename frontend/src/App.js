@@ -28,23 +28,21 @@ function App() {
             <NavigationBar />
             <Sidemenu />
 
-            <Container>
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
-                <Route path="/profile" component={ProfilePage} />
-                <Route path="/" component={HomePage} exact />
-                <Route path="/products" component={ProductsPage} />
-                <Route path="/product-list/" component={ProductListPage} />
-                <Route path="/product/:id" component={ProductPage} />
-                {/* The ? in the url make the id parameter optional */}
-                <Route path="/cart/:id?" component={CartPage} />
-                <Route path="/shipping/" component={ShippingPage} />
-                <Route path="/payment/" component={PaymentPage} />
-                <Route path="/place-order/" component={PlaceOrderPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/profile" component={ProfilePage} />
+            <Route path="/" component={HomePage} exact />
+            <Route path="/products" component={ProductsPage} />
+            <Route path="/product-list/" component={ProductListPage} />
+            <Route path="/product/:id" component={ProductPage} />
+            {/* The ? in the url make the id parameter optional */}
+            <Route path="/cart/:id?" component={CartPage} />
+            <Route path="/shipping/" component={ShippingPage} />
+            <Route path="/payment/" component={PaymentPage} />
+            <Route path="/place-order/" component={PlaceOrderPage} />
 
-                <Route path="/user-list/" component={UserListPage} />
-                <Route path="/user/:id/" component={UpdateUserPage} />
-            </Container>
+            <Route path="/user-list/" component={UserListPage} />
+            <Route path="/user/:id/" component={UpdateUserPage} />
 
             <Footer />
         </Router>
