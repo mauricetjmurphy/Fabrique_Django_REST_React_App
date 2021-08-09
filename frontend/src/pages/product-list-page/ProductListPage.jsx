@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button, Row, Container, Col } from "react-bootstrap";
+import { Form, Table, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
 import Message from "../../components/message/Message";
@@ -24,12 +24,43 @@ function ProductListPage({ match }) {
     const { success: successDelete } = userDelete;
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         // ---------Insert Modal to check if the action is intended-------//
         dispatch(listProducts(searchParam));
     }, [dispatch, userInfo, history, successDelete, searchParam]);
 
+    const handleDelete = () => {
+        history.push("/delete/");
+    };
+
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
+            <Row className="justify-content-center">
+                <h1>Manage Products</h1>
+            </Row>
+
+            <Row>
+                <h1>Delete All Products</h1>
+            </Row>
+
+            <Row>
+                <Button onClick={handleDelete} variant="danger">
+                    Delete
+                </Button>
+            </Row>
+
+            <Row>
+                <Form>
+                    <h1>Add Products</h1>
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>
+                            Upload a CSV file to the database
+                        </Form.Label>
+                        <Form.Control type="file" />
+                    </Form.Group>
+                </Form>
+            </Row>
+
             <Row className="justify-content-md-center">
                 <h1 className="text-center m-5">Products</h1>
             </Row>

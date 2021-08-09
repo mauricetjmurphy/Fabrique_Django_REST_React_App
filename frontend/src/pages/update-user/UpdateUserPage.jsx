@@ -48,6 +48,7 @@ const UpdateUserPage = ({ match }) => {
 
     // If user is loggied in redirect to homepage
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (successUpdate) {
             dispatch({ type: USER_UPDATE_RESET });
             history.push("/user-list/");

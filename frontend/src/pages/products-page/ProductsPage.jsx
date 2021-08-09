@@ -34,13 +34,12 @@ function ProductsPage({ history, match }) {
     let keyword = searchParam.split("=")[0] === "?keyword";
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (searchParam.split("=")[0] === "?keyword") {
             setSearchTerm(history.location.search.split("=")[1].split("&")[0]);
         } else {
             setSearchTerm(history.location.search.split("=")[1]);
         }
-
-        window.scrollTo(0, 0);
         if (searchParam.split("=")[0] === "?keyword") {
             dispatch(searchProducts(searchParam));
         } else {

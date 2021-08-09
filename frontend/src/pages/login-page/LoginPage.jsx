@@ -25,6 +25,7 @@ const LoginPage = () => {
 
     // If user is logged in redirect to homepage
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (userInfo) {
             history.push(redirect);
         }

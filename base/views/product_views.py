@@ -67,6 +67,14 @@ def getProducts(request):
     serializer = ProductSerializer(products, many=True)
     return Response({'products':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteProducts(request):
+    
+    products = Product.objects.all()
+    products.delete()
+    return Response('Products deleted')
+
 
 @api_view(['GET'])
 def getProduct(request, pk):

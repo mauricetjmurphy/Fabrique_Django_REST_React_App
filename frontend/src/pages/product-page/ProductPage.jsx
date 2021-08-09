@@ -59,6 +59,7 @@ function ProductPage({ match, history }) {
     } = productReviewCreate;
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (successProductReview) {
             setRating(0);
             setComment("");

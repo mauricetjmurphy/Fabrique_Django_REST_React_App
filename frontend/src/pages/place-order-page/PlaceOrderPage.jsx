@@ -43,6 +43,7 @@ function PlaceOrderPage() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (success) {
             history.push(`/order/${order._id}`);
             dispatch({ type: ORDER_CREATE_RESET });

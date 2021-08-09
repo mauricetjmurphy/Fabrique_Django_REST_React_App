@@ -26,6 +26,7 @@ const RegisterPage = () => {
 
     // If user is loggied in redirect to homepage
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (userInfo) {
             history.push(redirect);
         }

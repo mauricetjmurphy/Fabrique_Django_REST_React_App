@@ -29,6 +29,7 @@ function UserListPage() {
     const { success: successDelete } = userDelete;
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (!userInfo.token) {
             dispatch(getLoggedInUserDetails());
         }
