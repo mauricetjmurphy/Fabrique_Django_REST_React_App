@@ -44,6 +44,8 @@ function ProductPage({ match, history }) {
     const productDetails = useSelector((state) => state.productDetails);
     const { error, loading, product } = productDetails;
 
+    console.log(product);
+
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
@@ -75,14 +77,6 @@ function ProductPage({ match, history }) {
         dispatch(addToCart(match.params.id, qty));
     };
 
-    const {
-        product_name,
-        product_image_url,
-        product_category,
-        retail_price,
-        color,
-    } = product;
-
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(
@@ -95,7 +89,7 @@ function ProductPage({ match, history }) {
 
     return (
         <Container style={{ marginTop: "70px" }}>
-            <Link to="/products" className="btn btn-light my-3">
+            <Link to="/products/?category=" className="btn btn-light my-3">
                 Go Back
             </Link>
             {/* Using a ternary operator to check if the app is loading or if we nned to display an error message */}
@@ -115,8 +109,8 @@ function ProductPage({ match, history }) {
                         >
                             <Image
                                 className="product-img"
-                                src={product_image_url}
-                                alt={product_name}
+                                src={product.product_image_url}
+                                alt={product.product_name}
                                 fluid
                             ></Image>
                         </Col>
@@ -126,34 +120,35 @@ function ProductPage({ match, history }) {
                                 <ListGroup.Item style={style}>
                                     <h3
                                         style={{
-                                            fontSize: "14px",
+                                            fontSize: "18px",
                                             letterSpacing: "1px",
+                                            fontWeight: "bold",
                                         }}
                                     >
-                                        {product_category}
+                                        {product.brand}
                                     </h3>
                                 </ListGroup.Item>
 
                                 <ListGroup.Item style={style}>
                                     <h4
                                         style={{
-                                            fontSize: "18px",
+                                            fontSize: "16px",
                                             letterSpacing: "1px",
-                                            fontWeight: "bold",
                                         }}
                                     >
-                                        {product_name}
+                                        {product.product_name &&
+                                            product.product_name.split("-")[1]}
                                     </h4>
                                 </ListGroup.Item>
 
                                 <ListGroup.Item style={style}>
-                                    €{retail_price}
+                                    €{product.retail_price}
                                 </ListGroup.Item>
 
                                 <ListGroup.Item
                                     style={{ fontSize: "14px", border: "none" }}
                                 >
-                                    Colour: {color}
+                                    Colour: {product.color}
                                 </ListGroup.Item>
 
                                 <ListGroup.Item style={style}>

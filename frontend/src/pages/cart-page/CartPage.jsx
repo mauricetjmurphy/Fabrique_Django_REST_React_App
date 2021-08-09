@@ -66,8 +66,12 @@ const CartPage = ({ match, location, history }) => {
                                             ></Image>
                                         </Col>
                                         <Col md={3}>
-                                            <Link to={`/product/${item.id}`}>
-                                                {item.name}
+                                            <Link
+                                                style={{ color: "#000" }}
+                                                to={`/product/${item.id}`}
+                                            >
+                                                {item.name &&
+                                                    item.name.split("-")[1]}
                                             </Link>
                                         </Col>
                                         <Col md={2}>{`€ ${item.price}`}</Col>
@@ -101,6 +105,9 @@ const CartPage = ({ match, location, history }) => {
                                             <Button
                                                 type="button"
                                                 variant="light"
+                                                style={{
+                                                    border: "1px solid #343a40",
+                                                }}
                                                 onClick={() =>
                                                     removeFromCartHandler(
                                                         item.id

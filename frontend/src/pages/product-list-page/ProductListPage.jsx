@@ -28,10 +28,6 @@ function ProductListPage({ match }) {
         dispatch(listProducts(searchParam));
     }, [dispatch, userInfo, history, successDelete, searchParam]);
 
-    const deleteHandler = (id) => {
-        console.log("hi");
-    };
-
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
             <Row className="justify-content-md-center">

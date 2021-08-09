@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { toggleSidemenu } from "../../actions/pageActions";
 import SearchBox from "../search-box/SearchBox";
+import Bag from "../bag/Bag";
 
 import "./navbar.css";
+import { getCartItems } from "../../actions/cartActions";
 
 function NavigationBar() {
     // Use history hook to access the react router history object
@@ -24,6 +26,9 @@ function NavigationBar() {
     const userLogin = useSelector((state) => state.userLogin);
     //The userLogin variable holds the userReducer and from this we can destructure the data from the variable
     const { userInfo } = userLogin;
+
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart;
 
     const logoutHandler = (e) => {
         // dispatch the logout action and redirect the user to the login page
@@ -133,7 +138,8 @@ function NavigationBar() {
                         </LinkContainer>
                         <LinkContainer to="/cart">
                             <Nav.Link onClick={toggle && { toggleHandler }}>
-                                <i className="fas fa-shopping-bag pl-2 pr-2"></i>
+                                {/* <i className="fas fa-shopping-bag pl-2 pr-2"></i> */}
+                                <Bag number={cartItems.length} />
                             </Nav.Link>
                         </LinkContainer>
                     </Nav>

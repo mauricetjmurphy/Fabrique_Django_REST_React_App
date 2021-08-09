@@ -29,12 +29,17 @@ function ProductsPage({ history, match }) {
         pages: searchPages,
     } = productSearch;
 
-    const searchParam = history.location.search.split("&")[0];
+    const searchParam = history.location.search;
 
     let keyword = searchParam.split("=")[0] === "?keyword";
 
     useEffect(() => {
-        setSearchTerm(history.location.search.split("=")[1]);
+        if (searchParam.split("=")[0] === "?keyword") {
+            setSearchTerm(history.location.search.split("=")[1].split("&")[0]);
+        } else {
+            setSearchTerm(history.location.search.split("=")[1]);
+        }
+
         window.scrollTo(0, 0);
         if (searchParam.split("=")[0] === "?keyword") {
             dispatch(searchProducts(searchParam));
