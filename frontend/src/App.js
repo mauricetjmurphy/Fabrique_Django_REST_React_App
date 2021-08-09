@@ -27,7 +27,6 @@ function App() {
         <Router className="App" id="root">
             <NavigationBar />
             <Sidemenu />
-
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/profile" component={ProfilePage} />
@@ -43,7 +42,6 @@ function App() {
 
             <Route path="/user-list/" component={UserListPage} />
             <Route path="/user/:id/" component={UpdateUserPage} />
-
             <Footer />
         </Router>
     );

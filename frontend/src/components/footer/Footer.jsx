@@ -1,24 +1,25 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import styled from "styled-components";
+
+const FooterSection = styled.div`
+    background: #111111;
+    color: #fff;
+    border-top: 1px solid #e7e7e7;
+    text-align: center;
+    padding: 20px;
+    left: 0;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 function Footer() {
-    const style = {
-        background: "#343a40",
-        color: "#fff",
-        borderTop: "1px solid #E7E7E7",
-        textAlign: "center",
-        padding: "20px",
-        left: "0",
-        bottom: "0",
-        height: "60px",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    };
-
     return (
-        <footer style={style}>
+        <FooterSection>
             <Container>
                 <Row>
                     <Col className="text-center py-3">
@@ -26,7 +27,7 @@ function Footer() {
                     </Col>
                 </Row>
             </Container>
-        </footer>
+        </FooterSection>
     );
 }
 

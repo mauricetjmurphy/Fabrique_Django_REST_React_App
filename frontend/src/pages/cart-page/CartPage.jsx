@@ -49,7 +49,8 @@ const CartPage = ({ match, location, history }) => {
                     <h1 className="mt-5 mb-5">Shopping Cart</h1>
                     {cartItems.length === 0 ? (
                         <Message variant="info">
-                            Your cart is empty <Link to="/">Go Back</Link>
+                            Your cart is empty{" "}
+                            <Link to="/products/">Go Back</Link>
                         </Message>
                     ) : (
                         <ListGroup variant="flush">
@@ -121,7 +122,7 @@ const CartPage = ({ match, location, history }) => {
                 <Col md={4}>
                     <Card>
                         <ListGroup variant="flush">
-                            <ListGroup.Item>
+                            <ListGroup.Item style={{ background: "#f4f5f7" }}>
                                 <h2 className="mt-5 mb-5">
                                     Subtotal (
                                     {cartItems.reduce(
@@ -140,7 +141,7 @@ const CartPage = ({ match, location, history }) => {
                                     .toFixed(2)}
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
+                            <ListGroup.Item style={{ background: "#f4f5f7" }}>
                                 <Button
                                     type="button"
                                     className="btn-block btn-dark"

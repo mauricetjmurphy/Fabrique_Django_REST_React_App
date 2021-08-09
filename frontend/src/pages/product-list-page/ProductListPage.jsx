@@ -43,7 +43,7 @@ function ProductListPage({ match }) {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
-                <Table striped bordered hover responsive className="table-sm">
+                <Table striped bordered responsive className="table-sm">
                     <thead>
                         <tr>
                             <th>Product ID</th>

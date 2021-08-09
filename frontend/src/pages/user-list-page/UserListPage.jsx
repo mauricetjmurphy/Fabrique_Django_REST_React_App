@@ -41,7 +41,12 @@ function UserListPage() {
     };
 
     return (
-        <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
+        <Container
+            style={{
+                marginTop: "70px",
+                minHeight: "90vh",
+            }}
+        >
             <Row className="justify-content-md-center">
                 <h1 className="text-center m-5">Users</h1>
             </Row>
@@ -51,7 +56,7 @@ function UserListPage() {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
-                <Table striped bordered hover responsive className="table-sm">
+                <Table striped bordered responsive className="table-sm">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -100,7 +105,9 @@ function UserListPage() {
                     </tbody>
                 </Table>
             )}
-            <PageNumbers page={page} pages={pages} keyword={searchParam} />
+            {pages > 1 && (
+                <PageNumbers page={page} pages={pages} keyword={searchParam} />
+            )}
         </Container>
     );
 }

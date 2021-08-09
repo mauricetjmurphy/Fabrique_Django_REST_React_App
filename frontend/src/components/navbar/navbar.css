@@ -1,10 +1,10 @@
 .navbar {
+    background: #111;
     height: 70px;
     position: fixed;
     width: 100%;
     z-index: 2;
     opacity: 1;
-    background: #111;
     transition: opacity 0.5s ease-in-out;
     transition: height 0.5s ease-in-out;
 }
@@ -15,8 +15,8 @@
 }
 
 .navbar.active {
-    opacity: 0.6;
-    transition: opacity 0.5s ease-in-out;
+    opacity: 0.6 !important;
+    transition: opacity 0.5s ease-in-out !important;
 }
 
 #adminmenu {

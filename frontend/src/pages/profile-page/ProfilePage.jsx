@@ -66,7 +66,7 @@ function ProfileScreen({ history }) {
     return (
         <Container style={{ marginTop: "70px" }}>
             <Row className="justify-content-md-center">
-                <h2 className="text-center mt-5">User Profile</h2>
+                <h2 className="text-center mt-5">Update Profile</h2>
             </Row>
             <Row className="m-5 justify-content-md-center">
                 <Col md={6}>
@@ -120,7 +120,7 @@ function ProfileScreen({ history }) {
 
                         <Button
                             type="submit"
-                            variant="primary"
+                            variant="dark"
                             className="btn-block"
                         >
                             Update

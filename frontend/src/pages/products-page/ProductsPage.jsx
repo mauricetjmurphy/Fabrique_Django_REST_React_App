@@ -17,6 +17,7 @@ function ProductsPage({ history, match }) {
     const { error, loading, products, page, pages } = productList;
 
     const [skeleton, setSkeleton] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
 
     // useSelector is used to get specific parts of the state
     const productSearch = useSelector((state) => state.productSearch);
@@ -30,11 +31,11 @@ function ProductsPage({ history, match }) {
 
     const searchParam = history.location.search.split("&")[0];
 
-    console.log(skeleton);
-
     let keyword = searchParam.split("=")[0] === "?keyword";
 
     useEffect(() => {
+        setSearchTerm(history.location.search.split("=")[1]);
+        window.scrollTo(0, 0);
         if (searchParam.split("=")[0] === "?keyword") {
             dispatch(searchProducts(searchParam));
         } else {
@@ -47,9 +48,16 @@ function ProductsPage({ history, match }) {
     }, [skeleton, history, dispatch, searchParam]);
 
     return (
-        <Container style={{ marginTop: "70px", minHeight: "90vh" }} fluid>
+        <Container
+            style={{ marginTop: "70px", minHeight: "90vh", padding: "0 50px" }}
+            fluid
+        >
             <Row className="justify-content-md-center">
-                <h2 className="m-5">Latest Products</h2>
+                <h2 className="m-5">
+                    {searchTerm && searchTerm !== "&page"
+                        ? searchTerm
+                        : "All products"}
+                </h2>
             </Row>
 
             {skeleton || loading || searchLoading ? (
@@ -93,18 +101,20 @@ function ProductsPage({ history, match }) {
                     ))}
                 </Row>
             )}
-            {keyword ? (
+            {keyword && pages > 1 ? (
                 <PageNumbers
                     page={searchPage}
                     pages={searchPages}
                     keyword={searchParam}
                 />
             ) : (
-                <PageNumbers
-                    page={page}
-                    pages={pages}
-                    searchParam={searchParam}
-                />
+                pages > 1 && (
+                    <PageNumbers
+                        page={page}
+                        pages={pages}
+                        searchParam={searchParam}
+                    />
+                )
             )}
         </Container>
     );

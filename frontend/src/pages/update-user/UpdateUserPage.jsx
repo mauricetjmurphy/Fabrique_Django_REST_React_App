@@ -158,7 +158,11 @@ const UpdateUserPage = ({ match }) => {
                                     />
                                 </Form.Group>
 
-                                <Button variant="dark" type="submit">
+                                <Button
+                                    variant="dark"
+                                    className="btn-block"
+                                    type="submit"
+                                >
                                     Update
                                 </Button>
                             </Form>

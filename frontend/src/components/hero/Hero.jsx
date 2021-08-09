@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
-import { Transition, animate, Spring } from "react-spring";
 
 const HeroSection = styled.section`
     height: 100vh;
@@ -85,8 +84,6 @@ function Hero({ SlideData }) {
     const nextPrevSlide = () => {
         setCurrent(current === 0 ? length - 1 : current - 1);
     };
-
-    console.log(SlideData);
 
     useEffect(() => {
         const nextSlide = () => {

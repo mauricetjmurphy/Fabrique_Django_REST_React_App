@@ -5,9 +5,9 @@ import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { toggleSidemenu } from "../../actions/pageActions";
-import "./navbar.css";
 import SearchBox from "../search-box/SearchBox";
-import styled, { css } from "styled-components";
+
+import "./navbar.css";
 
 function NavigationBar() {
     // Use history hook to access the react router history object
@@ -17,6 +17,7 @@ function NavigationBar() {
     const dispatch = useDispatch();
 
     const [navbarFade, setNavBarFade] = useState(false);
+
     const [toggle, setToggle] = useState(false);
 
     //Getting the userLogin state from the store.js
@@ -63,6 +64,7 @@ function NavigationBar() {
                 </LinkContainer>
 
                 <Navbar.Toggle
+                    style={{ color: "#fff" }}
                     onClick={toggleHandler}
                     aria-controls="responsive-navbar-nav"
                 />
