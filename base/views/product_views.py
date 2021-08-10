@@ -49,7 +49,7 @@ def getProducts(request):
         products = Product.objects.filter(product_category__icontains=query)
 
     page = request.query_params.get('page')
-    paginator = Paginator(products, 6)
+    paginator = Paginator(products, 12)
     
     try:
         products = paginator.page(page)
@@ -67,12 +67,12 @@ def getProducts(request):
     serializer = ProductSerializer(products, many=True)
     return Response({'products':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
-@api_view(['DELETE'])
-@permission_classes([IsAdminUser])
-def deleteProducts(request):
+@api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+def deleteProducts(request, pk):
     
-    products = Product.objects.all()
-    products.delete()
+    Product.objects.all().delete()
+
     return Response('Products deleted')
 
 

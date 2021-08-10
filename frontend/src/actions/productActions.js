@@ -13,6 +13,9 @@ import {
     PRODUCT_CREATE_REVIEW_SUCCESS,
     PRODUCT_CREATE_REVIEW_FAIL,
     PRODUCT_CREATE_REVIEW_RESET,
+    PRODUCTS_DELETE_REQUEST,
+    PRODUCTS_DELETE_SUCCESS,
+    PRODUCTS_DELETE_FAIL,
 } from "../constants/productConstants";
 //Redux-thunk allows us call an async function within a function and will call the dispatch
 export const listProducts =
@@ -129,3 +132,41 @@ export const createProductReview =
             });
         }
     };
+
+export const deleteProducts = () => async (dispatch, getState) => {
+    try {
+        // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
+        dispatch({
+            type: PRODUCTS_DELETE_REQUEST,
+        });
+
+        // Getting the auth token for sending in the headers
+        const {
+            userLogin: { userInfo },
+        } = getState();
+
+        // Axios post request will require a header. This variable is passed in below.
+        const config = {
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `JWT ${userInfo.token}`,
+            },
+        };
+
+        //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
+        const { data } = await axios.delete(`/api/products/delete/`, config);
+
+        dispatch({
+            type: PRODUCTS_DELETE_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: PRODUCTS_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.detail
+                    ? error.response.data.detail
+                    : error.message,
+        });
+    }
+};

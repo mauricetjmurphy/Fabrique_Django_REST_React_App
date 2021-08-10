@@ -18,6 +18,11 @@ function PaymentPage() {
         history.push("/shipping");
     }
 
+    const backHandler = (e) => {
+        e.preventDefault();
+        history.push("/shipping");
+    };
+
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(savePaymentMethod(paymentMethod));
@@ -26,23 +31,17 @@ function PaymentPage() {
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-            <CheckoutProcess step1 step2 />
+            <CheckoutProcess step2 />
             <h1>Payment</h1>
-            <Form onSubmit={submitHandler}>
-                <Form.Group>
-                    <Form.Label as="legend">Select Payment Method</Form.Label>
-                    <Col>
+            <Col lg={4} md={4}>
+                <Form onSubmit={submitHandler}>
+                    <Form.Group>
+                        <Form.Label as="legend">
+                            Select Payment Method
+                        </Form.Label>
+
                         <Form.Check
-                            type="radio"
-                            label="Paypal"
-                            id="paypal"
-                            name="paymentMethod1"
-                            value="PayPal"
-                            onChange={(e) => {
-                                setPaymentMethod(e.target.value);
-                            }}
-                        ></Form.Check>
-                        <Form.Check
+                            required
                             type="radio"
                             label="Credit or Debit Card"
                             id="stripe"
@@ -52,10 +51,19 @@ function PaymentPage() {
                                 setPaymentMethod(e.target.value);
                             }}
                         ></Form.Check>
-                    </Col>
-                </Form.Group>
-                <Button type="submit">Continue</Button>
-            </Form>
+                    </Form.Group>
+                    <Button
+                        className="btn-block btn-light border-dark"
+                        type="button"
+                        onClick={backHandler}
+                    >
+                        Back
+                    </Button>
+                    <Button className="btn-block btn-dark" type="submit">
+                        Continue
+                    </Button>
+                </Form>
+            </Col>
         </Container>
     );
 }

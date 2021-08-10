@@ -46,14 +46,14 @@ INSTALLED_APPS = [
 
 # Changing the default Auth Class to rest framework simple JWT. Using the JWT library for producing Auth web tokens that will be stored in local storage.
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-        
-    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         
-    )
+    ),
+        'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+        
+    ]
 }
 
 # Settings for customizing the web token.

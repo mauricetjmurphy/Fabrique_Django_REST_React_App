@@ -64,9 +64,14 @@ function PlaceOrderPage() {
         );
     };
 
+    const backHandler = (e) => {
+        e.preventDefault();
+        history.push("/payment");
+    };
+
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-            <CheckoutProcess step1 step2 step3 step4 />
+            <CheckoutProcess step3 />
             <Row>
                 <Col md={8}>
                     <ListGroup variant="flush">
@@ -166,15 +171,18 @@ function PlaceOrderPage() {
                             </ListGroup.Item>
 
                             <ListGroup.Item>
-                                {/* <Button
-                                    disabled={cart.cartItems === 0}
+                                <Button
                                     type="button"
-                                    className="btn-block"
-                                    onClick={placeOrder}
+                                    className="btn-block mb-2 border-dark btn-light"
+                                    onClick={backHandler}
                                 >
-                                    Place Order
-                                </Button> */}
-                                <CheckoutBtn price={total} width="100%" />
+                                    Back
+                                </Button>
+                                <CheckoutBtn
+                                    onClick={placeOrder}
+                                    price={total}
+                                    width="100%"
+                                />
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>

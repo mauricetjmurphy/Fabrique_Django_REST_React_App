@@ -8,6 +8,7 @@ import ProductCard from "../../components/product-card/Product-card";
 import PageNumbers from "../../components/page-numbers/PageNumbers";
 import { toggleSidemenu } from "../../actions/pageActions";
 import SkeletonCard from "../../components/skeleton/SkeletonCard";
+import PaginationComponent from "../../components/pagination-component/PaginationComponent";
 import "./products-page.css";
 
 function ProductsPage({ history, match }) {
@@ -47,7 +48,7 @@ function ProductsPage({ history, match }) {
         }
         const skeletonDisplay = setTimeout(() => {
             setSkeleton(false);
-        }, 1000);
+        }, 2000);
         return () => clearTimeout(skeletonDisplay);
     }, [skeleton, history, dispatch, searchParam]);
 
@@ -64,13 +65,14 @@ function ProductsPage({ history, match }) {
                 </h2>
             </Row>
 
-            {skeleton || loading || searchLoading ? (
+            {skeleton ? (
                 <Row>
-                    {products.map((product, i) => (
-                        <Col key={i} sm={12} md={6} lg={3}>
-                            <SkeletonCard />
-                        </Col>
-                    ))}
+                    {products &&
+                        products.map((product, i) => (
+                            <Col key={i} sm={12} md={6} lg={3}>
+                                <SkeletonCard />
+                            </Col>
+                        ))}
                 </Row>
             ) : error ? (
                 <Message variant="danger">{error}</Message>
@@ -78,17 +80,18 @@ function ProductsPage({ history, match }) {
                 <Message variant="danger">{searchError}</Message>
             ) : keyword ? (
                 <Row>
-                    {searchedProducts.map((product, i) => (
-                        <Col
-                            style={{ marginBottom: "30px" }}
-                            key={product.product_id}
-                            sm={12}
-                            md={6}
-                            lg={3}
-                        >
-                            <ProductCard product={product} />
-                        </Col>
-                    ))}
+                    {searchedProducts &&
+                        searchedProducts.map((product, i) => (
+                            <Col
+                                style={{ marginBottom: "30px" }}
+                                key={product.product_id}
+                                sm={12}
+                                md={6}
+                                lg={3}
+                            >
+                                <ProductCard product={product} />
+                            </Col>
+                        ))}
                 </Row>
             ) : (
                 <Row>
@@ -105,7 +108,7 @@ function ProductsPage({ history, match }) {
                     ))}
                 </Row>
             )}
-            {keyword && pages > 1 ? (
+            {/* {keyword && pages > 1 ? (
                 <PageNumbers
                     page={searchPage}
                     pages={searchPages}
@@ -119,7 +122,8 @@ function ProductsPage({ history, match }) {
                         searchParam={searchParam}
                     />
                 )
-            )}
+            )} */}
+            <PaginationComponent page={page} pages={pages} />
         </Container>
     );
 }

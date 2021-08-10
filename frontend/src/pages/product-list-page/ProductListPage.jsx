@@ -3,10 +3,11 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Form, Table, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../../actions/productActions";
+import { listProducts, deleteProducts } from "../../actions/productActions";
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
 import PageNumbers from "../../components/page-numbers/PageNumbers";
+import FileDrop from "../../components/file-drop/FileDrop";
 
 function ProductListPage({ match }) {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function ProductListPage({ match }) {
     }, [dispatch, userInfo, history, successDelete, searchParam]);
 
     const handleDelete = () => {
-        history.push("/delete/");
+        dispatch(deleteProducts());
     };
 
     return (
@@ -40,7 +41,7 @@ function ProductListPage({ match }) {
             </Row>
 
             <Row>
-                <h1>Delete All Products</h1>
+                <h2>Delete All Products</h2>
             </Row>
 
             <Row>
@@ -50,15 +51,8 @@ function ProductListPage({ match }) {
             </Row>
 
             <Row>
-                <Form>
-                    <h1>Add Products</h1>
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>
-                            Upload a CSV file to the database
-                        </Form.Label>
-                        <Form.Control type="file" />
-                    </Form.Group>
-                </Form>
+                <h2>Add Products</h2>
+                <FileDrop />
             </Row>
 
             <Row className="justify-content-md-center">

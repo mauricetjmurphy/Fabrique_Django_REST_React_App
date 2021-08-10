@@ -12,6 +12,9 @@ import {
     PRODUCT_CREATE_REVIEW_SUCCESS,
     PRODUCT_CREATE_REVIEW_FAIL,
     PRODUCT_CREATE_REVIEW_RESET,
+    PRODUCTS_DELETE_REQUEST,
+    PRODUCTS_DELETE_SUCCESS,
+    PRODUCTS_DELETE_FAIL,
 } from "../constants/productConstants";
 
 // A reducer is a function that takes an action and the previous state of the application and returns the new state.
@@ -97,6 +100,26 @@ export const productReviewCreateReducer = (state = {}, action) => {
         case PRODUCT_CREATE_REVIEW_RESET:
             return {};
 
+        default:
+            return state;
+    }
+};
+
+export const productsDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+        // Do something here based on the different types of actions
+        case PRODUCTS_DELETE_REQUEST:
+            return { loading: true };
+
+        case PRODUCTS_DELETE_SUCCESS:
+            // action.payload is the data returned form the API call
+            return { loading: false, success: true };
+
+        case PRODUCTS_DELETE_FAIL:
+            return { loading: false, error: action.payload };
+
+        // If this reducer doesn't recognize the action type, or doesn't
+        // care about this specific action, return the existing state unchanged
         default:
             return state;
     }

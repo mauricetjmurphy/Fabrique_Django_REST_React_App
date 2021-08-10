@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./product-card.css";
 
 function ProductCard({ product }) {
-    const additionalImage = product.additional_image_link;
+    const additionalImage = product.additional_image_link.split(",")[1];
 
     return (
         <Card bsclass="product-card" className="my-3">

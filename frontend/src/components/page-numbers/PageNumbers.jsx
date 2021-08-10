@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Pagination } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
@@ -6,6 +6,10 @@ import "./page-numbers.css";
 
 function PageNumbers({ pages, page, searchParam, isAdmin = false }) {
     const history = useHistory();
+
+    const [pageNumberLimit, setPageNumberLimit] = useState(5);
+    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
+    const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
     if (searchParam) {
         searchParam = searchParam.split("&")[0];
