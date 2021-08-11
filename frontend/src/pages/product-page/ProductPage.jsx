@@ -89,7 +89,7 @@ function ProductPage({ match, history }) {
     };
 
     return (
-        <Container style={{ marginTop: "70px" }}>
+        <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
             <Link to="/products/?category=" className="btn btn-light my-3">
                 Go Back
             </Link>

@@ -35,7 +35,7 @@ function Sidemenu(height) {
             </li>
             <li>
                 <Link
-                    to={`/products/?category=Coats`}
+                    to={`/products/?category=Coats&page=1`}
                     className="link"
                     onClick={closeSideMenu}
                 >
@@ -44,7 +44,7 @@ function Sidemenu(height) {
             </li>
             <li>
                 <Link
-                    to="/products/?category=Hoodies"
+                    to="/products/?category=Hoodies&page=1"
                     className="link"
                     onClick={closeSideMenu}
                 >
@@ -53,7 +53,7 @@ function Sidemenu(height) {
             </li>
             <li>
                 <Link
-                    to="/products/?category=Shirts"
+                    to="/products/?category=Shirts&page=1"
                     className="link"
                     onClick={closeSideMenu}
                 >
@@ -62,7 +62,7 @@ function Sidemenu(height) {
             </li>
             <li>
                 <Link
-                    to="/products/?category=Shoes"
+                    to="/products/?category=Shoes&page=1"
                     className="link"
                     onClick={closeSideMenu}
                 >
@@ -71,7 +71,7 @@ function Sidemenu(height) {
             </li>
             <li>
                 <Link
-                    to="/products/?category=Shorts"
+                    to="/products/?category=Shorts&page=1"
                     className="link"
                     onClick={closeSideMenu}
                 >
@@ -80,7 +80,7 @@ function Sidemenu(height) {
             </li>
             <li>
                 <Link
-                    to="/products/?category=Ties"
+                    to="/products/?category=Ties&page=1"
                     className="link"
                     onClick={closeSideMenu}
                 >

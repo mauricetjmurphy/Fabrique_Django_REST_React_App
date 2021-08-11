@@ -35,6 +35,10 @@ const CartPage = ({ match, location, history }) => {
         }
     }, [dispatch, productId, qty]);
 
+    const updateHandler = () => {
+        console.log("updated");
+    };
+
     const checkoutHandler = () => {
         history.push("/login?redirect=shipping");
     };
@@ -51,7 +55,9 @@ const CartPage = ({ match, location, history }) => {
                     {cartItems.length === 0 ? (
                         <Message variant="info">
                             Your cart is empty{" "}
-                            <Link to="/products/">Go Back</Link>
+                            <Link to="/products/?category=&page=1">
+                                Go Back
+                            </Link>
                         </Message>
                     ) : (
                         <ListGroup variant="flush">

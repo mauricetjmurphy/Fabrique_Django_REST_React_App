@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./pagination-component.css";
 import { Link, useHistory } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 const PaginationComponent = ({ page, pages }) => {
     const history = useHistory();
@@ -15,13 +16,13 @@ const PaginationComponent = ({ page, pages }) => {
 
     const pageNumbers = [...Array(pages).keys()];
 
+    // const searchParam = history.location.search;
     const searchParam = history.location.search.split("&")[0];
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // if (indexOfLastItem && indexOfFirstItem) {
-    //     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-    // }
+
+    console.log(currentPage);
 
     const handleClick = (e) => {
         setCurrentPage(Number(e.target.id));
@@ -36,7 +37,12 @@ const PaginationComponent = ({ page, pages }) => {
                         key={number}
                         id={number}
                         onClick={handleClick}
-                        className={currentPage === number ? "active" : null}
+                        className={
+                            currentPage === number ||
+                            (number === 1 && currentPage < 2)
+                                ? "active"
+                                : null
+                        }
                     >
                         {number}
                     </li>
@@ -49,7 +55,7 @@ const PaginationComponent = ({ page, pages }) => {
 
     useEffect(() => {
         setCurrentPage(history.location.search.split("=")[2]);
-    }, []);
+    }, [searchParam]);
 
     const handleNext = () => {
         setCurrentPage(currentPage + 1);
@@ -86,9 +92,7 @@ const PaginationComponent = ({ page, pages }) => {
                     <li className="prev">
                         <button
                             onClick={handlePrev}
-                            disabled={
-                                currentPage === pageNumbers[0] ? true : false
-                            }
+                            disabled={currentPage === 1 ? true : false}
                         >
                             Prev
                         </button>

@@ -30,7 +30,11 @@ function ProductsPage({ history, match }) {
         pages: searchPages,
     } = productSearch;
 
+    // const searchParam = history.location.search.split("&")[0];
     const searchParam = history.location.search;
+    const pageParam = history.location.search.split("=")[2];
+
+    const category = history.location.search.split("=")[1].split("&")[0];
 
     let keyword = searchParam.split("=")[0] === "?keyword";
 
@@ -60,7 +64,7 @@ function ProductsPage({ history, match }) {
             <Row className="justify-content-md-center">
                 <h2 className="m-5">
                     {searchTerm && searchTerm !== "&page"
-                        ? searchTerm
+                        ? category
                         : "All products"}
                 </h2>
             </Row>
@@ -108,21 +112,7 @@ function ProductsPage({ history, match }) {
                     ))}
                 </Row>
             )}
-            {/* {keyword && pages > 1 ? (
-                <PageNumbers
-                    page={searchPage}
-                    pages={searchPages}
-                    keyword={searchParam}
-                />
-            ) : (
-                pages > 1 && (
-                    <PageNumbers
-                        page={page}
-                        pages={pages}
-                        searchParam={searchParam}
-                    />
-                )
-            )} */}
+
             <PaginationComponent page={page} pages={pages} />
         </Container>
     );

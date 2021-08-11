@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts, deleteProducts } from "../../actions/productActions";
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
-import PageNumbers from "../../components/page-numbers/PageNumbers";
+import PaginationComponent from "../../components/pagination-component/PaginationComponent";
 import FileDrop from "../../components/file-drop/FileDrop";
 
 function ProductListPage({ match }) {
@@ -25,7 +25,6 @@ function ProductListPage({ match }) {
     const { success: successDelete } = userDelete;
 
     useEffect(() => {
-        window.scrollTo(0, 0);
         // ---------Insert Modal to check if the action is intended-------//
         dispatch(listProducts(searchParam));
     }, [dispatch, userInfo, history, successDelete, searchParam]);
@@ -36,22 +35,26 @@ function ProductListPage({ match }) {
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-            <Row className="justify-content-center">
+            <Row className="justify-content-center m-5">
                 <h1>Manage Products</h1>
             </Row>
 
-            <Row>
-                <h2>Delete All Products</h2>
-            </Row>
-
-            <Row>
-                <Button onClick={handleDelete} variant="danger">
+            <Row
+                style={{ width: "30%", margin: "50px auto" }}
+                className="flex-column justify-content-center"
+            >
+                <h2 className="text-center">Delete All Products</h2>
+                <Button
+                    style={{ fontSize: "14px", display: "block" }}
+                    onClick={handleDelete}
+                    variant="danger"
+                >
                     Delete
                 </Button>
             </Row>
 
-            <Row>
-                <h2>Add Products</h2>
+            <Row className="justify-content-center">
+                <h2>Upload products CSV to database</h2>
                 <FileDrop />
             </Row>
 
@@ -88,7 +91,7 @@ function ProductListPage({ match }) {
                     </tbody>
                 </Table>
             )}
-            <PageNumbers page={page} pages={pages} keyword={searchParam} />
+            <PaginationComponent page={page} pages={pages} />
         </Container>
     );
 }

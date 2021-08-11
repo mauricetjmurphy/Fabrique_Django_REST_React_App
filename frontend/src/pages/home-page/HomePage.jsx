@@ -85,7 +85,10 @@ function HomePage() {
                         to="/products/?category=Coats"
                     >
                         <div>
-                            <SectionTwoImg src={SectionTwo_ImageOne} alt="" />
+                            <SectionTwoImg
+                                src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/s2_img1.jpg"
+                                alt="Fashion image"
+                            />
                             <SectionTwoContent>
                                 <h1>Mens Coats</h1>
                             </SectionTwoContent>
@@ -97,7 +100,10 @@ function HomePage() {
                         to="/products/?category=T-Shirts"
                     >
                         <div>
-                            <SectionTwoImg src={SectionTwo_ImageTwo} alt="" />
+                            <SectionTwoImg
+                                src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/s2_img2.jpg"
+                                alt="Fashion image"
+                            />
                             <SectionTwoContent>
                                 <h1>Mens T-Shirts</h1>
                             </SectionTwoContent>
@@ -110,7 +116,10 @@ function HomePage() {
                     to="/products/?category=Shoes"
                 >
                     <SectionThree>
-                        <SectionThreeImg src={SectionThree_ImageOne} alt="" />
+                        <SectionThreeImg
+                            src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/s3_img1.jpg"
+                            alt="Fashion image"
+                        />
                         <SectionThreeContent>
                             <h1>Mens Shoes</h1>
                         </SectionThreeContent>
@@ -118,7 +127,7 @@ function HomePage() {
                 </LinkContainer>
 
                 <SectionFour>
-                    <SectionFourImg src="" alt="" />
+                    <SectionFourImg src="" alt="Fashion image" />
                 </SectionFour>
             </Container>
         </div>
