@@ -10,7 +10,7 @@ from rest_framework.test import APITestCase, APIClient
 
 from base.models import Product, User, Review
 
-
+#----------SetUp-----------#
 
 class TestSetUp(APITestCase):
     def setUp(self):
@@ -32,7 +32,7 @@ class TestSetUp(APITestCase):
 
 
 
-# #----------Product-----------#
+#----------Product-----------#
 
 class GetProductsTestCase(TestSetUp):
 

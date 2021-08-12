@@ -16,6 +16,9 @@ import {
     PRODUCTS_DELETE_REQUEST,
     PRODUCTS_DELETE_SUCCESS,
     PRODUCTS_DELETE_FAIL,
+    PRODUCT_DELETE_REQUEST,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_FAIL,
 } from "../constants/productConstants";
 //Redux-thunk allows us call an async function within a function and will call the dispatch
 export const listProducts =
@@ -133,7 +136,7 @@ export const createProductReview =
         }
     };
 
-export const deleteProducts = () => async (dispatch, getState) => {
+export const deleteProducts = (id) => async (dispatch, getState) => {
     try {
         // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
         dispatch({
@@ -152,7 +155,6 @@ export const deleteProducts = () => async (dispatch, getState) => {
                 Authorization: `JWT ${userInfo.token}`,
             },
         };
-
         //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
         const { data } = await axios.delete(`/api/products/delete/`, config);
 
@@ -163,6 +165,42 @@ export const deleteProducts = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: PRODUCTS_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.detail
+                    ? error.response.data.detail
+                    : error.message,
+        });
+    }
+};
+
+export const deleteProduct = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: PRODUCT_DELETE_REQUEST,
+        });
+
+        const {
+            userLogin: { userInfo },
+        } = getState();
+
+        const config = {
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `JWT ${userInfo.token}`,
+            },
+        };
+
+        const { data } = await axios.delete(
+            `/api/products/delete/${id}`,
+            config
+        );
+
+        dispatch({
+            type: PRODUCT_DELETE_SUCCESS,
+        });
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DELETE_FAIL,
             payload:
                 error.response && error.response.data.detail
                     ? error.response.data.detail

@@ -14,6 +14,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
 
+
 @api_view(['GET'])
 def searchProducts(request):
     query = request.query_params.get('keyword')
@@ -43,8 +44,7 @@ def searchProducts(request):
 @api_view(['GET'])
 def getProducts(request):
     query = request.query_params.get('category')
-    print('Query:',query)
-    print('Params:', request.query_params)
+   
     if query == None:
         products = Product.objects.all()
     else:
@@ -69,18 +69,22 @@ def getProducts(request):
     serializer = ProductSerializer(products, many=True)
     return Response({'products':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
-@api_view(['DELETE'])
-# @permission_classes([IsAuthenticated])
+@api_view(['POST'])
+@permission_classes([IsAdminUser])
 def deleteProducts(request):
     
-    Product.objects.all().delete()
+    query = Product.objects.all()
+    query.delete()
+
+
+    print('Query:',query)
 
     return Response('Products deleted')
 
 
 @api_view(['DELETE'])
-# @permission_classes([IsAuthenticated])
-def deleteProducts(request, pk):
+@permission_classes([IsAdminUser])
+def deleteProduct(request, pk):
     
     Product.objects.get(product_id=pk).delete()
 
@@ -88,7 +92,9 @@ def deleteProducts(request, pk):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getProduct(request, pk):
+
     product = Product.objects.get(pk=pk)
     serializer = ProductSerializer(product, many=False)
 
@@ -135,3 +141,4 @@ def createProductReview(request, pk):
         product.save()
 
         return Response({'Review added'})
+

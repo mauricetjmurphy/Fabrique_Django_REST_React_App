@@ -3,7 +3,11 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Form, Table, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts, deleteProducts } from "../../actions/productActions";
+import {
+    listProducts,
+    deleteProducts,
+    deleteProduct,
+} from "../../actions/productActions";
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
 import PaginationComponent from "../../components/pagination-component/PaginationComponent";
@@ -21,8 +25,8 @@ function ProductListPage({ match }) {
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
 
-    const userDelete = useSelector((state) => state.userDelete);
-    const { success: successDelete } = userDelete;
+    const productDelete = useSelector((state) => state.productDelete);
+    const { success: successDelete } = productDelete;
 
     useEffect(() => {
         // ---------Insert Modal to check if the action is intended-------//
@@ -30,11 +34,11 @@ function ProductListPage({ match }) {
     }, [dispatch, userInfo, history, successDelete, searchParam]);
 
     const deleteProductHandler = (id) => {
-        // dispatch(deleteProduct(id));
+        dispatch(deleteProduct(id));
     };
 
-    const deleteHandler = () => {
-        dispatch(deleteProducts());
+    const deleteProductsHandler = (id) => {
+        dispatch(deleteProducts(id));
     };
 
     return (
@@ -50,7 +54,7 @@ function ProductListPage({ match }) {
                 <h2 className="text-center">Delete All Products</h2>
                 <Button
                     style={{ fontSize: "14px", display: "block" }}
-                    onClick={deleteHandler}
+                    onClick={() => deleteProductsHandler()}
                     variant="danger"
                 >
                     Delete

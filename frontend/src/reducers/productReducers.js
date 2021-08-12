@@ -15,6 +15,9 @@ import {
     PRODUCTS_DELETE_REQUEST,
     PRODUCTS_DELETE_SUCCESS,
     PRODUCTS_DELETE_FAIL,
+    PRODUCT_DELETE_REQUEST,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_FAIL,
 } from "../constants/productConstants";
 
 // A reducer is a function that takes an action and the previous state of the application and returns the new state.
@@ -120,6 +123,22 @@ export const productsDeleteReducer = (state = {}, action) => {
 
         // If this reducer doesn't recognize the action type, or doesn't
         // care about this specific action, return the existing state unchanged
+        default:
+            return state;
+    }
+};
+
+export const productDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+        case PRODUCT_DELETE_REQUEST:
+            return { loading: true };
+
+        case PRODUCT_DELETE_SUCCESS:
+            return { loading: false, success: true };
+
+        case PRODUCT_DELETE_FAIL:
+            return { loading: false, error: action.payload };
+
         default:
             return state;
     }

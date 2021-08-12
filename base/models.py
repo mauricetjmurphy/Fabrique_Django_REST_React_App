@@ -26,6 +26,7 @@ class Product(models.Model):
         return str(self.product_name)
 
 
+
 class Order(models.Model):
     # Set the relationship to the User model (one-to-many relationship). 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

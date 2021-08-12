@@ -11,8 +11,10 @@ urlpatterns = [
 
     path('<str:pk>/reviews/', views.createProductReview, name="product-review"),
 
-    path('<str:pk>/delete/', views.deleteProduct, name="delete-product"),
-
     path('delete/', views.deleteProducts, name="delete-products"),
+
+    path('delete/<str:pk>', views.deleteProduct, name="delete-product"),
+
+    
    
     ]
