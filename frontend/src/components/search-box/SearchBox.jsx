@@ -26,7 +26,11 @@ function SearchBox() {
     };
 
     return (
-        <Form style={{ marginRight: "30px" }} onSubmit={submitHandler} inline>
+        <Form
+            style={{ marginRight: "30px", width: "200px", flexFlow: "nowrap" }}
+            onSubmit={submitHandler}
+            inline
+        >
             <Form.Control
                 type="text"
                 name="q"

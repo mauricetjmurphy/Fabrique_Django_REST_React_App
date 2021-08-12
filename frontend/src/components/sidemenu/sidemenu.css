@@ -10,7 +10,7 @@ ul.product-menu {
     border: #ccc 1px solid;
     opacity: 0.9;
     padding: 30px;
-    transform: translateX(-500px);
+    transform: translateX(-100%);
     transition: transform 0.5s ease-in-out;
     z-index: 5;
     margin: 0;
@@ -32,4 +32,10 @@ ul.product-menu li:last-child {
 
 ul.product-menu.show {
     transform: translateX(0px);
+}
+
+@media screen and (max-width: 768px) {
+    ul.product-menu {
+        width: 100%;
+    }
 }

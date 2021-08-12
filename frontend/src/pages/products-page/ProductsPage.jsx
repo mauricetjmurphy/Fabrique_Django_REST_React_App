@@ -2,23 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts, searchProducts } from "../../actions/productActions";
-import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import ProductCard from "../../components/product-card/Product-card";
-import PageNumbers from "../../components/page-numbers/PageNumbers";
-import { toggleSidemenu } from "../../actions/pageActions";
 import SkeletonCard from "../../components/skeleton/SkeletonCard";
 import PaginationComponent from "../../components/pagination-component/PaginationComponent";
 import "./products-page.css";
 
 function ProductsPage({ history, match }) {
     const dispatch = useDispatch();
+    const [category, setCategory] = useState();
+    const [skeleton, setSkeleton] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
+    // const [searchParam, setSearchParam] = useState("");
+
+    const searchParam = history.location.search;
+
     // useSelector is used to get specific parts of the state
     const productList = useSelector((state) => state.productList);
     const { error, loading, products, page, pages } = productList;
-
-    const [skeleton, setSkeleton] = useState(true);
-    const [searchTerm, setSearchTerm] = useState("");
 
     // useSelector is used to get specific parts of the state
     const productSearch = useSelector((state) => state.productSearch);
@@ -30,16 +31,16 @@ function ProductsPage({ history, match }) {
         pages: searchPages,
     } = productSearch;
 
-    // const searchParam = history.location.search.split("&")[0];
-    const searchParam = history.location.search;
-    const pageParam = history.location.search.split("=")[2];
-
-    const category = history.location.search.split("=")[1].split("&")[0];
-
     let keyword = searchParam.split("=")[0] === "?keyword";
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (category) {
+            setCategory(history.location.search.split("=")[1].split("&")[0]);
+        }
+        // if (searchParam) {
+        //     setSearchParam(history.location.search);
+        // }
         if (searchParam.split("=")[0] === "?keyword") {
             setSearchTerm(history.location.search.split("=")[1].split("&")[0]);
         } else {

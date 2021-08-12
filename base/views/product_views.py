@@ -43,6 +43,8 @@ def searchProducts(request):
 @api_view(['GET'])
 def getProducts(request):
     query = request.query_params.get('category')
+    print('Query:',query)
+    print('Params:', request.query_params)
     if query == None:
         products = Product.objects.all()
     else:

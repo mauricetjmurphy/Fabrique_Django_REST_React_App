@@ -6,29 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { toggleSidemenu } from "../../actions/pageActions";
 import SearchBox from "../search-box/SearchBox";
+import styled from "styled-components";
 import "./sidemenu.css";
 
-function Sidemenu(height) {
-    // Initializing the useDispatch object
-    const dispatch = useDispatch();
-
-    const toggleSidemenuState = useSelector((state) => state.toggleSidemenu);
-    const { toggle } = toggleSidemenuState;
-
-    const closeSideMenu = () => {
-        dispatch(toggleSidemenu());
-    };
+function Sidemenu({ isSidemenuOpen, sidemenuToggle }) {
+    console.log(isSidemenuOpen);
 
     return (
-        <ul
-            style={{ height: height }}
-            className={toggle ? "product-menu show" : "product-menu"}
-        >
+        <ul className={isSidemenuOpen ? "product-menu show" : "product-menu"}>
             <li>
                 <Link
                     to={`/products/?category=&page=1`}
                     className="link"
-                    onClick={closeSideMenu}
+                    onClick={sidemenuToggle}
                 >
                     All categories
                 </Link>
@@ -37,7 +27,7 @@ function Sidemenu(height) {
                 <Link
                     to={`/products/?category=Coats&page=1`}
                     className="link"
-                    onClick={closeSideMenu}
+                    onClick={sidemenuToggle}
                 >
                     Coats
                 </Link>
@@ -46,7 +36,7 @@ function Sidemenu(height) {
                 <Link
                     to="/products/?category=Hoodies&page=1"
                     className="link"
-                    onClick={closeSideMenu}
+                    onClick={sidemenuToggle}
                 >
                     Hoodies
                 </Link>
@@ -55,7 +45,7 @@ function Sidemenu(height) {
                 <Link
                     to="/products/?category=Shirts&page=1"
                     className="link"
-                    onClick={closeSideMenu}
+                    onClick={sidemenuToggle}
                 >
                     Shirts
                 </Link>
@@ -64,7 +54,7 @@ function Sidemenu(height) {
                 <Link
                     to="/products/?category=Shoes&page=1"
                     className="link"
-                    onClick={closeSideMenu}
+                    onClick={sidemenuToggle}
                 >
                     Shoes
                 </Link>
@@ -73,7 +63,7 @@ function Sidemenu(height) {
                 <Link
                     to="/products/?category=Shorts&page=1"
                     className="link"
-                    onClick={closeSideMenu}
+                    onClick={sidemenuToggle}
                 >
                     Shorts
                 </Link>
@@ -82,7 +72,7 @@ function Sidemenu(height) {
                 <Link
                     to="/products/?category=Ties&page=1"
                     className="link"
-                    onClick={closeSideMenu}
+                    onClick={sidemenuToggle}
                 >
                     Ties
                 </Link>
