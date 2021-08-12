@@ -3,8 +3,6 @@ from base.views import product_views as views
 
 urlpatterns = [
 
-   
-
     path('', views.getProducts, name="products"),
 
     path('search/', views.searchProducts, name="search-products"),
@@ -13,6 +11,8 @@ urlpatterns = [
 
     path('<str:pk>/reviews/', views.createProductReview, name="product-review"),
 
-      path('delete/', views.deleteProducts, name="delete-products"),
+    path('<str:pk>/delete/', views.deleteProduct, name="delete-product"),
+
+    path('delete/', views.deleteProducts, name="delete-products"),
    
     ]

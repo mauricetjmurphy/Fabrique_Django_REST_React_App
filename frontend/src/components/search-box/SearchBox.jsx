@@ -20,7 +20,7 @@ function SearchBox() {
         if (keyword) {
             history.push(`/products/search/?keyword=${keyword}&page=1`);
         } else {
-            history.push(history.push(history.location.pathname));
+            history.push(`/products/?category=&page=1`);
         }
         setKeyword("");
     };

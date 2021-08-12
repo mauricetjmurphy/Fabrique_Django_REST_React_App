@@ -69,13 +69,22 @@ def getProducts(request):
     serializer = ProductSerializer(products, many=True)
     return Response({'products':serializer.data, 'page': page, 'pages': paginator.num_pages})
 
-@api_view(['POST'])
+@api_view(['DELETE'])
 # @permission_classes([IsAuthenticated])
-def deleteProducts(request, pk):
+def deleteProducts(request):
     
     Product.objects.all().delete()
 
     return Response('Products deleted')
+
+
+@api_view(['DELETE'])
+# @permission_classes([IsAuthenticated])
+def deleteProducts(request, pk):
+    
+    Product.objects.get(product_id=pk).delete()
+
+    return Response('Product deleted')
 
 
 @api_view(['GET'])

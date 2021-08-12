@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 
-import NavigationBar from "./components/navbar/NavigationBar";
 import DropdownMenu from "./components//dropdown-menu/DropdownMenu";
 import NewNavbar from "./components/navbar/Navbar";
 import Sidemenu from "./components/sidemenu/Sidemenu";

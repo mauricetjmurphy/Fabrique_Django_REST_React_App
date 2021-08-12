@@ -29,24 +29,28 @@ function ProductListPage({ match }) {
         dispatch(listProducts(searchParam));
     }, [dispatch, userInfo, history, successDelete, searchParam]);
 
-    const handleDelete = () => {
+    const deleteProductHandler = (id) => {
+        // dispatch(deleteProduct(id));
+    };
+
+    const deleteHandler = () => {
         dispatch(deleteProducts());
     };
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-            <Row className="justify-content-center m-5">
+            <Row className="justify-content-center m-3">
                 <h1>Manage Products</h1>
             </Row>
 
             <Row
-                style={{ width: "30%", margin: "50px auto" }}
-                className="flex-column justify-content-center"
+                style={{ width: "30%", margin: "0 auto" }}
+                className="flex-column justify-content-center mb-5"
             >
                 <h2 className="text-center">Delete All Products</h2>
                 <Button
                     style={{ fontSize: "14px", display: "block" }}
-                    onClick={handleDelete}
+                    onClick={deleteHandler}
                     variant="danger"
                 >
                     Delete
@@ -54,7 +58,7 @@ function ProductListPage({ match }) {
             </Row>
 
             <Row className="justify-content-center">
-                <h2>Upload products CSV to database</h2>
+                <p>Upload products CSV to database</p>
                 <FileDrop />
             </Row>
 
@@ -75,6 +79,7 @@ function ProductListPage({ match }) {
                             <th>Price</th>
                             <th>Category</th>
                             <th>Brand</th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -86,6 +91,18 @@ function ProductListPage({ match }) {
                                 <td>{product.retail_price}</td>
                                 <td>{product.product_category}</td>
                                 <td>{product.brand}</td>
+                                <td>
+                                    <Button
+                                        variant="danger"
+                                        onClick={() =>
+                                            deleteProductHandler(
+                                                product.product_id
+                                            )
+                                        }
+                                    >
+                                        <i className="fas fa-trash"></i>
+                                    </Button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

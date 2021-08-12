@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { toggleSidemenu } from "../../actions/pageActions";
 import Bag from "../bag/Bag";
+import "./navbar.css";
 
 const NavContainer = styled.nav`
     height: 70px;
@@ -120,7 +121,7 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
             <NavMenu>
                 {userInfo && userInfo.isAdmin && (
                     <NavDropdown
-                        title={<i className="fas fa-user-cog"></i>}
+                        title={<i className="fas fa-user-cog "></i>}
                         id="adminmenu"
                     >
                         <LinkContainer to="/user-list/?param=">
@@ -141,13 +142,14 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
                             <LinkContainer to="/profile">
                                 <NavDropdown.Item>Profile</NavDropdown.Item>
                             </LinkContainer>
-                            <NavDropdown.Item>Logout</NavDropdown.Item>
+                            <NavDropdown.Item onClick={logoutHandler}>
+                                Logout
+                            </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
                         <LinkContainer to="/login">
                             <Nav.Link>
                                 <i className="fas fa-user pl-2 pr-2"></i>
-                                Login
                             </Nav.Link>
                         </LinkContainer>
                     )}

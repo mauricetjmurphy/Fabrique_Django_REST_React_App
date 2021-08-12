@@ -70,9 +70,6 @@ function HomePage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (!userInfo) {
-            history.push("/login");
-        }
     }, []);
 
     return (

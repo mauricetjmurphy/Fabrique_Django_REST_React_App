@@ -1,0 +1,11 @@
+.dropdown-toggle {
+    color: #fff;
+}
+
+.dropdown-toggle::after {
+    color: #fff;
+}
+
+i {
+    color: #fff;
+}

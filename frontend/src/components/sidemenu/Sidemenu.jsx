@@ -25,6 +25,15 @@ function Sidemenu({ isSidemenuOpen, sidemenuToggle }) {
             </li>
             <li>
                 <Link
+                    to="/products/?category=Bags&page=1"
+                    className="link"
+                    onClick={sidemenuToggle}
+                >
+                    Bags
+                </Link>
+            </li>
+            <li>
+                <Link
                     to={`/products/?category=Coats&page=1`}
                     className="link"
                     onClick={sidemenuToggle}
@@ -39,6 +48,24 @@ function Sidemenu({ isSidemenuOpen, sidemenuToggle }) {
                     onClick={sidemenuToggle}
                 >
                     Hoodies
+                </Link>
+            </li>
+            <li>
+                <Link
+                    to="/products/?category=Jeans&page=1"
+                    className="link"
+                    onClick={sidemenuToggle}
+                >
+                    Jeans
+                </Link>
+            </li>
+            <li>
+                <Link
+                    to="/products/?category=Knitwear&page=1"
+                    className="link"
+                    onClick={sidemenuToggle}
+                >
+                    Knitwear
                 </Link>
             </li>
             <li>
@@ -66,6 +93,15 @@ function Sidemenu({ isSidemenuOpen, sidemenuToggle }) {
                     onClick={sidemenuToggle}
                 >
                     Shorts
+                </Link>
+            </li>
+            <li>
+                <Link
+                    to="/products/?category=Suits&page=1"
+                    className="link"
+                    onClick={sidemenuToggle}
+                >
+                    Suits
                 </Link>
             </li>
             <li>

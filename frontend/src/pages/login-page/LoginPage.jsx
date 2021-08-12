@@ -46,14 +46,25 @@ const LoginPage = () => {
             <Row className="m-5 justify-content-md-center">
                 {error && <Message variant="danger">{error}</Message>}
             </Row>
-            <Row className="m-5 justify-content-md-center">
-                {loading && <Preloader />}
+            <Row className="justify-content-center border-bottom ">
+                <Col sm={6} md={6} lg={6}>
+                    <p
+                        style={{
+                            fontSize: "30px",
+                            width: "100%",
+                            fontWeight: "bold",
+                        }}
+                        className="text-center"
+                    >
+                        Welcome to Fabrique
+                    </p>
+                </Col>
             </Row>
-            <Row className="m-5 justify-content-md-center">
-                <h1>Login</h1>
+            <Row className="m-2 justify-content-center">
+                <h2>Login</h2>
             </Row>
-            <Row className="justify-content-md-center">
-                <Col lg={4}>
+            <Row className="justify-content-center">
+                <Col xs={8} sm={8} md={6} lg={6}>
                     <Form onSubmit={submitHandler}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
@@ -89,8 +100,8 @@ const LoginPage = () => {
                     </Form>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center">
-                <Col lg={4} className="mt-3">
+            <Row className="justify-content-center">
+                <Col xs={8} sm={8} md={6} lg={6} className="mt-3">
                     New Customer?{" "}
                     <Link
                         to={
