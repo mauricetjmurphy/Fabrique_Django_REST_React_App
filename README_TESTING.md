@@ -57,16 +57,24 @@
     -   Users can click on any product and they will be redirected the the product page. The user will now be able to view more information on the product and also add it to their wishlist or directly to the cart.
     -   [x] I would like to be notified when I add to cart.
             ![Visit deployed website](data/user_stories_5.png)
+    -   When the user adds items to their cart the number of items is updated and displayed in the navigation bar.
     -   [x] I want to be able to review any product on the site.
     -   [x] I want to be able to rate any product on the site.
             ![Visit deployed website](data/user_stories_6.png)
+    -   Ueser can leave rating and reviews by using the form on the product page of each product. The user is limited to one review per product.
     -   [x] I would like to be able to checkout easily.
             ![Visit deployed website](data/user_stories_7.png)
+    -   On the cart page the user can review all their products, update them or click on the checkout button to begin the check out process.
 
 -   Admin
     -   [x] I would like to be able to add products in bulk.
+            ![Visit deployed website](data/user_stories_8.png)
     -   [x] I would like to be able to delete products.
+            ![Visit deployed website](data/user_stories_9.png)
+            The admin user when logged in, will be able to access the products page. From here the admin user will be able to delete any product.
     -   [x] As the business owner, I would like to have access to an admin section.
+            ![Visit deployed website](data/user_stories_10.png)
+    -   When an admin user logs in they will have access to the admin panel. From here they will be able to manage users and products.
 
 ---
 
