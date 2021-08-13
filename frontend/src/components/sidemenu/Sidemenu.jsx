@@ -106,11 +106,11 @@ function Sidemenu({ isSidemenuOpen, sidemenuToggle }) {
             </li>
             <li>
                 <Link
-                    to="/products/?category=Ties&page=1"
+                    to="/products/?category=Trousers&page=1"
                     className="link"
                     onClick={sidemenuToggle}
                 >
-                    Ties
+                    Trousers
                 </Link>
             </li>
         </ul>

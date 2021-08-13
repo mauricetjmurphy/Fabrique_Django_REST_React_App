@@ -31,6 +31,7 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
       - [User Panel](#user-panel)
       - [Wishlist](#wishlist)
       - [Cart](#cart)
+      - [Product Reviews](#product-reviews)
     - [Future features](#future-features)
   - [Database models and schema](#database-models-and-schema)
     - [Models](#models)
@@ -50,7 +51,7 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
 
 ### Project goals
 
-The goal of this project was to create an application that would allow users to share recipies from accross the world. The app allows the user to create an account, where they can create, read, update and delete their recipe data (CRUD). The app also allows the user to view and leave comments on any recipe uploaded to the site. It provides a platform for all the food lovers out there to share and also try new recipes.
+The goal of this project was to create an application that would allow users shop for their favourite fashion products. The app allows the user to login or create an account. When the user is logged in they can update their personal details and view past orders. The site also allows the user to view and leave ratings and reviews on any product available on the site. It provides a platform for all the fashion lovers out there to shop until they drop.
 
 ### User Stories
 
@@ -96,9 +97,17 @@ As a user I would like to:
 
 ### Typography
 
+-   I have chosen the Goeria font style.
+-   The font was downloaded and then imported into my index.css file.
+-   Different fone sizes and weights have been used throughout the project.
+
 ### Images
 
+-   All images in the project have been obtained from Pexels.com or Unsplash.com. Images have been resized as required.
+
 ### Icons
+
+-   Several icons have been used in this project for the navigation and the social media links in the footer. All icons have been obtained from Font Awsome.
 
 ---
 
@@ -173,7 +182,10 @@ As a user I would like to:
 -   The user can update the product quantiy or delete products from the cart at anytime.
 -   The user is provided with a button to proceed to checkout.
 
-####
+#### Product Reviews
+
+-   The user can rate and leave product reviews for other users to see.
+-   The user is limited to one review per product.
 
 ### Future features
 
@@ -195,8 +207,7 @@ Where possible, first-time-right methodology was approached when creating the mo
 
 -   User
     -   This model came from the django.contrib.auth model class. It provided all the inbuilt User object fields.
--   Product
-    -
+-   ## Product
 -   Order
 -   Order Item
 -   Shipping Address

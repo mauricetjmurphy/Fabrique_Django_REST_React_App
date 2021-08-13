@@ -90,7 +90,10 @@ function ProductPage({ match, history }) {
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
-            <Link to="/products/?category=" className="btn btn-light my-3">
+            <Link
+                to="/products/?category=&page=1"
+                className="btn btn-light my-3"
+            >
                 Go Back
             </Link>
             {/* Using a ternary operator to check if the app is loading or if we nned to display an error message */}

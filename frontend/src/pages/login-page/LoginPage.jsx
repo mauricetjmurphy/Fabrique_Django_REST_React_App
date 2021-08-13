@@ -104,7 +104,10 @@ const LoginPage = () => {
             </Row>
             <Row className="justify-content-center">
                 <Col xs={8} sm={8} md={6} lg={6} className="mt-3">
-                    New Customer? <Link to="/register">Register</Link>
+                    New Customer?{" "}
+                    <Link style={{ color: "#007bff" }} to="/register">
+                        Register
+                    </Link>
                 </Col>
             </Row>
         </Container>

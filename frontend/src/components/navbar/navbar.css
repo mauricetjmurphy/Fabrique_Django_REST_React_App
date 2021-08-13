@@ -9,3 +9,20 @@
 i {
     color: #fff;
 }
+
+nav {
+    padding: 15px 100px !important;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #fff;
+}
+
+p {
+    margin: 0;
+    color: #000;
+}

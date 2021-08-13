@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import SearchBox from "../search-box/SearchBox";
 import Bars from "../../static/images/menu-bars.svg";
 import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { Nav, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
-import { toggleSidemenu } from "../../actions/pageActions";
 import Bag from "../bag/Bag";
 import "./navbar.css";
 
@@ -45,7 +44,7 @@ const Brand = styled(Link)`
 const Toggle = styled.i`
     display: none;
 
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 980px) {
         display: block;
         background-image: url(${Bars});
         background-size: contain;
@@ -63,7 +62,7 @@ const NavMenu = styled.div`
     display: flex;
     align-items: center;
 
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 980px) {
         display: none;
     }
 `;
@@ -112,7 +111,6 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
         >
             <BrandContainer>
                 <Brand to="/">Fabrique</Brand>
-                <NavLink onClick={sidemenuToggle}>Shop</NavLink>
             </BrandContainer>
 
             <Toggle onClick={dropdownToggle} />
@@ -120,7 +118,8 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
             <NavMenu>
                 {userInfo && userInfo.isAdmin && (
                     <NavDropdown
-                        title={<i className="fas fa-user-cog "></i>}
+                        title="Admin"
+                        // {<i className="fas fa-user-cog "></i>}
                         id="adminmenu"
                     >
                         <LinkContainer to="/user-list/?param=">
@@ -133,11 +132,16 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
                 )}
 
                 <Nav>
+                    <div>
+                        <NavLink onClick={sidemenuToggle}>Shop</NavLink>
+                    </div>
+
+                    <LinkContainer to="/wishlist">
+                        <Nav.Link>Wishlist</Nav.Link>
+                    </LinkContainer>
+
                     {userInfo ? (
-                        <NavDropdown
-                            title={<i className="far fa-user"></i>}
-                            id="username"
-                        >
+                        <NavDropdown title="Account" id="username">
                             <LinkContainer to="/profile">
                                 <NavDropdown.Item>Profile</NavDropdown.Item>
                             </LinkContainer>
@@ -147,17 +151,10 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
                         </NavDropdown>
                     ) : (
                         <LinkContainer to="/login">
-                            <Nav.Link>
-                                <i className="fas fa-user pl-2 pr-2"></i>
-                            </Nav.Link>
+                            <Nav.Link>Login</Nav.Link>
                         </LinkContainer>
                     )}
 
-                    <LinkContainer to="/wishlist">
-                        <Nav.Link>
-                            <i className="far fa-heart pl-2 pr-2"></i>
-                        </Nav.Link>
-                    </LinkContainer>
                     <LinkContainer to="/cart">
                         <Nav.Link>
                             <Bag number={cartItems.length} />
