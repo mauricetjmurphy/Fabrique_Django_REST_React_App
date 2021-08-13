@@ -16,6 +16,7 @@ function ProductCard({ product }) {
                     onMouseOut={(e) =>
                         (e.currentTarget.src = product.product_image_url)
                     }
+                    loading="lazy"
                 />
                 <Card.Body>
                     <Card.Title

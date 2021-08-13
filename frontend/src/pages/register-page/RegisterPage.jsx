@@ -46,17 +46,23 @@ const RegisterPage = () => {
 
     return (
         <div>
-            <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-                <Row className="m-5 justify-content-md-center">
+            <Container style={{ marginTop: "100px", minHeight: "90vh" }}>
+                {message && (
+                    <Row className="m-5 justify-content-md-center">
+                        <Message variant="danger">{message}</Message>
+                    </Row>
+                )}
+
+                {error && (
+                    <Row className="m-5 justify-content-md-center">
+                        <Message variant="danger">{error}</Message>
+                    </Row>
+                )}
+
+                <Row className="mt-5 justify-content-center">
                     <h1>Register</h1>
                 </Row>
-                <Row className="m-5 justify-content-md-center">
-                    {message && <Message variant="danger">{message}</Message>}
-                </Row>
-                <Row className="m-5 justify-content-md-center">
-                    {error && <Message variant="danger">{error}</Message>}
-                </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-center">
                     <Col lg={4}>
                         <Form onSubmit={submitHandler}>
                             <Form.Group className="mb-3" controlId="formName">
@@ -124,7 +130,11 @@ const RegisterPage = () => {
                                 />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit">
+                            <Button
+                                className="mb-2"
+                                variant="primary"
+                                type="submit"
+                            >
                                 Sign In
                             </Button>
                         </Form>

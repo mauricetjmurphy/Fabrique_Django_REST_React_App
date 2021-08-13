@@ -51,10 +51,10 @@ function App() {
                 isSidemenuOpen={isSidemenuOpen}
                 sidemenuToggle={sidemenuToggle}
             />
+            <Route path="/" component={HomePage} exact />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/profile" component={ProfilePage} />
-            <Route path="/" component={HomePage} exact />
             <Route path="/products" component={ProductsPage} />
             <Route path="/product-list/" component={ProductListPage} />
             <Route path="/product/:id" component={ProductPage} />

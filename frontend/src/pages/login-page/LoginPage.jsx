@@ -69,6 +69,7 @@ const LoginPage = () => {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
+                                required
                                 type="email"
                                 placeholder="Enter email"
                                 //value is set to the email state
@@ -86,6 +87,7 @@ const LoginPage = () => {
                         >
                             <Form.Label>Password</Form.Label>
                             <Form.Control
+                                required
                                 type="password"
                                 placeholder="Password"
                                 //value is set to the password state

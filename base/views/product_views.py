@@ -92,7 +92,6 @@ def deleteProduct(request, pk):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def getProduct(request, pk):
 
     product = Product.objects.get(pk=pk)

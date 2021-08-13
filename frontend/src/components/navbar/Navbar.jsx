@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SearchBox from "../search-box/SearchBox";
 import Bars from "../../static/images/menu-bars.svg";
-import { useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -127,7 +126,7 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
                         <LinkContainer to="/user-list/?param=">
                             <NavDropdown.Item>Users</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/product-list/?category=">
+                        <LinkContainer to="/product-list/?category=&page=1">
                             <NavDropdown.Item>Products</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
@@ -161,7 +160,6 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
                     </LinkContainer>
                     <LinkContainer to="/cart">
                         <Nav.Link>
-                            {/* <i className="fas fa-shopping-bag pl-2 pr-2"></i> */}
                             <Bag number={cartItems.length} />
                         </Nav.Link>
                     </LinkContainer>

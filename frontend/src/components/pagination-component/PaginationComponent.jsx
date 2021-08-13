@@ -87,7 +87,7 @@ const PaginationComponent = ({ page, pages }) => {
 
     return (
         <div>
-            <ul className="pageNumbers">
+            <ul className="pageNumbers m-5">
                 <Link to={`${searchParam}&page=${page - 1}`}>
                     <li className="prev">
                         <button

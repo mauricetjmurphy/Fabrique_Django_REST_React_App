@@ -11,7 +11,7 @@ import {
 } from "../../actions/userActions";
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
-import PageNumbers from "../../components/page-numbers/PageNumbers";
+import PaginationComponent from "../../components/pagination-component/PaginationComponent";
 
 function UserListPage() {
     const dispatch = useDispatch();
@@ -106,9 +106,7 @@ function UserListPage() {
                     </tbody>
                 </Table>
             )}
-            {pages > 1 && (
-                <PageNumbers page={page} pages={pages} keyword={searchParam} />
-            )}
+            {pages > 1 && <PaginationComponent page={page} pages={pages} />}
         </Container>
     );
 }

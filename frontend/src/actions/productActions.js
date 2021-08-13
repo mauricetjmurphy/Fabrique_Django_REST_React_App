@@ -136,7 +136,7 @@ export const createProductReview =
         }
     };
 
-export const deleteProducts = (id) => async (dispatch, getState) => {
+export const deleteProducts = () => async (dispatch, getState) => {
     try {
         // Dispatch contains an object that describes what action needs to take place. The dispatch function then dispatches that action.
         dispatch({

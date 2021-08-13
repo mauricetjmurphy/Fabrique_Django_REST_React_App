@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SearchBox from "../search-box/SearchBox";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
@@ -61,6 +61,8 @@ const SearchContainer = styled.div`
 `;
 
 function Dropdown({ dropdownToggle, isDropdownOpen }) {
+    const history = useHistory();
+    const dispatch = useDispatch();
     //Getting the userLogin state from the store.js
     const userLogin = useSelector((state) => state.userLogin);
     //The userLogin variable holds the userReducer and from this we can destructure the data from the variable
@@ -69,16 +71,19 @@ function Dropdown({ dropdownToggle, isDropdownOpen }) {
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
 
+    const logoutHandler = (e) => {
+        // dispatch the logout action and redirect the user to the login page
+        dispatch(logout());
+        history.push("/login");
+    };
+
     return (
         <DropdownContainer isDropdownOpen={isDropdownOpen}>
             <DropdownWrapper>
                 <DropdownMenu>
                     <DropdownLink>
                         {userInfo && userInfo.isAdmin && (
-                            <NavDropdown
-                                title={<i className="fas fa-user-cog"></i>}
-                                id="adminmenu"
-                            >
+                            <NavDropdown title="Admin" id="adminmenu">
                                 <LinkContainer
                                     onClick={dropdownToggle}
                                     to="/user-list/?param="
@@ -98,32 +103,30 @@ function Dropdown({ dropdownToggle, isDropdownOpen }) {
                     </DropdownLink>
                     <DropdownLink>
                         {userInfo ? (
-                            <NavDropdown
-                                title={<i className="far fa-user"></i>}
-                                id="username"
-                            >
+                            <NavDropdown title={userInfo.name} id="username">
                                 <LinkContainer
                                     onClick={dropdownToggle}
                                     to="/profile"
                                 >
                                     <NavDropdown.Item>Profile</NavDropdown.Item>
                                 </LinkContainer>
-                                <NavDropdown.Item>Logout</NavDropdown.Item>
+                                <NavDropdown.Item onClick={logoutHandler}>
+                                    Logout
+                                </NavDropdown.Item>
                             </NavDropdown>
                         ) : (
                             <LinkContainer onClick={dropdownToggle} to="/login">
-                                <Nav.Link>
-                                    <i className="fas fa-user pl-2 pr-2"></i>
-                                    Login
-                                </Nav.Link>
+                                <Nav.Link>Login</Nav.Link>
                             </LinkContainer>
                         )}
                     </DropdownLink>
                     <DropdownLink>
-                        <LinkContainer onClick={dropdownToggle} to="/whishlist">
-                            <Nav.Link>
-                                <i className="far fa-heart pl-2 pr-2"></i>
-                            </Nav.Link>
+                        <LinkContainer
+                            style={{ color: "#fff" }}
+                            onClick={dropdownToggle}
+                            to="/whishlist"
+                        >
+                            <Nav.Link>Wishlist</Nav.Link>
                         </LinkContainer>
                     </DropdownLink>
                     <DropdownLink>

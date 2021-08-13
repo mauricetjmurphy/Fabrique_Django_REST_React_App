@@ -34,7 +34,6 @@ const SectionTwoContent = styled.div`
 `;
 
 const SectionThree = styled.div`
-    height: 600px;
     margin-top: 20px;
     overflow: hidden;
     position: relative;
@@ -43,6 +42,7 @@ const SectionThree = styled.div`
 const SectionThreeImg = styled.img`
     object-fit: cover;
     cursor: pointer;
+    padding-bottom: 20px;
 `;
 
 const SectionThreeContent = styled.div`
@@ -55,16 +55,7 @@ const SectionThreeContent = styled.div`
     cursor: pointer;
 `;
 
-const SectionFour = styled.div``;
-
-const SectionFourImg = styled.img`
-    object-fit: cover;
-`;
-
 function HomePage() {
-    const dispatch = useDispatch();
-    let history = useHistory();
-
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
@@ -79,7 +70,7 @@ function HomePage() {
                 <SectionTwo>
                     <LinkContainer
                         style={{ position: "relative" }}
-                        to="/products/?category=Coats"
+                        to="/products/?category=Coats&page=1"
                     >
                         <div>
                             <SectionTwoImg
@@ -94,7 +85,7 @@ function HomePage() {
 
                     <LinkContainer
                         style={{ position: "relative" }}
-                        to="/products/?category=T-Shirts"
+                        to="/products/?category=T-Shirts&page=1"
                     >
                         <div>
                             <SectionTwoImg
@@ -110,7 +101,7 @@ function HomePage() {
 
                 <LinkContainer
                     style={{ position: "relative" }}
-                    to="/products/?category=Shoes"
+                    to="/products/?category=Shoes&page=1"
                 >
                     <SectionThree>
                         <SectionThreeImg
@@ -122,10 +113,6 @@ function HomePage() {
                         </SectionThreeContent>
                     </SectionThree>
                 </LinkContainer>
-
-                <SectionFour>
-                    <SectionFourImg src="" alt="Fashion image" />
-                </SectionFour>
             </Container>
         </div>
     );

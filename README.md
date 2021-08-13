@@ -4,7 +4,7 @@
 
 Fabrique is an ecommerce platform where customers can browse through hundreds of products. Users can login to see their previous orders and manage their account information. The users can also add products to cart and checkout, using stripe payments to purchase the products. Admin staff can log also login and manage all user accounts and products.
 
-[Visit deployed website](https://the-foodie-app.herokuapp.com/login?next=%2F)
+[Visit deployed website]()
 
 ## Table of Contents
 
@@ -30,6 +30,7 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
   - [Deployment](#deployment)
   - [Testing](#testing)
   - [Performance](#performance)
+    - [Lazy Loading](#lazy-loading)
   - [Credits](#credits)
 
 ---
@@ -190,11 +191,21 @@ This ecommerce site was built using the Django REST framework to provide a backe
 
 ---
 
+The testing information can be located in the following link.
+
+[Testing file](README_TESTING.md)
+
 ---
 
 ## Performance
 
 ---
+
+I user the chrome browsers Lighthouse tool to check performance. There were several areas which needed improvement. These are areas that would require future improvement.
+
+### Lazy Loading
+
+I have use the new html "loading=lazy" attribute throughout the app. The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them.
 
 ---
 

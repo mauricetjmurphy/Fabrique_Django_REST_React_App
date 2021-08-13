@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const HeroSection = styled.section`
     height: 100vh;
@@ -74,7 +75,52 @@ const HeroImage = styled.img`
     }
 `;
 
+const HeroContentContainer = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+`;
+
+const HeroText = styled.p`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-align: center;
+`;
+
+const Button = styled.a`
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    z-index: 5;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+    background: #111;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    opacity: 0.5;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+        background: #fff;
+        color: #111;
+    }
+`;
+
 function Hero({ SlideData }) {
+    const history = useHistory();
     const [current, setCurrent] = useState(0);
     const length = SlideData.length;
     const timeout = useRef(null);
@@ -96,9 +142,19 @@ function Hero({ SlideData }) {
             }
         };
     }, [current, length]);
+
+    const shopHandle = () => {
+        history.push("/products/?category=&page=1");
+    };
+
     return (
         <HeroSection>
             <HeroWrapper>
+                <HeroContentContainer>
+                    <HeroText>One Stop Fashion</HeroText>
+                    <Button onClick={shopHandle}>Shop Collection</Button>
+                </HeroContentContainer>
+
                 {SlideData.map((slide, index) => (
                     <HeroSlide key={index}>
                         {index === current && (

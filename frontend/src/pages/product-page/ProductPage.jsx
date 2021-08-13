@@ -121,7 +121,7 @@ function ProductPage({ match, history }) {
                                 <ListGroup.Item style={style}>
                                     <h3
                                         style={{
-                                            fontSize: "18px",
+                                            fontSize: "20px",
                                             letterSpacing: "1px",
                                             fontWeight: "bold",
                                         }}
@@ -133,7 +133,7 @@ function ProductPage({ match, history }) {
                                 <ListGroup.Item style={style}>
                                     <h4
                                         style={{
-                                            fontSize: "16px",
+                                            fontSize: "18px",
                                             letterSpacing: "1px",
                                         }}
                                     >
@@ -143,7 +143,14 @@ function ProductPage({ match, history }) {
                                 </ListGroup.Item>
 
                                 <ListGroup.Item style={style}>
-                                    €{product.retail_price}
+                                    <p
+                                        style={{
+                                            fontSize: "16px",
+                                            letterSpacing: "1px",
+                                        }}
+                                    >
+                                        €{product.retail_price}
+                                    </p>
                                 </ListGroup.Item>
 
                                 <ListGroup.Item
@@ -286,7 +293,8 @@ function ProductPage({ match, history }) {
                                         </Form>
                                     ) : (
                                         <Message variant="info">
-                                            Plaes login <Link>Login</Link> to
+                                            Plaes login{" "}
+                                            <Link to="/login">Login</Link> to
                                             write a review
                                         </Message>
                                     )}
