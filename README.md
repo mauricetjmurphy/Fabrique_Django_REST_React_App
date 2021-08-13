@@ -22,8 +22,15 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
     - [Icons](#icons)
   - [Features](#features)
     - [Existing features](#existing-features)
-    - [Users login](#users-login)
-    - [Registration page](#registration-page)
+      - [Navigation](#navigation)
+      - [Users login](#users-login)
+      - [Registration page](#registration-page)
+      - [Homepage](#homepage)
+      - [Products Page](#products-page)
+      - [Admin Panel](#admin-panel)
+      - [User Panel](#user-panel)
+      - [Wishlist](#wishlist)
+      - [Cart](#cart)
     - [Future features](#future-features)
   - [Database models and schema](#database-models-and-schema)
     - [Models](#models)
@@ -101,34 +108,72 @@ As a user I would like to:
 
 ### Existing features
 
-### Users login
+#### Navigation
+
+-   Top navigition bar
+    -   This navigation bar provides links to all the pages listed below.
+    -   It also contains a search bar that can be used to search the products by keyword.
+-   Side navigation bar
+    -   The side navigation bar provides links to the product categories.
+    -   By clicking on these links, the user will be redirected to the products page. The selected product category will be displayed.
+
+#### Users login
 
 -   Login form for the user to enter their credentials and login in.
 -   Submit button with hover effect.
 -   Register link to take the user to the registration page.
 -   Form fields are all validated by HTML validatoin.
 
-### Registration page
+#### Registration page
 
--   Registration form for te user to sign up and login.
--   Form fields are all validated by flask-WTF extension.
+-   Registration form for the user to sign up and login.
+-   Form fields are all validated by HTML validation.
 -   The user will have to enter a unique email addess that does not already exist in the database.
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
+
+#### Homepage
+
+-   Navigation bar with links to each page.
+-   React slide show hero component that shows several fashion images.
+-   Categories section where each recipe is categorised into specific meals
+-   Clickable link images that filter the products by category and display them on the products page.
+
+#### Products Page
+
+-   Products are display in cards to the user.
+-   Each card is a clickable link to the product page.
+-   The product page displays skeleton loading cards before the response data from the API call is returned.
+
+#### Admin Panel
+
+-   Users page
+    -   The users page displays a list of the current users.
+    -   Users can be edited and deleted by the admin user.
+-   Products page
+    -   The products page provides the user with a form to add new products.
+    -   The page also lists all the existing products and gives the admin user the option to delete any product.
+
+#### User Panel
+
+-   Profile page
+    -   The profile page is available to any logged in user.
+    -   The page provide the user with a form for updating their personal details.
+    -   The page also displays the users previous orders.
+-   Logout
+
+    -   The logout link will logout the current user
+
+#### Wishlist
+
+-   The wishlist page stores any products that the user want to hold before starting the checkout process.
+-   The user is provided with a button for sending the products to the cart whenever he/she is ready to checkout.
+
+#### Cart
+
+-   The cart pages holds all the products that the user has added.
+-   The user can update the product quantiy or delete products from the cart at anytime.
+-   The user is provided with a button to proceed to checkout.
+
+####
 
 ### Future features
 
@@ -140,10 +185,18 @@ As a user I would like to:
 
 ---
 
+The database used for this Project was Postgres, as an Installed add-on to the deployed Heroku Application. Sqlite3 was used initially to test the sites performance on a smaller dataset. Mid-development I moved to local & deployed testing so Postgres was used from that point on.
+
+When each app and its models were created and implemented, python manage.py makemigrations was run in the terminal to create the initial model package and python manage.py migrate was then used to apply the model to the database and create the table.
+
+Where possible, first-time-right methodology was approached when creating the models to avoid to many alterations to the models and the database table through multiple makemigrations and migrate commands.
+
 ### Models
 
 -   User
+    -   This model came from the django.contrib.auth model class. It provided all the inbuilt User object fields.
 -   Product
+    -
 -   Order
 -   Order Item
 -   Shipping Address
