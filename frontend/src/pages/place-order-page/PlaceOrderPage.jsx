@@ -113,6 +113,9 @@ function PlaceOrderPage() {
                                                 </Col>
                                                 <Col>
                                                     <Link
+                                                        style={{
+                                                            color: "#000",
+                                                        }}
                                                         to={`/product/${item.id}`}
                                                     >
                                                         {item.name}
@@ -183,6 +186,12 @@ function PlaceOrderPage() {
                                     price={total}
                                     width="100%"
                                 />
+                                <p style={{ marginTop: "20px", color: "red" }}>
+                                    To test the Stripe payment method please use
+                                    the following details:<br></br> Card No:
+                                    4242424242424242<br></br> CVC: 111<br></br>{" "}
+                                    Date: Any future date
+                                </p>
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>

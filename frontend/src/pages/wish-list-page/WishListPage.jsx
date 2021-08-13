@@ -12,7 +12,16 @@ import {
     Card,
     Container,
 } from "react-bootstrap";
-import { addToCart, removeFromCart } from "../../actions/cartActions";
+import {
+    addToWishlist,
+    removeFromWishlist,
+    addWishlistToCart,
+    addToCart,
+} from "../../actions/cartActions";
+import {
+    CART_ADD_ITEM,
+    WISHLIST_CLEAR_ITEMS,
+} from "../../constants/cartConstants";
 
 const WishlistPage = ({ match, location, history }) => {
     // Options for the product select values
@@ -25,26 +34,25 @@ const WishlistPage = ({ match, location, history }) => {
 
     const dispatch = useDispatch();
 
-    const cart = useSelector((state) => state.cart);
-    const { cartItems } = cart;
+    const wishlist = useSelector((state) => state.wishlist);
+    const { wishlistItems } = wishlist;
 
     useEffect(() => {
         window.scrollTo(0, 0);
         if (productId) {
-            dispatch(addToCart(productId, qty));
+            dispatch(addToWishlist(productId, qty));
         }
     }, [dispatch, productId, qty]);
 
-    const updateHandler = () => {
-        console.log("updated");
+    const addToCartHandler = () => {
+        dispatch(addWishlistToCart());
+        dispatch({ type: WISHLIST_CLEAR_ITEMS });
+        // dispatch(addToCart());
+        history.push("/cart");
     };
 
-    const checkoutHandler = () => {
-        history.push("/login?redirect=shipping");
-    };
-
-    const removeFromCartHandler = (id) => {
-        dispatch(removeFromCart(id));
+    const removeFromWishlistHandler = (id) => {
+        dispatch(removeFromWishlist(id));
     };
 
     return (
@@ -54,16 +62,19 @@ const WishlistPage = ({ match, location, history }) => {
                     <h1 className="justify-content-center mt-5 mb-5 text-center">
                         Wishlist
                     </h1>
-                    {cartItems.length === 0 ? (
+                    {wishlistItems.length === 0 ? (
                         <Message variant="info">
                             Your cart is empty{" "}
-                            <Link to="/products/?category=&page=1">
+                            <Link
+                                style={{ color: "#007bff", marginLeft: "10px" }}
+                                to="/products/?category=&page=1"
+                            >
                                 Go Back
                             </Link>
                         </Message>
                     ) : (
                         <ListGroup variant="flush">
-                            {cartItems.map((item, index) => (
+                            {wishlistItems.map((item, index) => (
                                 <ListGroup.Item key={index}>
                                     <Row>
                                         <Col md={1}>
@@ -90,7 +101,7 @@ const WishlistPage = ({ match, location, history }) => {
                                                 value={item.qty}
                                                 onChange={(e) => {
                                                     dispatch(
-                                                        addToCart(
+                                                        addToWishlist(
                                                             item.id,
                                                             Number(
                                                                 e.target.value
@@ -118,7 +129,7 @@ const WishlistPage = ({ match, location, history }) => {
                                                     border: "1px solid #343a40",
                                                 }}
                                                 onClick={() =>
-                                                    removeFromCartHandler(
+                                                    removeFromWishlistHandler(
                                                         item.id
                                                     )
                                                 }
@@ -132,6 +143,13 @@ const WishlistPage = ({ match, location, history }) => {
                                     </Row>
                                 </ListGroup.Item>
                             ))}
+                            <Button
+                                variant="dark"
+                                style={{ width: "250px", margin: "20px auto" }}
+                                onClick={addToCartHandler}
+                            >
+                                Add to cart
+                            </Button>
                         </ListGroup>
                     )}
                 </Col>

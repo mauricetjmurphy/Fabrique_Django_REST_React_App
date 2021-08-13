@@ -15,7 +15,7 @@ import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import Rating from "../../components/rating/Rating";
 
-import { addToCart } from "../../actions/cartActions";
+import { addToCart, addToWishlist } from "../../actions/cartActions";
 import {
     listProductDetails,
     createProductReview,
@@ -43,8 +43,6 @@ function ProductPage({ match, history }) {
 
     const productDetails = useSelector((state) => state.productDetails);
     const { error, loading, product } = productDetails;
-
-    console.log(product);
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -76,6 +74,10 @@ function ProductPage({ match, history }) {
     // Using the history prop to redirect us to the cart page, passing in the id and quantity
     const addToCartHandler = () => {
         dispatch(addToCart(match.params.id, qty));
+    };
+
+    const addToWishlistHandler = () => {
+        dispatch(addToWishlist(match.params.id, qty));
     };
 
     const submitHandler = (e) => {
@@ -193,6 +195,7 @@ function ProductPage({ match, history }) {
                                             marginTop: "15px",
                                             border: "1px solid #343a40",
                                         }}
+                                        onClick={addToWishlistHandler}
                                     >
                                         Add to Wish List
                                     </Button>

@@ -6,6 +6,10 @@ import {
     CART_SAVE_SHIPPING_ADDRESS,
     CART_SAVE_PAYMENT_METHOD,
     CART_CLEAR_ITEMS,
+    WISHLIST_ADD_ITEM,
+    WISHLIST_REMOVE_ITEM,
+    CART_ADD_WISHLIST_ITEM,
+    WISHLIST_CLEAR_ITEMS,
 } from "../constants/cartConstants";
 
 // A reducer is a function that takes an action and the previous state of the application and returns the new state.
@@ -38,6 +42,21 @@ export const cartReducer = (
                 };
             }
 
+        case CART_ADD_WISHLIST_ITEM:
+            const items = action.payload;
+            // const existItem = state.cartItems.find((x) => x.id === item.id);
+
+            return {
+                ...state,
+                cartItems: [...state.cartItems, ...items],
+            };
+
+        case WISHLIST_CLEAR_ITEMS:
+            return {
+                ...state,
+                wishlistItems: [],
+            };
+
         case CART_REMOVE_ITEM:
             return {
                 ...state,
@@ -63,6 +82,39 @@ export const cartReducer = (
                 ...state,
                 cartItems: [],
             };
+        default:
+            return state;
+    }
+};
+
+export const wishlistReducer = (state = { wishlistItems: [] }, action) => {
+    switch (action.type) {
+        case WISHLIST_ADD_ITEM:
+            const item = action.payload;
+            const existItem = state.wishlistItems.find((x) => x.id === item.id);
+
+            if (existItem) {
+                return {
+                    ...state,
+                    wishlistItems: state.wishlistItems.map((x) =>
+                        x.id === existItem.id ? item : x
+                    ),
+                };
+            } else {
+                return {
+                    ...state,
+                    wishlistItems: [...state.wishlistItems, item],
+                };
+            }
+
+        case WISHLIST_REMOVE_ITEM:
+            return {
+                ...state,
+                wishlistItems: state.wishlistItems.filter(
+                    (x) => x.id !== action.payload
+                ),
+            };
+
         default:
             return state;
     }

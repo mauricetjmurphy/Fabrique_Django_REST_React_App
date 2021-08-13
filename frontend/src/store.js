@@ -11,7 +11,7 @@ import {
     productDeleteReducer,
     productUploadReducer,
 } from "./reducers/productReducers";
-import { cartReducer } from "./reducers/cartReducers";
+import { cartReducer, wishlistReducer } from "./reducers/cartReducers";
 import {
     userLoginReducer,
     userRegisterReducer,
@@ -39,6 +39,7 @@ const reducers = {
     productDelete: productDeleteReducer,
     productUpload: productUploadReducer,
     cart: cartReducer,
+    wishlist: wishlistReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
@@ -60,6 +61,10 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [];
 
+const wishlistItemsFromStorage = localStorage.getItem("wishlistItems")
+    ? JSON.parse(localStorage.getItem("wishlistItems"))
+    : [];
+
 // The user data needs to be taken from local storage to set the initial state.
 const userInfoFromStorage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -74,6 +79,8 @@ const initialState = {
         cartItems: cartItemsFromStorage,
         shippingAddress: shippingAddressFromStorage,
     },
+
+    wishlist: { wishlistItems: wishlistItemsFromStorage },
 
     userLogin: { userInfo: userInfoFromStorage },
 };
