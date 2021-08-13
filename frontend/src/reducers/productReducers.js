@@ -18,6 +18,10 @@ import {
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_SUCCESS,
     PRODUCT_DELETE_FAIL,
+    PRODUCT_UPLOAD_REQUEST,
+    PRODUCT_UPLOAD_SUCCESS,
+    PRODUCT_UPLOAD_FAIL,
+    PRODUCT_UPLOAD_RESET,
 } from "../constants/productConstants";
 
 // A reducer is a function that takes an action and the previous state of the application and returns the new state.
@@ -138,6 +142,25 @@ export const productDeleteReducer = (state = {}, action) => {
 
         case PRODUCT_DELETE_FAIL:
             return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+
+export const productUploadReducer = (state = {}, action) => {
+    switch (action.type) {
+        case PRODUCT_UPLOAD_REQUEST:
+            return { loading: true };
+
+        case PRODUCT_UPLOAD_SUCCESS:
+            return { loading: false, success: true, product: action.payload };
+
+        case PRODUCT_UPLOAD_FAIL:
+            return { loading: false, error: action.payload };
+
+        case PRODUCT_UPLOAD_RESET:
+            return {};
 
         default:
             return state;

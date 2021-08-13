@@ -233,6 +233,7 @@ This ecommerce site was built using the Django REST framework to provide a backe
     -   React router bootstrap
     -   React Stripe
 -   Redux
+    -   Thunk middleware
 -   Python 3
 -   Django and Django extensions
     -   Django
@@ -242,16 +243,15 @@ This ecommerce site was built using the Django REST framework to provide a backe
 -   Simple JWT
 -   Stripe
 -   Google fonts
--   Slick.js
 -   Fonts Awesome
 -   Git & GitHub
 -   Heroku
 -   Amazon AWS
 -   Adobe suite
--   Cloudinary
 -   Google Chrome Developer tools
 -   Firefox Developer tools
 -   Safari Web Inspector
+-   Postman API testing
 
 ---
 

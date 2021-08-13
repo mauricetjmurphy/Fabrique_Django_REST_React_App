@@ -7,13 +7,15 @@ urlpatterns = [
 
     path('search/', views.searchProducts, name="search-products"),
 
-    path('<str:pk>/', views.getProduct, name="product"),
-
-    path('<str:pk>/reviews/', views.createProductReview, name="product-review"),
+    path('create/', views.createProduct, name="create-product"),
 
     path('delete/', views.deleteProducts, name="delete-products"),
 
     path('delete/<str:pk>', views.deleteProduct, name="delete-product"),
+
+    path('<str:pk>/', views.getProduct, name="product"),
+
+    path('<str:pk>/reviews/', views.createProductReview, name="product-review"),
 
     
    

@@ -14,6 +14,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
 
+import datetime as datetime
+import pdb
+
 
 @api_view(['GET'])
 def searchProducts(request):
@@ -82,15 +85,6 @@ def deleteProducts(request):
     return Response('Products deleted')
 
 
-@api_view(['DELETE'])
-@permission_classes([IsAdminUser])
-def deleteProduct(request, pk):
-    
-    Product.objects.get(product_id=pk).delete()
-
-    return Response('Product deleted')
-
-
 @api_view(['GET'])
 def getProduct(request, pk):
 
@@ -98,6 +92,46 @@ def getProduct(request, pk):
     serializer = ProductSerializer(product, many=False)
 
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAdminUser])
+def createProduct(request):
+    user = request.user
+    data = request.data
+
+    print('DATA: ', data)
+
+    # pdb.set_trace()
+
+    product = Product.objects.create(
+        user=user,
+        product_name=data['product_name'],
+        availability = data['availability'],
+        product_category = data['product_category'],
+        brand=data['brand'],
+        color=data['color'],
+        description = data['description'],
+        gender=data['gender'],
+        size=data['size'],
+        material=data['material'],
+        retail_price=data['retail_price'],
+        product_image_url=data['product_image_url'],
+        additional_image_link=data['additional_image_link'],
+        )
+
+    serializer = ProductSerializer(product, many=False)
+
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteProduct(request, pk):
+    
+    Product.objects.get(product_id=pk).delete()
+
+    return Response('Product deleted')
 
 
 @api_view(['POST'])
