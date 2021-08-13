@@ -22,6 +22,8 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
     - [Icons](#icons)
   - [Features](#features)
     - [Existing features](#existing-features)
+    - [Users login](#users-login)
+    - [Registration page](#registration-page)
     - [Future features](#future-features)
   - [Database models and schema](#database-models-and-schema)
     - [Models](#models)
@@ -99,10 +101,18 @@ As a user I would like to:
 
 ### Existing features
 
--   [x] Users login
-    -   Users can
--   [x] Users login
-    -   Users can
+### Users login
+
+-   Login form for the user to enter their credentials and login in.
+-   Submit button with hover effect.
+-   Register link to take the user to the registration page.
+-   Form fields are all validated by HTML validatoin.
+
+### Registration page
+
+-   Registration form for te user to sign up and login.
+-   Form fields are all validated by flask-WTF extension.
+-   The user will have to enter a unique email addess that does not already exist in the database.
 -   [x] Users login
     -   Users can
 -   [x] Users login

@@ -13,6 +13,7 @@ import {
     Container,
 } from "react-bootstrap";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
+import "./cart.css";
 
 const CartPage = ({ match, location, history }) => {
     // Options for the product select values
