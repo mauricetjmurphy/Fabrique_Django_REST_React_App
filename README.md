@@ -38,6 +38,7 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
     - [Diagram](#diagram)
   - [Technologies used](#technologies-used)
   - [Deployment](#deployment)
+    - [React Deployment](#react-deployment)
   - [Testing](#testing)
   - [Performance](#performance)
     - [Lazy Loading](#lazy-loading)
@@ -260,6 +261,10 @@ This ecommerce site was built using the Django REST framework to provide a backe
 ---
 
 ---
+
+### React Deployment
+
+In preparation for deployment I have to bundle my react files into static assets. Npm run build created a build directory with a production build of my app. I set up my HTTP server so that a visitor to the site is served index.html, and requests to static paths like /static/js/main.<hash>.js are served with the contents of the /static/js/main.<hash>.js file.
 
 ## Testing
 
