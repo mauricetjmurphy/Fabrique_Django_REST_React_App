@@ -1,0 +1,28 @@
+.dropdown-toggle {
+    color: #fff;
+}
+
+.dropdown-toggle::after {
+    color: #fff;
+}
+
+i {
+    color: #fff;
+}
+
+nav {
+    padding: 15px 100px !important;
+}
+
+a {
+    color: #fff;
+}
+
+a.nav-link:hover {
+    color: #fff;
+}
+
+p {
+    margin: 0;
+    color: #000;
+}

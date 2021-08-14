@@ -1,0 +1,7 @@
+.search-btn:hover i {
+    color: #343a40;
+}
+
+.search-btn:hover {
+    background-color: #ffffff;
+}
