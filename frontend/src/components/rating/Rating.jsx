@@ -1,66 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function Rating({ value, color }) {
+    // const [rating, setRating] = useState();
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setRating(value);
+    //     }, 2000);
+    //     return () => clearTimeout(timer);
+
+    //     // if (value !== "undefined") {
+    //     //     setRating(value);
+    //     // }
+    // }, [value]);
+
     return (
         <div>
             <span>
                 <i
                     style={{ color }}
-                    className={
-                        value >= 1
-                            ? "fas fa-star"
-                            : value >= 0.5
-                            ? "fas fa-star-half-alt"
-                            : "fas fa-star"
-                    }
+                    className={value >= 1 ? "fas fa-star" : null}
                 ></i>
             </span>
             <span>
                 <i
                     style={{ color }}
-                    className={
-                        value >= 2
-                            ? "fas fa-star"
-                            : value >= 1.5
-                            ? "fas fa-star-half-alt"
-                            : "fas fa-star"
-                    }
+                    className={value >= 2 ? "fas fa-star" : null}
                 ></i>
             </span>
             <span>
                 <i
                     style={{ color }}
-                    className={
-                        value >= 3
-                            ? "fas fa-star"
-                            : value >= 2.5
-                            ? "fas fa-star-half-alt"
-                            : "fas fa-star"
-                    }
+                    className={value >= 3 ? "fas fa-star" : null}
                 ></i>
             </span>
             <span>
                 <i
                     style={{ color }}
-                    className={
-                        value >= 4
-                            ? "fas fa-star"
-                            : value >= 3.5
-                            ? "fas fa-star-half-alt"
-                            : "fas fa-star"
-                    }
+                    className={value >= 4 ? "fas fa-star" : null}
                 ></i>
             </span>
             <span>
                 <i
                     style={{ color }}
-                    className={
-                        value >= 5
-                            ? "fas fa-star"
-                            : value >= 4.5
-                            ? "fas fa-star-half-alt"
-                            : "fas fa-star"
-                    }
+                    className={value >= 5 ? "fas fa-star" : null}
                 ></i>
             </span>
         </div>

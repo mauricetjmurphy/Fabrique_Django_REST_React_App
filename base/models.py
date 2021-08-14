@@ -21,6 +21,8 @@ class Product(models.Model):
     product_image_url = models.TextField( null=True, blank=True)
     additional_image_link = models.TextField( null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
+    rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
+    numReviews = models.IntegerField(null=True, blank=True, default=0)
 
     def __str__(self):
         return str(self.product_name)

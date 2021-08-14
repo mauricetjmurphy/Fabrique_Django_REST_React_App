@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./pagination-component.css";
 import { Link, useHistory } from "react-router-dom";
 
@@ -48,10 +48,6 @@ const PaginationComponent = ({ page, pages }) => {
             return null;
         }
     });
-
-    useEffect(() => {
-        setCurrentPage(history.location.search.split("=")[2]);
-    }, [searchParam]);
 
     const handleNext = () => {
         setCurrentPage(currentPage + 1);

@@ -201,7 +201,19 @@ function ProductPage({ match, history }) {
                                 </ListGroup.Item>
 
                                 <ListGroup.Item style={style}>
-                                    <Rating />
+                                    <Rating
+                                        value={product.rating}
+                                        color="#f8e825"
+                                    />
+                                    <p>
+                                        {product.numReviews}{" "}
+                                        {`${
+                                            product.numReviews <= 1
+                                                ? "Review"
+                                                : "Reviews"
+                                        }
+                                        `}
+                                    </p>
                                 </ListGroup.Item>
 
                                 <ListGroup.Item style={style}>
@@ -238,7 +250,7 @@ function ProductPage({ match, history }) {
                                         </Message>
                                     )}
                                     {errorProductReview && (
-                                        <Message variant="success">
+                                        <Message variant="danger">
                                             {errorProductReview}
                                         </Message>
                                     )}

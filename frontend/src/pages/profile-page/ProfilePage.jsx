@@ -73,7 +73,7 @@ function ProfileScreen({ history }) {
         }
     };
     return (
-        <Container style={{ marginTop: "70px" }}>
+        <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
             <Row className="justify-content-md-center">
                 <h2 className="text-center mt-5">Update Profile</h2>
             </Row>

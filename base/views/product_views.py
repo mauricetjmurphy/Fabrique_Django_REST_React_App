@@ -173,5 +173,5 @@ def createProductReview(request, pk):
         product.rating = total / len(reviews)
         product.save()
 
-        return Response({'Review added'})
+        return Response('Review added')
 

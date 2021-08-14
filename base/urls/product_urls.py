@@ -17,6 +17,4 @@ urlpatterns = [
 
     path('<str:pk>/reviews/', views.createProductReview, name="product-review"),
 
-    
-   
     ]

@@ -144,7 +144,7 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
 
                     {userInfo ? (
                         <NavDropdown title="Account" id="username">
-                            <LinkContainer to="/profile">
+                            <LinkContainer to="/profile/?param=&page=1">
                                 <NavDropdown.Item>Profile</NavDropdown.Item>
                             </LinkContainer>
                             <NavDropdown.Item onClick={logoutHandler}>
