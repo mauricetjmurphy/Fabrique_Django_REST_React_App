@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useSelector } from "react-redux";
 import Hero from "../../components/hero/Hero";
 import SlideData from "../../static/data/SlideData";
 import styled from "styled-components";
@@ -52,9 +51,6 @@ const SectionThreeContent = styled.div`
 `;
 
 function HomePage() {
-    const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

@@ -1,19 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function Rating({ value, color }) {
-    // const [rating, setRating] = useState();
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setRating(value);
-    //     }, 2000);
-    //     return () => clearTimeout(timer);
-
-    //     // if (value !== "undefined") {
-    //     //     setRating(value);
-    //     // }
-    // }, [value]);
-
     return (
         <div>
             <span>

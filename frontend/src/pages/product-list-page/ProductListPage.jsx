@@ -4,7 +4,6 @@ import { Form, Table, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
     listProducts,
-    deleteProducts,
     deleteProduct,
     uploadProduct,
 } from "../../actions/productActions";
@@ -41,13 +40,6 @@ function ProductListPage({ match }) {
     const productDelete = useSelector((state) => state.productDelete);
     const { success: successDelete } = productDelete;
 
-    const productUpload = useSelector((state) => state.productUpload);
-    const {
-        loading: loadingUpload,
-        error: errorUpload,
-        success: successUpload,
-    } = productUpload;
-
     useEffect(() => {
         dispatch({ type: PRODUCT_UPLOAD_RESET });
         // ---------Insert Modal to check if the action is intended-------//
@@ -56,10 +48,6 @@ function ProductListPage({ match }) {
 
     const deleteProductHandler = (id) => {
         dispatch(deleteProduct(id));
-    };
-
-    const deleteProductsHandler = (id) => {
-        dispatch(deleteProducts(id));
     };
 
     const submitHandler = (e) => {

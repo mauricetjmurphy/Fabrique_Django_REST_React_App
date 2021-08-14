@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 const PaginationComponent = ({ page, pages }) => {
     const history = useHistory();
 
-    const [data, setData] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(5);
 
@@ -15,11 +14,7 @@ const PaginationComponent = ({ page, pages }) => {
 
     const pageNumbers = [...Array(pages).keys()];
 
-    // const searchParam = history.location.search;
     const searchParam = history.location.search.split("&")[0];
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     const handleClick = (e) => {
         setCurrentPage(Number(e.target.id));
@@ -61,7 +56,7 @@ const PaginationComponent = ({ page, pages }) => {
     const handlePrev = () => {
         setCurrentPage(currentPage - 1);
 
-        if ((currentPage - 1) % pageNumberLimit == 0) {
+        if ((currentPage - 1) % pageNumberLimit === 0) {
             setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
             setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
         }
@@ -106,7 +101,7 @@ const PaginationComponent = ({ page, pages }) => {
                         <button
                             onClick={handleNext}
                             disabled={
-                                currentPage ==
+                                currentPage ===
                                 pageNumbers[pageNumbers.length - 1]
                                     ? true
                                     : false

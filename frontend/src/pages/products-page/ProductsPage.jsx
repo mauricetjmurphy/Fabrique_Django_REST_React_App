@@ -19,13 +19,12 @@ function ProductsPage({ history, match }) {
 
     // useSelector is used to get specific parts of the state
     const productList = useSelector((state) => state.productList);
-    const { error, loading, products, page, pages } = productList;
+    const { error, products, page, pages } = productList;
 
     // useSelector is used to get specific parts of the state
     const productSearch = useSelector((state) => state.productSearch);
     const {
         error: searchError,
-        loading: searchLoading,
         products: searchedProducts,
         page: searchPage,
         pages: searchPages,
@@ -38,9 +37,7 @@ function ProductsPage({ history, match }) {
         if (category) {
             setCategory(history.location.search.split("=")[1].split("&")[0]);
         }
-        // if (searchParam) {
-        //     setSearchParam(history.location.search);
-        // }
+
         if (searchParam.split("=")[0] === "?keyword") {
             setSearchTerm(history.location.search.split("=")[1].split("&")[0]);
         } else {

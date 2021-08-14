@@ -21,16 +21,6 @@ const NavContainer = styled.nav`
     z-index: 50;
 `;
 
-const NavLink = styled(Link)`
-    color: #fff;
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    height: 100%;
-    cursor: pointer;
-    text-decoration: none;
-`;
-
 const BrandContainer = styled.div`
     display: flex;
     align-items: center;

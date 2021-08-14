@@ -1,9 +1,5 @@
 // Import the constants from the user constants file
-import {
-    SIDEMENU_REQUEST,
-    SIDEMENU_SUCCESS,
-    SIDEMENU_FAIL,
-} from "../constants/pageConstants";
+import { SIDEMENU_SUCCESS } from "../constants/pageConstants";
 
 export const toggleSidemenuReducer = (state = { toggle: false }, action) => {
     switch (action.type) {

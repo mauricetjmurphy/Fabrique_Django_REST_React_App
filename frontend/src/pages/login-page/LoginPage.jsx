@@ -4,7 +4,6 @@ import { Form, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/userActions";
 import Message from "../../components/message/Message";
-import { Preloader } from "../../components/preloader/Preloader";
 
 const LoginPage = () => {
     let history = useHistory();
@@ -21,7 +20,7 @@ const LoginPage = () => {
     //Getting the userLogin state from the store.js
     const userLogin = useSelector((state) => state.userLogin);
     //The userLogin variable holds the userReducer and from this we can destructure the data from the variable
-    const { loading, userInfo, error } = userLogin;
+    const { userInfo, error } = userLogin;
 
     // If user is logged in redirect to homepage
     useEffect(() => {

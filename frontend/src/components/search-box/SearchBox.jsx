@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import {
-    Form,
-    Navbar,
-    Nav,
-    Container,
-    NavDropdown,
-    Button,
-} from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import "./search-box.css";
 
 function SearchBox() {

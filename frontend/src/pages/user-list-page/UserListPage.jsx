@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button, Row, Container, Col } from "react-bootstrap";
+import { Table, Button, Row, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
     listUsers,
@@ -32,7 +32,7 @@ function UserListPage() {
         if (!userInfo.token) {
             dispatch(getLoggedInUserDetails());
         }
-        // ---------Insert Modal to check if the action is intended-------//
+
         dispatch(listUsers(searchParam));
     }, [dispatch, userInfo, history, successDelete, searchParam]);
 

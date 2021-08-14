@@ -97,9 +97,9 @@ const CartPage = ({ match, location, history }) => {
                                                     );
                                                 }}
                                             >
-                                                {options.map((e) => (
+                                                {options.map((e, i) => (
                                                     <option
-                                                        key={e}
+                                                        key={i}
                                                         label={e}
                                                         value={e}
                                                     >

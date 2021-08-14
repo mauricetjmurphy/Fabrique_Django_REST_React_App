@@ -1,9 +1,9 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import SearchBox from "../search-box/SearchBox";
 import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { Nav, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import Bag from "../bag/Bag";

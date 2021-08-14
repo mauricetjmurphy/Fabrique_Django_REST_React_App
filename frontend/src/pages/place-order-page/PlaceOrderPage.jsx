@@ -26,13 +26,10 @@ function PlaceOrderPage() {
 
     let history = useHistory();
     const orderCreate = useSelector((state) => state.orderCreate);
-    const { order, error, success } = orderCreate;
+    const { error, success } = orderCreate;
 
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
-
-    const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
 
     // Setting an attribute in the the cart object. It will only be available to this page.
     cart.itemsPrice = cart.cartItems
