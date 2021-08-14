@@ -114,7 +114,11 @@ function ProductsPage({ history, match }) {
                 </Row>
             )}
 
-            <PaginationComponent page={page} pages={pages} />
+            {keyword ? (
+                <PaginationComponent page={searchPage} pages={searchPages} />
+            ) : (
+                <PaginationComponent page={page} pages={pages} />
+            )}
         </Container>
     );
 }
