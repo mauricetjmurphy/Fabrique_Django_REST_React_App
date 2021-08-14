@@ -9,19 +9,14 @@ import {
     Image,
     Form,
     Button,
-    Card,
     Container,
 } from "react-bootstrap";
 import {
     addToWishlist,
     removeFromWishlist,
     addWishlistToCart,
-    addToCart,
+    removeAllFromWishlist,
 } from "../../actions/cartActions";
-import {
-    CART_ADD_ITEM,
-    WISHLIST_CLEAR_ITEMS,
-} from "../../constants/cartConstants";
 
 const WishlistPage = ({ match, location, history }) => {
     // Options for the product select values
@@ -46,7 +41,7 @@ const WishlistPage = ({ match, location, history }) => {
 
     const addToCartHandler = () => {
         dispatch(addWishlistToCart());
-        dispatch({ type: WISHLIST_CLEAR_ITEMS });
+        dispatch(removeAllFromWishlist());
         // dispatch(addToCart());
         history.push("/cart");
     };
@@ -64,12 +59,12 @@ const WishlistPage = ({ match, location, history }) => {
                     </h1>
                     {wishlistItems.length === 0 ? (
                         <Message variant="info">
-                            Your cart is empty{" "}
+                            Your wishlist is empty{" "}
                             <Link
                                 style={{ color: "#007bff", marginLeft: "10px" }}
                                 to="/products/?category=&page=1"
                             >
-                                Go Back
+                                Shop Now
                             </Link>
                         </Message>
                     ) : (

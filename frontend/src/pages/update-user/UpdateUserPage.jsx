@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Form, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,10 +7,7 @@ import {
     getUserDetails,
     updateUser,
 } from "../../actions/userActions";
-import {
-    USER_UPDATE_RESET,
-    USER_UPDATE_PROFILE_RESET,
-} from "../../constants/userConstants";
+import { USER_UPDATE_RESET } from "../../constants/userConstants";
 
 import Message from "../../components/message/Message";
 import { Preloader } from "../../components/preloader/Preloader";
@@ -18,7 +15,7 @@ import { Preloader } from "../../components/preloader/Preloader";
 const UpdateUserPage = ({ match }) => {
     // Initialising Hooks
     let history = useHistory();
-    const location = useLocation();
+
     const dispatch = useDispatch();
 
     //Setting component state

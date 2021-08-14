@@ -12,7 +12,6 @@ import {
     PRODUCT_CREATE_REVIEW_REQUEST,
     PRODUCT_CREATE_REVIEW_SUCCESS,
     PRODUCT_CREATE_REVIEW_FAIL,
-    PRODUCT_CREATE_REVIEW_RESET,
     PRODUCTS_DELETE_REQUEST,
     PRODUCTS_DELETE_SUCCESS,
     PRODUCTS_DELETE_FAIL,
@@ -22,7 +21,6 @@ import {
     PRODUCT_UPLOAD_REQUEST,
     PRODUCT_UPLOAD_SUCCESS,
     PRODUCT_UPLOAD_FAIL,
-    PRODUCT_UPLOAD_RESET,
 } from "../constants/productConstants";
 //Redux-thunk allows us call an async function within a function and will call the dispatch
 export const listProducts =

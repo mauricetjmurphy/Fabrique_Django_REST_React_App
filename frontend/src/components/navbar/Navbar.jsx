@@ -39,6 +39,10 @@ const BrandContainer = styled.div`
 const Brand = styled(Link)`
     color: #fff;
     font-size: 1.5rem;
+
+    &:hover {
+        color: #fff;
+    }
 `;
 
 const Toggle = styled.i`
@@ -89,8 +93,6 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
         history.push("/login");
     };
 
-    console.log(navbarFade);
-
     useEffect(() => {
         window.onscroll = () => {
             if (window.scrollY >= 35) {
@@ -119,7 +121,7 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
                 {userInfo && userInfo.isAdmin && (
                     <NavDropdown
                         title="Admin"
-                        // {<i className="fas fa-user-cog "></i>}
+                        style={{ color: "#fff" }}
                         id="adminmenu"
                     >
                         <LinkContainer to="/user-list/?param=">
@@ -133,7 +135,7 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
 
                 <Nav>
                     <div>
-                        <NavLink onClick={sidemenuToggle}>Shop</NavLink>
+                        <Nav.Link onClick={sidemenuToggle}>Shop</Nav.Link>
                     </div>
 
                     <LinkContainer to="/wishlist">

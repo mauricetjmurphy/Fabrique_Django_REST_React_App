@@ -51,12 +51,6 @@ export const cartReducer = (
                 cartItems: [...state.cartItems, ...items],
             };
 
-        case WISHLIST_CLEAR_ITEMS:
-            return {
-                ...state,
-                wishlistItems: [],
-            };
-
         case CART_REMOVE_ITEM:
             return {
                 ...state,
@@ -106,6 +100,12 @@ export const wishlistReducer = (state = { wishlistItems: [] }, action) => {
                     wishlistItems: [...state.wishlistItems, item],
                 };
             }
+
+        case WISHLIST_CLEAR_ITEMS:
+            return {
+                ...state,
+                wishlistItems: [],
+            };
 
         case WISHLIST_REMOVE_ITEM:
             return {

@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { Navbar, Nav, Container, NavDropdown, Row } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Hero from "../../components/hero/Hero";
 import SlideData from "../../static/data/SlideData";
 import styled from "styled-components";
-import SectionTwo_ImageOne from "../../static/images/s2_img1.jpg";
-import SectionTwo_ImageTwo from "../../static/images/s2_img2.jpg";
-import SectionThree_ImageOne from "../../static/images/s3_img1.jpg";
 
 const SectionTwo = styled.div`
     display: grid;

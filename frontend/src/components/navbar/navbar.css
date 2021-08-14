@@ -18,7 +18,7 @@ a {
     color: #fff;
 }
 
-a:hover {
+a.nav-link:hover {
     color: #fff;
 }
 

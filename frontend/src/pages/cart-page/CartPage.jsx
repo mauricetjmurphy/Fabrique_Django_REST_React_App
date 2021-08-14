@@ -113,7 +113,12 @@ const CartPage = ({ match, location, history }) => {
                                                 type="button"
                                                 variant="light"
                                                 style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
                                                     border: "1px solid #343a40",
+                                                    height: "30px",
+                                                    width: "30px",
                                                 }}
                                                 onClick={() =>
                                                     removeFromCartHandler(
@@ -122,7 +127,10 @@ const CartPage = ({ match, location, history }) => {
                                                 }
                                             >
                                                 <i
-                                                    style={{ color: "red" }}
+                                                    style={{
+                                                        color: "#e34d4d",
+                                                        fontSize: "12px",
+                                                    }}
                                                     className="fas fa-trash"
                                                 ></i>
                                             </Button>

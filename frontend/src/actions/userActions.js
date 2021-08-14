@@ -144,7 +144,6 @@ export const getLoggedInUserDetails = (id) => async (dispatch, getState) => {
 
         const userInfoFromStorage = localStorage.getItem("userInfo");
         const data = JSON.parse(userInfoFromStorage);
-        console.log(data);
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -183,7 +182,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
         //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
         const { data } = await axios.get(`/api/users/${id}/`, config);
-        console.log(data);
 
         dispatch({
             type: USER_DETAILS_SUCCESS,

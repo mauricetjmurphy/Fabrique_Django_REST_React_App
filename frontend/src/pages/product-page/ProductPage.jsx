@@ -14,7 +14,6 @@ import {
 import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import Rating from "../../components/rating/Rating";
-
 import { addToCart, addToWishlist } from "../../actions/cartActions";
 import {
     listProductDetails,
@@ -22,7 +21,6 @@ import {
 } from "../../actions/productActions";
 
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
-
 import "./product-page.css";
 
 function ProductPage({ match, history }) {
@@ -64,7 +62,7 @@ function ProductPage({ match, history }) {
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
         }
         dispatch(listProductDetails(match.params.id));
-    }, []);
+    }, [dispatch, match, successProductReview]);
 
     // Options for the product select values
     const options = [
@@ -88,6 +86,7 @@ function ProductPage({ match, history }) {
                 comment,
             })
         );
+        dispatch(listProductDetails(match.params.id));
     };
 
     return (
@@ -197,7 +196,7 @@ function ProductPage({ match, history }) {
                                         }}
                                         onClick={addToWishlistHandler}
                                     >
-                                        Add to Wish List
+                                        Add to Wishlist
                                     </Button>
                                 </ListGroup.Item>
 

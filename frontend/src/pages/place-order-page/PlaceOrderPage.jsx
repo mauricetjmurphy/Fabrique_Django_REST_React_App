@@ -14,15 +14,25 @@ import CheckoutProcess from "../../components/checkout-process/CheckoutProcess";
 import Message from "../../components/message/Message";
 import { createOrder } from "../../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
-import CheckoutBtn from "../../components/checkout-button/CheckoutBtn";
+import StripeCheckout from "react-stripe-checkout";
 
 function PlaceOrderPage() {
+    const btnStyle = {
+        width: "100%",
+    };
+
+    const publishableKey =
+        "pk_test_51Hm0EzJ5jSqIz8UnqxlXMtTomLDcQPEss7hsbxdIMEAOeiM59FIsNLvrYvgdtJfMY2ZsVWr1TW0HSva7VLK3INwd00E5u3MgTK";
+
     let history = useHistory();
     const orderCreate = useSelector((state) => state.orderCreate);
     const { order, error, success } = orderCreate;
 
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
 
     // Setting an attribute in the the cart object. It will only be available to this page.
     cart.itemsPrice = cart.cartItems
@@ -44,8 +54,9 @@ function PlaceOrderPage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
         if (success) {
-            history.push(`/order/${order._id}`);
+            history.push(`/profile`);
             dispatch({ type: ORDER_CREATE_RESET });
         }
     }, [success, history]);
@@ -181,10 +192,30 @@ function PlaceOrderPage() {
                                 >
                                     Back
                                 </Button>
-                                <CheckoutBtn
+                                {/* <Button
+                                    className="btn btn-block"
+                                    onClick={placeOrder}
+                                >
+                                    Pay with bitcoin
+                                </Button> */}
+                                {/* <CheckoutBtn
                                     onClick={placeOrder}
                                     price={total}
+                                    cart={cart}
+                                    total={total}
                                     width="100%"
+                                /> */}
+                                <StripeCheckout
+                                    label="Pay Now"
+                                    name="Fabrique"
+                                    billingAddress
+                                    shippingAddress
+                                    style={btnStyle}
+                                    amount={total}
+                                    panelLabel="Pay Now"
+                                    token={placeOrder}
+                                    stripeKey={publishableKey}
+                                    triggerEvent="onClick"
                                 />
                                 <p style={{ marginTop: "20px", color: "red" }}>
                                     To test the Stripe payment method please use

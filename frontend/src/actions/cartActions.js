@@ -6,6 +6,7 @@ import {
     CART_SAVE_PAYMENT_METHOD,
     WISHLIST_ADD_ITEM,
     WISHLIST_REMOVE_ITEM,
+    WISHLIST_CLEAR_ITEMS,
     CART_ADD_WISHLIST_ITEM,
 } from "../constants/cartConstants";
 
@@ -102,6 +103,14 @@ export const addToWishlist = (id, qty) => async (dispatch, getState) => {
         "wishlistItems",
         JSON.stringify(getState().wishlist.wishlistItems)
     );
+};
+
+export const removeAllFromWishlist = () => (dispatch, getState) => {
+    dispatch({
+        type: WISHLIST_CLEAR_ITEMS,
+    });
+
+    localStorage.removeItem("wishlistItems");
 };
 
 export const removeFromWishlist = (id) => (dispatch, getState) => {

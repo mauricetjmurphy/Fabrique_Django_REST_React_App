@@ -31,7 +31,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         const config = {
             headers: {
                 "Content-type": "application/json",
-                Authorization: `JWT ${userInfo.access}`,
+                Authorization: `JWT ${userInfo.token}`,
             },
         };
 
@@ -160,7 +160,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
         };
 
         //Login request that is looking for a web token to be returned. Sends the username and password and gets a token in return.
-        const { data } = await axios.get(`/api/orders/my-orders/`, config);
+        const { data } = await axios.get(`/api/orders/myorders/`, config);
 
         dispatch({
             type: ORDER_LIST_MY_SUCCESS,

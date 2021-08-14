@@ -39,3 +39,8 @@ ul.product-menu.show {
         width: 100%;
     }
 }
+
+a:hover {
+    text-decoration: underline;
+    color: #000;
+}

@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from base.models import Product, User, Order, OrderItem, ShippingAddress
 from base.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken, OrderSerializer
@@ -18,6 +19,7 @@ from datetime import datetime
 @api_view(['GET'])
 def getOrders(request):
     orders = Order.objects.all()
+
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data)
 
@@ -66,12 +68,29 @@ def addOrderItems(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def getMyOrders(request):
     user = request.user
     orders = user.order_set.all()
+
+    page = request.query_params.get('page')
+    paginator = Paginator(orders, 12)
+    
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
+
+    if page == None:
+        page = 1
+    
+    page = int(page)
+
     serializer = OrderSerializer(orders, many=True)
-    return Response(serializer.data)
+    return Response({'orders':serializer.data, 'page': page, 'pages': paginator.num_pages})
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

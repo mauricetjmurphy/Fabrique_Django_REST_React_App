@@ -1,20 +1,21 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
+import SocialMedia from "../../components/social-media/SocialMedia";
 
 const FooterSection = styled.div`
     background: #111111;
     color: #fff;
-    border-top: 1px solid #e7e7e7;
+    border-top: 4px solid #86868a;
+
     text-align: center;
     padding: 20px;
     left: 0;
     bottom: 0;
-    height: 70px;
+    height: 150px;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
 `;
 
 function Footer() {
@@ -22,7 +23,10 @@ function Footer() {
         <FooterSection>
             <Container>
                 <Row>
-                    <Col className="text-center py-3">
+                    <SocialMedia />
+                </Row>
+                <Row>
+                    <Col className="text-center">
                         Copyright &copy; Maurice Murphy
                     </Col>
                 </Row>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col, Table, Container } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Preloader } from "../../components/preloader/Preloader";
 import Message from "../../components/message/Message";
 import { getUserDetails, updateUserProfile } from "../../actions/userActions";
 import { USER_UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import { listMyOrders } from "../../actions/orderActions";
+import PaginationComponent from "../../components/pagination-component/PaginationComponent";
 
 function ProfileScreen({ history }) {
     const [name, setName] = useState("");
@@ -27,21 +27,29 @@ function ProfileScreen({ history }) {
     const { success } = userUpdateProfile;
 
     const orderListMy = useSelector((state) => state.orderListMy);
-    const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
+    const {
+        loading: loadingOrders,
+        error: errorOrders,
+        orders,
+        page,
+        pages,
+    } = orderListMy;
+
+    console.log(orders);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        dispatch(listMyOrders());
         if (!userInfo) {
             history.push("/login");
         } else {
             if (!user || !user.name || success) {
                 dispatch({ type: USER_UPDATE_PROFILE_RESET });
                 dispatch(getUserDetails("profile"));
-                dispatch(listMyOrders());
             } else {
                 setName(user.name);
                 setEmail(user.email);
-                dispatch(listMyOrders());
+                // dispatch(listMyOrders());
             }
         }
     }, [dispatch, history, userInfo, user, success]);
@@ -143,9 +151,6 @@ function ProfileScreen({ history }) {
                                     <th>ID</th>
                                     <th>Date</th>
                                     <th>Total</th>
-                                    <th>Paid</th>
-                                    <th>Delivered</th>
-                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -157,25 +162,6 @@ function ProfileScreen({ history }) {
                                             {order.createdOn.substring(0, 10)}
                                         </td>
                                         <td>${order.totalPrice}</td>
-                                        <td>
-                                            {order.isPaid ? (
-                                                order.paidAt.substring(0, 10)
-                                            ) : (
-                                                <i
-                                                    className="fas fa-times"
-                                                    style={{ color: "red" }}
-                                                ></i>
-                                            )}
-                                        </td>
-                                        <td>
-                                            <LinkContainer
-                                                to={`/order/${order._id}`}
-                                            >
-                                                <Button className="btn-sm">
-                                                    Details
-                                                </Button>
-                                            </LinkContainer>
-                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -183,6 +169,7 @@ function ProfileScreen({ history }) {
                     )}
                 </Col>
             </Row>
+            <PaginationComponent page={page} pages={pages} />
         </Container>
     );
 }

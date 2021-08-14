@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Container, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
     listUsers,
     deleteUser,
-    getUserDetails,
     getLoggedInUserDetails,
 } from "../../actions/userActions";
 import Message from "../../components/message/Message";

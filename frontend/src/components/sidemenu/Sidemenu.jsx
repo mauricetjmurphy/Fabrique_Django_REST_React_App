@@ -1,17 +1,8 @@
-import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../actions/userActions";
-import { toggleSidemenu } from "../../actions/pageActions";
-import SearchBox from "../search-box/SearchBox";
-import styled from "styled-components";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./sidemenu.css";
 
 function Sidemenu({ isSidemenuOpen, sidemenuToggle }) {
-    console.log(isSidemenuOpen);
-
     return (
         <ul className={isSidemenuOpen ? "product-menu show" : "product-menu"}>
             <li>

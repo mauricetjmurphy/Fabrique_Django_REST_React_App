@@ -23,6 +23,7 @@ import PlaceOrderPage from "./pages/place-order-page/PlaceOrderPage";
 import UserListPage from "./pages/user-list-page/UserListPage";
 import UpdateUserPage from "./pages/update-user/UpdateUserPage";
 import WishlistPage from "./pages/wish-list-page/WishListPage";
+import OrderListScreen from "./pages/order-list-screen/OrderListScreen";
 
 function App() {
     const [isDropdownOpen, setIsDropdownOpen] = useState();
@@ -55,6 +56,7 @@ function App() {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/profile" component={ProfilePage} />
+            <Route path="/my-orders" component={OrderListScreen} />
             <Route path="/products" component={ProductsPage} />
             <Route path="/product-list/" component={ProductListPage} />
             <Route path="/product/:id" component={ProductPage} />

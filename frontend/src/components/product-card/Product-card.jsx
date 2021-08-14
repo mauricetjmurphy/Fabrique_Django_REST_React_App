@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./product-card.css";
 
 function ProductCard({ product }) {
-    const additionalImage = product.additional_image_link.split(",")[1];
+    const [additionalImage, setAdditionalImage] = useState();
+    // const additionalImage = product.additional_image_link.split(",")[1];
+
+    useEffect(() => {
+        setAdditionalImage(product.additional_image_link.split(",")[1]);
+    }, [product]);
 
     return (
         <Card bsclass="product-card" className="my-3">

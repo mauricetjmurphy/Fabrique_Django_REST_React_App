@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./pagination-component.css";
 import { Link, useHistory } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
 
 const PaginationComponent = ({ page, pages }) => {
     const history = useHistory();
@@ -22,11 +21,8 @@ const PaginationComponent = ({ page, pages }) => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-    console.log(currentPage);
-
     const handleClick = (e) => {
         setCurrentPage(Number(e.target.id));
-        console.log(Number(e.target.id));
     };
 
     const renderPageNumbers = pageNumbers.map((number) => {

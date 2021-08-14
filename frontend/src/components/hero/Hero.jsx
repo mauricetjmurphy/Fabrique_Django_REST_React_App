@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 const HeroSection = styled.section`
