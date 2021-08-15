@@ -110,7 +110,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'frontend/build')
+            r'/Users/mauricemurphy/Documents/Code Institute/Milestone projects/Milestone 4/01 Apps/01_eCommerce/Fabrique/frontend/build'
+            # os.path.join(BASE_DIR, 'frontend/build')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
