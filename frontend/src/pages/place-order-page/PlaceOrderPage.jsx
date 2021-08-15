@@ -36,14 +36,19 @@ function PlaceOrderPage() {
         .reduce((acc, item) => acc + item.price * item.qty, 0)
         .toFixed(2);
 
-    cart.shippingPrice = (cart.itemsPrice > 100 ? 0 : 10).toFixed(2);
+    console.log(cart);
 
-    cart.taxPrice = (0.082 * cart.itemsPrice).toFixed(2);
+    cart.shippingPrice = (Number(cart.itemsPrice) > 100 ? 0 : 10).toFixed(2);
 
-    const total = (cart.totalPrice =
-        Number(cart.itemsPrice) +
-        Number(cart.shippingPrice) +
-        Number(cart.taxPrice));
+    cart.taxPrice = (0.082 * Number(cart.itemsPrice)).toFixed(2);
+
+    const price = Number(cart.itemsPrice);
+    const shipping = Number(cart.shippingPrice);
+    const tax = Number(cart.taxPrice);
+
+    const total = (price + shipping + tax).toFixed(2);
+
+    const stripeTotal = (price + shipping + tax) * 100;
 
     if (!cart.paymentMethod) {
         history.push("/payment");
@@ -171,7 +176,7 @@ function PlaceOrderPage() {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Total: </Col>
-                                    <Col>€ {cart.totalPrice}</Col>
+                                    <Col>€ {total}</Col>
                                 </Row>
                             </ListGroup.Item>
 
@@ -189,26 +194,14 @@ function PlaceOrderPage() {
                                 >
                                     Back
                                 </Button>
-                                {/* <Button
-                                    className="btn btn-block"
-                                    onClick={placeOrder}
-                                >
-                                    Pay with bitcoin
-                                </Button> */}
-                                {/* <CheckoutBtn
-                                    onClick={placeOrder}
-                                    price={total}
-                                    cart={cart}
-                                    total={total}
-                                    width="100%"
-                                /> */}
+
                                 <StripeCheckout
                                     label="Pay Now"
                                     name="Fabrique"
                                     billingAddress
                                     shippingAddress
                                     style={btnStyle}
-                                    amount={total}
+                                    amount={stripeTotal}
                                     panelLabel="Pay Now"
                                     token={placeOrder}
                                     stripeKey={publishableKey}

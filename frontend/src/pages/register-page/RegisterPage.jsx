@@ -142,7 +142,10 @@ const RegisterPage = () => {
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col lg={4}>
-                        Have an account? <Link to="/login">Sign In</Link>
+                        Have an account?{" "}
+                        <Link style={{ color: "#007bff" }} to="/login">
+                            Sign In
+                        </Link>
                     </Col>
                 </Row>
             </Container>
