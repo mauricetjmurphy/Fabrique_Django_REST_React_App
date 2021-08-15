@@ -16,6 +16,8 @@ from datetime import timedelta
 from decouple import config
 from django.conf import settings
 import django_heroku
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -135,18 +137,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': 'localhost',
+#         'PORT': '5000',
+#         # 'HOST': config('DB_HOST'),
+#         # 'PORT': config('DB_PORT')
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5000',
-        # 'HOST': config('DB_HOST'),
-        # 'PORT': config('DB_PORT')
-    }
+    'default': dj_database_url.parse('postgres://ykhysmgtrkdxbg:d97af77932f0aa908c0f9fa7e6ec2ce2e3a6be753a6fcc8c44df29a84a8b04ee@ec2-54-73-58-75.eu-west-1.compute.amazonaws.com:5432/d3n3gg9e0nknks')
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
