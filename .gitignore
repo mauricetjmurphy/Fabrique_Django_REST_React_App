@@ -1,5 +1,6 @@
 # Virtual env
-/venv
+/ven
+/env
 
 # dependencies
 node_modules/
