@@ -23,3 +23,16 @@ div.card-body {
 div.card-title {
     margin: 0 0 10px 0;
 }
+
+@media screen and (max-width: 450px) {
+    .card {
+        display: flex;
+        justify-content: center;
+        width: 80vw;
+    }
+
+    img.card-img {
+        width: 80vw !important;
+        margin: 0 auto;
+    }
+}

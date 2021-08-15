@@ -10,11 +10,20 @@ const SectionTwo = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
     margin: 20px 0 10px 0;
+
+    @media screen and (max-width: 450px) {
+        margin: 5px 0px;
+        grid-gap: 5px;
+    }
 `;
 
 const SectionTwoImg = styled.img`
     object-fit: cover;
     cursor: pointer;
+
+    @media screen and (max-width: 450px) {
+        margin: 0px;
+    }
 `;
 
 const SectionTwoContent = styled.div`
@@ -32,12 +41,22 @@ const SectionThree = styled.div`
     margin-top: 20px;
     overflow: hidden;
     position: relative;
+
+    @media screen and (max-width: 450px) {
+        margin: 0px;
+        padding-bottom: 5px;
+    }
 `;
 
 const SectionThreeImg = styled.img`
     object-fit: cover;
     cursor: pointer;
     padding-bottom: 20px;
+
+    @media screen and (max-width: 450px) {
+        margin: 0px;
+        padding-bottom: 5px;
+    }
 `;
 
 const SectionThreeContent = styled.div`

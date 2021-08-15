@@ -81,19 +81,6 @@ function Dropdown({ dropdownToggle, isDropdownOpen }) {
         <DropdownContainer isDropdownOpen={isDropdownOpen}>
             <DropdownWrapper>
                 <DropdownMenu>
-                    <LinkContainer
-                        style={{
-                            color: "#fff",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: "19px",
-                        }}
-                        onClick={dropdownToggle}
-                        to="/products/?category=&page=1"
-                    >
-                        <Nav.Link>Shop</Nav.Link>
-                    </LinkContainer>
                     <DropdownLink>
                         {userInfo && userInfo.isAdmin && (
                             <NavDropdown title="Admin" id="adminmenu">
@@ -114,6 +101,20 @@ function Dropdown({ dropdownToggle, isDropdownOpen }) {
                             </NavDropdown>
                         )}
                     </DropdownLink>
+                    <LinkContainer
+                        style={{
+                            color: "#fff",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: "19px",
+                        }}
+                        onClick={dropdownToggle}
+                        to="/products/?category=&page=1"
+                    >
+                        <Nav.Link>Shop</Nav.Link>
+                    </LinkContainer>
+
                     <DropdownLink>
                         {userInfo ? (
                             <NavDropdown title="Account" id="username">
@@ -143,7 +144,7 @@ function Dropdown({ dropdownToggle, isDropdownOpen }) {
                             fontSize: "19px",
                         }}
                         onClick={dropdownToggle}
-                        to="/whishlist"
+                        to="/wishlist"
                     >
                         <Nav.Link>Wishlist</Nav.Link>
                     </LinkContainer>

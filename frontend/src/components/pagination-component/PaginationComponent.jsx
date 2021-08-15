@@ -73,8 +73,8 @@ const PaginationComponent = ({ page, pages }) => {
     }
 
     return (
-        <div>
-            <ul className="pageNumbers m-5">
+        <di>
+            <ul className="pageNumbers">
                 <Link to={`${searchParam}&page=${page - 1}`}>
                     <li className="prev">
                         <button
@@ -112,7 +112,7 @@ const PaginationComponent = ({ page, pages }) => {
                     </li>
                 </Link>
             </ul>
-        </div>
+        </di>
     );
 };
 

@@ -52,7 +52,7 @@ const WishlistPage = ({ match, location, history }) => {
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
-            <Row>
+            <Row style={{ minHeight: "100vh" }}>
                 <Col md={12}>
                     <h1 className="justify-content-center mt-5 mb-5 text-center">
                         Wishlist

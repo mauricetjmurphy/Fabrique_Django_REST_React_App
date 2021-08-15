@@ -59,7 +59,7 @@ function ProductsPage({ history, match }) {
             style={{ marginTop: "70px", minHeight: "90vh", padding: "0 50px" }}
             fluid
         >
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-center">
                 <h2 className="m-5">
                     {searchTerm && searchTerm !== "&page"
                         ? category
@@ -85,7 +85,7 @@ function ProductsPage({ history, match }) {
                     {searchedProducts &&
                         searchedProducts.map((product, i) => (
                             <Col
-                                style={{ marginBottom: "30px" }}
+                                style={{ margin: "0 auto 30px auto" }}
                                 key={product.product_id}
                                 sm={12}
                                 md={6}

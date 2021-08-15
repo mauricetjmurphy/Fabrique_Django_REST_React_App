@@ -17,8 +17,12 @@ const NavContainer = styled.nav`
     justify-content: space-between;
     padding: 1rem 2rem;
     position: fixed;
-    width: 100%;
-    z-index: 50;
+    width: 100vw;
+    z-index: 500;
+
+    @media screen and (max-width: 450px) {
+        justify-content: center;
+    }
 `;
 
 const BrandContainer = styled.div`

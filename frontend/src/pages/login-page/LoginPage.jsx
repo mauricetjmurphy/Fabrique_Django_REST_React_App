@@ -52,8 +52,10 @@ const LoginPage = () => {
                             fontSize: "30px",
                             width: "100%",
                             fontWeight: "bold",
+                            margin: "0 auto 40px auto",
+                            textAlign: "center",
                         }}
-                        className="text-center"
+                        className="text-cente"
                     >
                         Welcome to Fabrique
                     </p>

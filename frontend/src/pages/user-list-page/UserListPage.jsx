@@ -47,7 +47,7 @@ function UserListPage() {
                 minHeight: "90vh",
             }}
         >
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-center">
                 <h1 className="text-center m-5">Users</h1>
             </Row>
 

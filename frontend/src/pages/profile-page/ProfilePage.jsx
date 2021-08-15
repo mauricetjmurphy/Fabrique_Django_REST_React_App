@@ -74,7 +74,7 @@ function ProfileScreen({ history }) {
     };
     return (
         <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-center">
                 <h2 className="text-center mt-5">Update Profile</h2>
             </Row>
             <Row className="m-5 justify-content-md-center">
@@ -137,7 +137,7 @@ function ProfileScreen({ history }) {
                     </Form>
                 </Col>
             </Row>
-            <Row className="m-5 justify-content-md-center">
+            <Row className="m-5 justify-content-center">
                 <Col md={9}>
                     <h2 className="text-center m-5">My Orders</h2>
                     {loadingOrders ? (
