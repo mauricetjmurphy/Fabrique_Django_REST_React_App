@@ -41,25 +41,33 @@ const LoginPage = () => {
     };
 
     return (
-        <Container style={{ marginTop: "70px", minHeight: "90vh" }}>
-            <Row className="m-5 justify-content-md-center">
-                {error && <Message variant="danger">{error}</Message>}
-            </Row>
-            <Row className="justify-content-center border-bottom ">
-                <Col sm={6} md={6} lg={6}>
-                    <p
-                        style={{
-                            fontSize: "30px",
-                            width: "100%",
-                            fontWeight: "bold",
-                            margin: "0 auto 40px auto",
-                            textAlign: "center",
-                        }}
-                        className="text-cente"
-                    >
-                        Welcome to Fabrique
-                    </p>
-                </Col>
+        <Container
+            style={{
+                marginTop: "70px",
+                minHeight: "90vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+            }}
+        >
+            {error && (
+                <Row className="m-5 justify-content-center">
+                    <Message variant="danger">{error}</Message>
+                </Row>
+            )}
+            <Row className="justify-content-center">
+                <p
+                    style={{
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        margin: "0 auto",
+                        padding: "40px",
+                        textAlign: "center",
+                    }}
+                    className="border-bottom"
+                >
+                    Welcome to Fabrique
+                </p>
             </Row>
             <Row className="m-2 justify-content-center">
                 <h2>Login</h2>

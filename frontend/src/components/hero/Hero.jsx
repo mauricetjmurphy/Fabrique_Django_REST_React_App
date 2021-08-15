@@ -7,7 +7,6 @@ const HeroSection = styled.section`
     max-height: 1100px;
     position: relative;
     overflow: hidden;
-    margin-top: 20px;
 `;
 
 const HeroWrapper = styled.div`
@@ -116,6 +115,12 @@ const Button = styled.a`
         text-decoration: none;
         background: #fff;
         color: #111;
+    }
+
+    @media screen and (max-width: 450px) {
+        width: 50vw;
+        padding: 10px;
+        font-size: 16px;
     }
 `;
 

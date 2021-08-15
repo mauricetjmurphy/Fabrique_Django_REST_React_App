@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import Bag from "../bag/Bag";
 import "./navbar.css";
+import { Fragment } from "react";
 
 const NavContainer = styled.nav`
     height: 70px;
@@ -98,70 +99,77 @@ function NewNavbar({ dropdownToggle, sidemenuToggle }) {
     }, [navbarFade]);
 
     return (
-        <NavContainer
-            style={
-                navbarFade
-                    ? { opacity: "0.6", transition: "1s ease-in-out" }
-                    : { opacity: "1", transition: "1s ease-in-out" }
-            }
-        >
-            <BrandContainer>
-                <Brand to="/">Fabrique</Brand>
-            </BrandContainer>
+        <Fragment>
+            <LinkContainer to="/cart">
+                <Nav.Link className="hidden-bag">
+                    <Bag number={cartItems.length} />
+                </Nav.Link>
+            </LinkContainer>
+            <NavContainer
+                style={
+                    navbarFade
+                        ? { opacity: "0.6", transition: "1s ease-in-out" }
+                        : { opacity: "1", transition: "1s ease-in-out" }
+                }
+            >
+                <BrandContainer>
+                    <Brand to="/">Fabrique</Brand>
+                </BrandContainer>
 
-            <Toggle onClick={dropdownToggle} />
+                <Toggle onClick={dropdownToggle} />
 
-            <NavMenu>
-                {userInfo && userInfo.isAdmin && (
-                    <NavDropdown
-                        title="Admin"
-                        style={{ color: "#fff" }}
-                        id="adminmenu"
-                    >
-                        <LinkContainer to="/user-list/?param=">
-                            <NavDropdown.Item>Users</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/product-list/?category=&page=1">
-                            <NavDropdown.Item>Products</NavDropdown.Item>
-                        </LinkContainer>
-                    </NavDropdown>
-                )}
-
-                <Nav>
-                    <div>
-                        <Nav.Link onClick={sidemenuToggle}>Shop</Nav.Link>
-                    </div>
-
-                    <LinkContainer to="/wishlist">
-                        <Nav.Link>Wishlist</Nav.Link>
-                    </LinkContainer>
-
-                    {userInfo ? (
-                        <NavDropdown title="Account" id="username">
-                            <LinkContainer to="/profile/?param=&page=1">
-                                <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavMenu>
+                    {userInfo && userInfo.isAdmin && (
+                        <NavDropdown
+                            title="Admin"
+                            style={{ color: "#fff" }}
+                            id="adminmenu"
+                        >
+                            <LinkContainer to="/user-list/?param=">
+                                <NavDropdown.Item>Users</NavDropdown.Item>
                             </LinkContainer>
-                            <NavDropdown.Item onClick={logoutHandler}>
-                                Logout
-                            </NavDropdown.Item>
+                            <LinkContainer to="/product-list/?category=&page=1">
+                                <NavDropdown.Item>Products</NavDropdown.Item>
+                            </LinkContainer>
                         </NavDropdown>
-                    ) : (
-                        <LinkContainer to="/login">
-                            <Nav.Link>Login</Nav.Link>
-                        </LinkContainer>
                     )}
 
-                    <LinkContainer to="/cart">
-                        <Nav.Link>
-                            <Bag number={cartItems.length} />
-                        </Nav.Link>
-                    </LinkContainer>
-                </Nav>
-            </NavMenu>
-            <NavMenu>
-                <SearchBox />
-            </NavMenu>
-        </NavContainer>
+                    <Nav>
+                        <div>
+                            <Nav.Link onClick={sidemenuToggle}>Shop</Nav.Link>
+                        </div>
+
+                        <LinkContainer to="/wishlist">
+                            <Nav.Link>Wishlist</Nav.Link>
+                        </LinkContainer>
+
+                        {userInfo ? (
+                            <NavDropdown title="Account" id="username">
+                                <LinkContainer to="/profile/?param=&page=1">
+                                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                                </LinkContainer>
+                                <NavDropdown.Item onClick={logoutHandler}>
+                                    Logout
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        ) : (
+                            <LinkContainer to="/login">
+                                <Nav.Link>Login</Nav.Link>
+                            </LinkContainer>
+                        )}
+
+                        <LinkContainer to="/cart">
+                            <Nav.Link>
+                                <Bag number={cartItems.length} />
+                            </Nav.Link>
+                        </LinkContainer>
+                    </Nav>
+                </NavMenu>
+                <NavMenu>
+                    <SearchBox />
+                </NavMenu>
+            </NavContainer>
+        </Fragment>
     );
 }
 

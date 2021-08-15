@@ -48,7 +48,7 @@ const RegisterPage = () => {
         <div>
             <Container style={{ marginTop: "100px", minHeight: "90vh" }}>
                 {message && (
-                    <Row className="m-5 justify-content-md-center">
+                    <Row className="m-5 justify-content-center">
                         <Message variant="danger">{message}</Message>
                     </Row>
                 )}
@@ -63,7 +63,7 @@ const RegisterPage = () => {
                     <h1>Register</h1>
                 </Row>
                 <Row className="justify-content-center">
-                    <Col lg={4}>
+                    <Col xs={8} sm={8} md={6} lg={6}>
                         <Form onSubmit={submitHandler}>
                             <Form.Group className="mb-3" controlId="formName">
                                 <Form.Label>Full Name</Form.Label>
@@ -140,10 +140,13 @@ const RegisterPage = () => {
                         </Form>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
-                    <Col lg={4}>
+                <Row className="justify-content-center">
+                    <Col xs={8} sm={8} md={6} lg={6}>
                         Have an account?{" "}
-                        <Link style={{ color: "#007bff" }} to="/login">
+                        <Link
+                            style={{ color: "#007bff", textAlign: "center" }}
+                            to="/login"
+                        >
                             Sign In
                         </Link>
                     </Col>

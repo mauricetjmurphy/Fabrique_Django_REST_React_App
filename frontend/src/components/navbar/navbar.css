@@ -26,3 +26,16 @@ p {
     margin: 0;
     color: #000;
 }
+
+.hidden-bag {
+    display: none;
+}
+
+@media screen and (max-width: 450px) {
+    .hidden-bag {
+        display: block;
+        margin-right: auto;
+        margin-top: 15px;
+        z-index: 501;
+    }
+}
