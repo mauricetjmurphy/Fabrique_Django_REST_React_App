@@ -23,6 +23,9 @@ import dj_database_url
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Configure app for Heroku deployment
+django_heroku.settings(locals())
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -32,7 +35,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fabrique-django-react-app.herokuapp.com']
+ALLOWED_HOSTS = ['*','fabrique-django-react-app.herokuapp.com']
 
 
 # Application definition
