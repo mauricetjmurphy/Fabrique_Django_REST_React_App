@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
@@ -60,18 +60,6 @@ const HeroImage = styled.img`
     height: 100vh !important;
     object-fit: cover;
     animation: fadeInOut 3s;
-
-    @keyframes fadeInOut {
-        0% {
-            opacity: 0;
-        }
-        50% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
 `;
 
 const HeroContentContainer = styled.div`
@@ -126,21 +114,6 @@ const Button = styled.a`
 
 function Hero({ SlideData }) {
     const history = useHistory();
-    const [current, setCurrent] = useState(0);
-    const length = SlideData.length;
-    const timeout = useRef(null);
-
-    useEffect(() => {
-        const nextSlide = () => {
-            setCurrent((current) => (current === length - 1 ? 0 : current + 1));
-        };
-        timeout.current = setTimeout(nextSlide, 3000);
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        };
-    }, [current, length]);
 
     const shopHandle = () => {
         history.push("/products/?category=&page=1");
@@ -154,15 +127,11 @@ function Hero({ SlideData }) {
                     <Button onClick={shopHandle}>Shop Collection</Button>
                 </HeroContentContainer>
 
-                {SlideData.map((slide, index) => (
-                    <HeroSlide key={index}>
-                        {index === current && (
-                            <HeroSlider style={{ background: "#111" }}>
-                                <HeroImage src={slide.image}></HeroImage>
-                            </HeroSlider>
-                        )}
-                    </HeroSlide>
-                ))}
+                <HeroSlide>
+                    <HeroSlider style={{ background: "#111" }}>
+                        <HeroImage src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/hero_img3.jpg"></HeroImage>
+                    </HeroSlider>
+                </HeroSlide>
             </HeroWrapper>
         </HeroSection>
     );

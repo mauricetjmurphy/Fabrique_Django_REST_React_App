@@ -114,7 +114,7 @@ function Dropdown({ dropdownToggle, isDropdownOpen, sidemenuToggle }) {
                             justifyContent: "center",
                             fontSize: "19px",
                         }}
-                        onClick={menuHandle}
+                        onClick={dropdownToggle}
                         to="/products/?category=&page=1"
                     >
                         <Nav.Link>Shop</Nav.Link>
