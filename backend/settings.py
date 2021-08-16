@@ -15,7 +15,6 @@ from pathlib import Path
 from datetime import timedelta
 from decouple import config
 from django.conf import settings
-import django_heroku
 import dj_database_url
 
 

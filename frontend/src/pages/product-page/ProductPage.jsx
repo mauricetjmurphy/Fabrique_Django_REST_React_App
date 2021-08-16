@@ -38,6 +38,7 @@ function ProductPage({ match, history }) {
     const [qty, setQty] = useState(1);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
+    const [message, setMessage] = useState("Product already reviewed");
 
     const productDetails = useSelector((state) => state.productDetails);
     const { error, loading, product } = productDetails;
@@ -79,6 +80,9 @@ function ProductPage({ match, history }) {
     };
 
     const submitHandler = (e) => {
+        if (errorProductReview) {
+            setMessage("Product already reviewed");
+        }
         e.preventDefault();
         dispatch(
             createProductReview(match.params.id, {
@@ -87,7 +91,23 @@ function ProductPage({ match, history }) {
             })
         );
         dispatch(listProductDetails(match.params.id));
+
+        setRating("");
+        setComment("");
     };
+
+    useEffect(() => {
+        if (errorProductReview) {
+            setMessage("Product already reviewed");
+        }
+        const timer = window.setTimeout(() => {
+            setMessage("");
+        }, 5000);
+        return () => {
+            // Return callback to run on unmount.
+            window.clearInterval(timer);
+        };
+    }, []);
 
     return (
         <Container style={{ marginTop: "70px", minHeight: "100vh" }}>
@@ -249,9 +269,9 @@ function ProductPage({ match, history }) {
                                             Review Submitted
                                         </Message>
                                     )}
-                                    {errorProductReview && (
+                                    {errorProductReview && message && (
                                         <Message variant="danger">
-                                            {errorProductReview}
+                                            {message}
                                         </Message>
                                     )}
 
@@ -311,8 +331,13 @@ function ProductPage({ match, history }) {
                                     ) : (
                                         <Message variant="info">
                                             Plaes login{" "}
-                                            <Link to="/login">Login</Link> to
-                                            write a review
+                                            <Link
+                                                style={{ color: "#007bff" }}
+                                                to="/login"
+                                            >
+                                                Login
+                                            </Link>{" "}
+                                            to write a review
                                         </Message>
                                     )}
                                 </ListGroup.Item>

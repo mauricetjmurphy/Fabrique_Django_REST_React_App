@@ -46,6 +46,7 @@ function App() {
             <DropdownMenu
                 isDropdownOpen={isDropdownOpen}
                 dropdownToggle={dropdownToggle}
+                sidemenuToggle={sidemenuToggle}
             />
             <Sidemenu
                 isSidemenuOpen={isSidemenuOpen}
@@ -56,7 +57,12 @@ function App() {
             <Route path="/register" component={RegisterPage} />
             <Route path="/profile" component={ProfilePage} />
             <Route path="/my-orders" component={OrderListScreen} />
-            <Route path="/products" component={ProductsPage} />
+            <Route
+                path="/products"
+                render={(props) => (
+                    <ProductsPage {...props} sidemenuToggle={sidemenuToggle} />
+                )}
+            />
             <Route path="/product-list/" component={ProductListPage} />
             <Route path="/product/:id" component={ProductPage} />
             {/* The ? in the url make the id parameter optional */}

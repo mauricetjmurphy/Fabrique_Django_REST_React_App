@@ -90,7 +90,7 @@ def getUsers(request):
     users = User.objects.all()
 
     page = request.query_params.get('page')
-    paginator = Paginator(users, 2)
+    paginator = Paginator(users, 10)
     
     try:
         users = paginator.page(page)

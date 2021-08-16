@@ -127,6 +127,7 @@ const UpdateUserPage = ({ match }) => {
                                 >
                                     <Form.Label>Email address</Form.Label>
                                     <Form.Control
+                                        required
                                         type="email"
                                         placeholder="Enter email"
                                         //value is set to the email state

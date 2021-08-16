@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { listProducts, searchProducts } from "../../actions/productActions";
 import Message from "../../components/message/Message";
 import ProductCard from "../../components/product-card/Product-card";
 import SkeletonCard from "../../components/skeleton/SkeletonCard";
 import PaginationComponent from "../../components/pagination-component/PaginationComponent";
 import "./products-page.css";
+import { login } from "../../actions/userActions";
 
-function ProductsPage({ history, match }) {
+function ProductsPage({ history, match, sidemenuToggle }) {
     const dispatch = useDispatch();
-    const [category, setCategory] = useState();
+
     const [skeleton, setSkeleton] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
-    // const [searchParam, setSearchParam] = useState("");
 
     const searchParam = history.location.search;
+    const category = history.location.search.split("=")[1].split("&")[0];
 
     // useSelector is used to get specific parts of the state
     const productList = useSelector((state) => state.productList);
@@ -34,9 +36,6 @@ function ProductsPage({ history, match }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (category) {
-            setCategory(history.location.search.split("=")[1].split("&")[0]);
-        }
 
         if (searchParam.split("=")[0] === "?keyword") {
             setSearchTerm(history.location.search.split("=")[1].split("&")[0]);
@@ -59,6 +58,21 @@ function ProductsPage({ history, match }) {
             style={{ marginTop: "70px", minHeight: "90vh", padding: "0 50px" }}
             fluid
         >
+            <Row className="category-filter justify-content-center">
+                <Button
+                    onClick={sidemenuToggle}
+                    style={{
+                        background: "#f4f5f7",
+                        border: "1px solid #000",
+                        color: "#000",
+                        margin: "30px 0 0 0",
+                        width: "150px",
+                        outline: "none",
+                    }}
+                >
+                    Category
+                </Button>
+            </Row>
             <Row className="justify-content-center">
                 <h2 className="m-5">
                     {searchTerm && searchTerm !== "&page"

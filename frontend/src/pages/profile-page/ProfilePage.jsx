@@ -68,8 +68,11 @@ function ProfileScreen({ history }) {
                     password: password,
                 })
             );
-            setMessage("");
-            history.push("/user-list/");
+            setMessage("Profile updated");
+
+            const timeoutID = window.setTimeout(() => {
+                setMessage("");
+            }, 5000);
         }
     };
     return (
@@ -79,7 +82,7 @@ function ProfileScreen({ history }) {
             </Row>
             <Row className="m-5 justify-content-md-center">
                 <Col md={6}>
-                    {message && <Message variant="danger">{message}</Message>}
+                    {message && <Message variant="success">{message}</Message>}
                     {error && <Message variant="danger">{error}</Message>}
                     {loading && <Preloader />}
                     <Form onSubmit={submitHandler}>

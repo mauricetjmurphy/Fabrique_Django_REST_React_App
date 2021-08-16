@@ -60,7 +60,7 @@ const SearchContainer = styled.div`
     margin-top: 3rem;
 `;
 
-function Dropdown({ dropdownToggle, isDropdownOpen }) {
+function Dropdown({ dropdownToggle, isDropdownOpen, sidemenuToggle }) {
     const history = useHistory();
     const dispatch = useDispatch();
     //Getting the userLogin state from the store.js
@@ -75,6 +75,11 @@ function Dropdown({ dropdownToggle, isDropdownOpen }) {
         // dispatch the logout action and redirect the user to the login page
         dispatch(logout());
         history.push("/login");
+    };
+
+    const menuHandle = () => {
+        dropdownToggle;
+        sidemenuToggle;
     };
 
     return (
@@ -109,7 +114,7 @@ function Dropdown({ dropdownToggle, isDropdownOpen }) {
                             justifyContent: "center",
                             fontSize: "19px",
                         }}
-                        onClick={dropdownToggle}
+                        onClick={menuHandle}
                         to="/products/?category=&page=1"
                     >
                         <Nav.Link>Shop</Nav.Link>

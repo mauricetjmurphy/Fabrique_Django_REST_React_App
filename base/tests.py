@@ -79,7 +79,7 @@ class ProductDeleteTestCase(TestSetUp):
 
 #----------User-----------#
 
-class UserUpdateTestCase(TestSetUp):
+class UpdateUserTestCase(TestSetUp):
 
     def test_update_user(self):
         product = Product.objects.first()
@@ -110,7 +110,7 @@ class RegisterUserTestCase(TestSetUp):
             self.assertEqual(response.data[attr], expected_value)
 
 
-class UserDeleteTestCase(TestSetUp):
+class DeleteUserTestCase(TestSetUp):
 
     def test_delete_user(self):
         initial_user_count = User.objects.count()

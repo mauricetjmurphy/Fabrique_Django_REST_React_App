@@ -4,29 +4,18 @@
 
 ---
 
-- [Testing](#testing)
-  - [Table of Contents](#table-of-contents)
-  - [User Stories](#user-stories)
-  - [Manual Testing](#manual-testing)
-    - [Usability testing](#usability-testing)
-    - [Non existing endpoints](#non-existing-endpoints)
-    - [Manual](#manual)
-    - [Automated](#automated)
-      - [Unittesting](#unittesting)
-    - [Validators](#validators)
-      - [1. HTML5](#1-html5)
-      - [2. CSS3](#2-css3)
-      - [3. JavaScript](#3-javascript)
-      - [4. Browsers](#4-browsers)
-      - [5. Responsivness](#5-responsivness)
-      - [6. Form Validation](#6-form-validation)
-  - [Unit Testing](#unit-testing)
-    - [Django REST API test cases](#django-rest-api-test-cases)
-  - [Defensive Programming](#defensive-programming)
+-   [User Stories](#user-stories)
+-   [Manual Testing](#manual-testing)
+
+    -   [Usability testing](#usability-testing)
+
+-   [API Testing](#api-testing)
+    -   [Postman](#postman)
+-   [Unit Testing](#unit-testing)
 
 ---
 
-## User Stories
+## [User Stories](#user-stories)
 
 ---
 
@@ -78,110 +67,73 @@
 
 ---
 
-## Manual Testing
+## [Manual Testing](#manual-testing)
 
 ---
+
+1. Register
+
+    - Tested the validation on the register form fields. Received the error "Please fill in this field".
+    - Tested to register with an incorrect email address format. Received the errors for incorrect email formatting.
+
+2. Login
+
+    - Tested to submit the login form with blank fields. Received the error "Please fill in this field".
+    - Tested to submit a form with a user detail that do not exist in the database. Error message warns the user that No active account found with the given credentials.
+
+3. Update user
+
+    - Tested updating the user successfully.
+    - Tested the email validation.
+
+4. Upload product
+
+    - Tested the product upload successfully.
+    - Intenionally left the fields unvalidated.
+
+5. Delete product
+
+    - Tested the product delete.
+    - Product deleted successfully.
+
+6. Update profile
+
+    - Tested the update profile successfully.
+    - User receives a success message on successful update.
+
+7. Checkout payment
+
+    - Payment modal provides the user with a green tick on success of payment.
 
 ### Usability testing
 
 Useability testing for this website was achieved by sending a live link of the site to a selected group of people and setting them a number of navigation tasks to carry out. Users reported that they could easily accomplish their tasks and navigate seemlessly through the site.
 
-### Non existing endpoints
+---
 
-I have added custom 404 and 500 error pages
-
-![Error page](https://res.cloudinary.com/gemtech-solutions/image/upload/v1622798866/The%20Foodie/404_e17smz.jpg)
-
-### Manual
-
-1. Register
-
-    - Tested to submit the signup form with blank fields. Received the error "This field is required".
-    - Tested to register with an incorrect email address format. Received the error "Please enter a vlaid email.
-
-2. Login
-
-    - Tested to submit the login form with blank fields. Received the error "This field is required".
-    - Tested to submit a form with a user detail that do not exist in the database. Flash message warns the user to check username and password
-
-3. Recipe Form
-
-    - Tested to submit empty form and verify that no recipe has been added to any category page.
-    - Tested to submit filled out form with data in all fields.
-    - Tested to submit the form with empty fields. Some fields have been intenionally left open to blank data.
-
-4. Update Recipe
-
-    - Tested to change some data on the form and resubmit the form.
-    - Tested to submit filled out form with data in all fields.
-    - Tested to submit the form with empty fields. Some fields have been intenionally left open to blank data.
-
-5. Delete Recipe
-
-    - Tested to delete a recipe.
-    - The delete button opens a modal that asks the user if they would like to delete or not.
-
-![Main responsive image](https://res.cloudinary.com/gemtech-solutions/image/upload/v1623258547/The%20Foodie/Screenshot_2021-06-09_at_18.08.45_wdqpau.png)
-
-6. Logout
-
-    - Tested the logout route
-    - If the user is logged out the Flask-login "@Login_required" redirects the user back to the login page and displays a flash messages to say that login is required.
-
-### Automated
-
-#### Unittesting
-
-Automated testing was carried out on specific parts of the application. Python comes with a built in set of tools and libraries that can be used to test for your application.
-
-I mainly trsted the http routes and checked for a 200 success response. I also tested for specific response data on all routes. Flask-login auth blocked the test response so I temporarily disabled the @Login_required decorators before running the tests.
-
-All tests can be found in the test_app.py file.
-
-### Validators
-
-#### 1. HTML5
-
--   W3C HTML Validator
-    -   Document checking on HTML. All warning that remain are related to the Jinja templating and cannot be avoided.
-
-#### 2. CSS3
-
--   W3C CSS Validator
-    -   No errors found
-
-#### 3. JavaScript
-
--   JsHint Metrics
-
-    -   There are 5 functions in this file.
-    -   Function with the largest signature take 0 arguments, while the median is 0.
-    -   Largest function has 6 statements in it, while the median is 3.
-    -   The most complex function has a cyclomatic complexity value of 2 while the median is 1.
-
--   Warnings
-    -   'template literal syntax' is only available in ES6 (use 'esversion: 6').
-
-#### 4. Browsers
-
--   The app was tested on the four most used browsers Chrome, Safari, Internet Explorer and Firefox, according to W3Counter. The main testing was done with the Chrome DevTools.
-
-#### 5. Responsivness
-
--   Responsive design was factored in during the design of the app. This was achieved with a combination of Bootstrap, CSS Grid, CSS Flexbox and media queries. The media queries changed the screen layout as the screen size changed.
-
-#### 6. Form Validation
-
-All form fields in this projct are validated using flask wtf form validators. Any form field not using WTF validation, will contain the HTML ‘required’ property for validation. By catching invalid data on the client-side, the user can fix it straight away.
-
-## Unit Testing
+## [API testing](#api-testing)
 
 ---
 
-### Django REST API test cases
+### Postman
+
+I used Postman to test API endpoints during the development of this project. I set up a project collection and template URL so that I could regularly test the route responses.
 
 ---
 
-## Defensive Programming
+## [Unit testing](#unit-testing)
 
 ---
+
+Unit testing was carried out on specific parts of the application. Django REST framwork provides test case classes for this task. The test cases use the Django HTTP client to test the API views. For this I needed to import API test case from REST framework. All test can be found in the test.py file in base/tests.py.
+
+    from rest_framework.test import APITestCase
+
+The following tests were carried out:
+
+-   Tested the get product route and response.
+-   Tested the get products route and response.
+-   Tested the delete product route and response.
+-   Tested the update user route and response.
+-   Tested the register user route and response.
+-   Tested the delete user route and response

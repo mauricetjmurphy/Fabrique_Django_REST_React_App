@@ -1,10 +1,10 @@
 # Fabrique
 
-![Main responsive image]()
+![Main image](data/main_image.png)
 
 Fabrique is an ecommerce platform where customers can browse through hundreds of products. Users can login to see their previous orders and manage their account information. The users can also add products to cart and checkout, using stripe payments to purchase the products. Admin staff can log also login and manage all user accounts and products.
 
-[Visit deployed website]()
+[Visit deployed website](https://fabrique-django-react-app.herokuapp.com/)
 
 ## Table of Contents
 
@@ -35,14 +35,22 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
     - [Future features](#future-features)
   - [Database models and schema](#database-models-and-schema)
     - [Models](#models)
+    - [Switching from SQLite to Postgres](#switching-from-sqlite-to-postgres)
     - [Diagram](#diagram)
   - [Technologies used](#technologies-used)
   - [Deployment](#deployment)
-    - [React Deployment](#react-deployment)
+    - [React Deployment Preparation](#react-deployment-preparation)
+    - [Django Deployment Preparation](#django-deployment-preparation)
+    - [AWS S3 Bucket](#aws-s3-bucket)
+    - [Heroku Deployment](#heroku-deployment)
   - [Testing](#testing)
+  - [Defensive Programming](#defensive-programming)
   - [Performance](#performance)
     - [Lazy Loading](#lazy-loading)
   - [Credits](#credits)
+    - [Code](#code)
+    - [Images](#images-1)
+  - [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -95,6 +103,8 @@ As a user I would like to:
 ---
 
 ### Color Scheme
+
+![Main image](data/color_palette.png)
 
 ### Typography
 
@@ -190,7 +200,12 @@ As a user I would like to:
 
 ### Future features
 
+Several features are missing for this site due to the fact that I ran out of time while developing this project.
+
 -   [ ] Sort products by price
+-   [ ] Modal to confirm the deleting of an item
+-   [ ] Reset password link
+-   [ ] Google login
 
 ---
 
@@ -208,11 +223,42 @@ Where possible, first-time-right methodology was approached when creating the mo
 
 -   User
     -   This model came from the django.contrib.auth model class. It provided all the inbuilt User object fields.
--   ## Product
+-   Product
+    -   This model holds the information on each product in the store. It has a on-to-many relation ship with the user.
 -   Order
+    -   This model describes an overview of the order details. It has a on-to-many relation ship with the user.
 -   Order Item
+    -   This model describes the individual items within an order. It has a on-to-many relation ship with the Order.
 -   Shipping Address
+    -   This model describes the shipping address the order. It has a on-to-one relation ship with the Order. Each order can only have one shipping address.
 -   Review
+    -   This model stores the user reviews for each product. It has a on-to-many relation ship with the product.
+
+### Switching from SQLite to Postgres
+
+-   Installed the dj_database_url to utilize the 12factor inspired DATABASE_URL environment variable to configure my Django application.
+
+          pip install dj_database_url
+
+-   Imported the dj_database_url module
+
+        import dj_database_url
+
+-   I replaced the Postgres database URL with the env variable
+
+        DATABASES = {'default': dj_database_url.parse(POSTGRES_URL)
+
+-   To transfer the data from the SQLite database to the Postgres Database I did the following steps:
+
+    -   Connected my manage.py file to my SQLite database.
+    -   Used the following command to backup my current database and load it into a db.json file:
+
+            ./manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+
+    -   Connected my manage.py file to my postgres database
+    -   Used this command to load my data from the db.json file into postgres:
+
+            ./manage.py loaddata db.json
 
 ### Diagram
 
@@ -228,7 +274,7 @@ This ecommerce site was built using the Django REST framework to provide a backe
 
 -   HTML 5
 -   CSS 3
--   jQuery
+-   Javascript
 -   React.js
     -   React bootstrap
     -   React router bootstrap
@@ -253,6 +299,7 @@ This ecommerce site was built using the Django REST framework to provide a backe
 -   Firefox Developer tools
 -   Safari Web Inspector
 -   Postman API testing
+-   Postgres Database
 
 ---
 
@@ -262,9 +309,77 @@ This ecommerce site was built using the Django REST framework to provide a backe
 
 ---
 
-### React Deployment
+### React Deployment Preparation
 
-In preparation for deployment I have to bundle my react files into static assets. Npm run build created a build directory with a production build of my app. I set up my HTTP server so that a visitor to the site is served index.html, and requests to static paths like /static/js/main.<hash>.js are served with the contents of the /static/js/main.<hash>.js file.
+-   Add a Hash Router to deal with SPA routing URL issues.
+-   In preparation for deployment I bundled my react files into static assets.
+
+        npm run build
+
+### Django Deployment Preparation
+
+-   In the Django settings the Django templates route has to point to the React build folder.
+-   Configure staticfiles_dirs to point to the React static files.
+
+### AWS S3 Bucket
+
+-   I used AWS S3 Bucket to store and serve my static images for the site.
+
+### Heroku Deployment
+
+-   Create a new app on Heroku
+-   Connected the new app with the my github repository
+-   Set the Heroku environment variables
+-   Add the Heroku buildpack (Python beacause we are using Django)
+-   Install gunicorn to connect our app to the wsgi file
+
+        pip install gunicorn
+
+-   Create a Procfile and configure the process type for the Dyno
+
+          touch Procfile
+
+-   In the file point to the wsgi
+
+          web: gunicorn backend.wsgi --log-file -
+
+-   Set debug mode to false in the settings.py file
+
+          DEBUG=False
+
+-   Add the allowed hosts to the settings.py file
+
+        ALLOWED_HOSTS = ['fabrique-django-react-app.herokuapp.com']
+
+-   Set static root to server the static files
+
+        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+-   Run the collectstatic command to bundle all static files into a single directory
+
+        python manage.py collectstatic
+
+-   Install whitenoise to allow Django sever its own static files in production
+
+          pip install whitenoise
+
+-   Add the whitenoise middleware to settings.py
+
+-   Add a project requirements.txt file to store the projects dependency list.
+
+         pip freeze > requirements.txt
+
+-   Add the runtime.txt to indicate the version of python
+
+          touch runtime.txt
+
+-   Final git commit and push to Github
+-   In the Heroku GUI click on deploy app.
+-   A common error that occurs while deploying is the following
+
+        Error while running '$ python manage.py collectstatic --noinput'
+
+-   The solution to this is to add the DISABLE_COLLECTSTATIC=1 to the Heroku Confin Vars.
 
 ## Testing
 
@@ -273,6 +388,12 @@ In preparation for deployment I have to bundle my react files into static assets
 The testing information can be located in the following link.
 
 [Testing file](README_TESTING.md)
+
+---
+
+## Defensive Programming
+
+---
 
 ---
 
@@ -291,3 +412,23 @@ I have use the new html "loading=lazy" attribute throughout the app. The loading
 ## Credits
 
 ---
+
+### Code
+
+-   Stack Overflow
+-   W3Schools
+-   MDN Web Docs
+
+### Images
+
+-   Pexels
+-   Unsplash
+-   Stocksnap
+
+## Acknowledgements
+
+This app was built using React JS and the Django REST Framework. I would like to give a big thanks to all the Django and React community that help developers like myself become better ones.
+
+I would also like to thank the stack overflow community that helped me to solve the issues that I faced throughout this project.
+
+Finally, I would like to thank all the Youtube contributors, providing endless amounts of educational content.
