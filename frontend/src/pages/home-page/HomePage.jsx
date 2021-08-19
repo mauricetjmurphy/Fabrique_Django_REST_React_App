@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Hero from "../../components/hero/Hero";
-import SlideData from "../../static/data/SlideData";
 import styled from "styled-components";
 
 const SectionTwo = styled.div`
@@ -76,7 +75,7 @@ function HomePage() {
 
     return (
         <div>
-            <Hero SlideData={SlideData} />
+            <Hero />
             <Container>
                 <SectionTwo>
                     <LinkContainer

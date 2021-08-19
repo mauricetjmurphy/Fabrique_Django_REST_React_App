@@ -143,7 +143,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(config('DB_PASSWORD'))
+    'default': dj_database_url.parse('postgres://ykhysmgtrkdxbg:d97af77932f0aa908c0f9fa7e6ec2ce2e3a6be753a6fcc8c44df29a84a8b04ee@ec2-54-73-58-75.eu-west-1.compute.amazonaws.com:5432/d3n3gg9e0nknks')
 }
 
 

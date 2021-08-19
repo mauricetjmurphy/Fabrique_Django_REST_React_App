@@ -113,6 +113,7 @@ function ProductsPage({ history, match, sidemenuToggle }) {
                 <Row>
                     {products.map((product, i) => (
                         <Col
+                            className="justify-content-center"
                             style={{ marginBottom: "30px" }}
                             key={product.product_id}
                             sm={12}

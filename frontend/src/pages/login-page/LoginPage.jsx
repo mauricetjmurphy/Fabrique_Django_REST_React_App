@@ -11,6 +11,7 @@ const LoginPage = () => {
     // Setting component state
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [visible, setIsVisible] = useState(true);
 
     // Initializing the dispatch object
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const LoginPage = () => {
         if (userInfo) {
             history.push(redirect);
         }
+
         // The dependency array ensures that useEffect is only called if the data in the dependency array changes.
     }, [history, userInfo, redirect]);
 
@@ -38,6 +40,13 @@ const LoginPage = () => {
         e.preventDefault();
         // Dispatching the login action
         dispatch(login(email, password));
+        setEmail("");
+        setPassword("");
+        const isVisible = setTimeout(() => {
+            setIsVisible(false);
+            console.log("set");
+        }, 3000);
+        return () => clearTimeout(isVisible);
     };
 
     return (
@@ -50,7 +59,7 @@ const LoginPage = () => {
                 justifyContent: "center",
             }}
         >
-            {error && (
+            {error && visible && (
                 <Row className="m-5 justify-content-center">
                     <Message variant="danger">{error}</Message>
                 </Row>

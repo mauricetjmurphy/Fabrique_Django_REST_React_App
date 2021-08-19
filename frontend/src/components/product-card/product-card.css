@@ -32,7 +32,25 @@ div.card-title {
     }
 
     img.card-img {
-        width: 80vw !important;
+        width: 70vw !important;
         margin: 0 auto;
+    }
+
+    div.card-body {
+        margin: 0 auto;
+        width: 70vw !important;
+    }
+
+    .product-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
+    a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }

@@ -74,6 +74,8 @@ function ProfileScreen({ history }) {
                 setMessage("");
             }, 5000);
         }
+        setPassword("");
+        setConfirmPassword("");
     };
     return (
         <Container style={{ marginTop: "70px", minHeight: "100vh" }}>

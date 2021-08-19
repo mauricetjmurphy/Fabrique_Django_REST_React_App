@@ -128,7 +128,6 @@ function ProductPage({ match, history }) {
                         <Col
                             md={6}
                             style={{
-                                height: "650px",
                                 overflow: "hidden",
                             }}
                         >

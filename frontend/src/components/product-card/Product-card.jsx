@@ -12,11 +12,7 @@ function ProductCard({ product }) {
     }, [product]);
 
     return (
-        <Card
-            style={{ margin: "0 auto" }}
-            bsclass="product-card"
-            className="my-3"
-        >
+        <Card style={{ margin: "0 auto" }} className="my-3 product-card">
             <Link to={`/product/${product.product_id}`}>
                 <Card.Img
                     className="fade-img-in"

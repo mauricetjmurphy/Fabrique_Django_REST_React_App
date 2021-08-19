@@ -56,54 +56,61 @@ function UserListPage() {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
-                <Table striped bordered responsive className="table-sm">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>NAME</th>
-                            <th>EMAIL</th>
-                            <th>ADMIN</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {users.map((user, index) => (
-                            <tr key={index}>
-                                <td>{user.id}</td>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>
-                                    {user.isAdmin ? (
-                                        <i
-                                            className="fas fa-check"
-                                            style={{ color: "green" }}
-                                        ></i>
-                                    ) : (
-                                        <i
-                                            className="fas fa-times"
-                                            style={{ color: "red" }}
-                                        ></i>
-                                    )}
-                                </td>
-
-                                <td>
-                                    <LinkContainer to={`/user/${user.id}/`}>
-                                        <Button variant="light" className="btn">
-                                            Edit
-                                        </Button>
-                                    </LinkContainer>
-                                    <Button
-                                        variant="danger"
-                                        onClick={() => deleteHandler(user.id)}
-                                    >
-                                        <i className="fas fa-trash"></i>
-                                    </Button>
-                                </td>
+                users && (
+                    <Table striped bordered responsive className="table-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th>EMAIL</th>
+                                <th>ADMIN</th>
+                                <th></th>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                        </thead>
+
+                        <tbody>
+                            {users.map((user, index) => (
+                                <tr key={index}>
+                                    <td>{user.id}</td>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                    <td>
+                                        {user.isAdmin ? (
+                                            <i
+                                                className="fas fa-check"
+                                                style={{ color: "green" }}
+                                            ></i>
+                                        ) : (
+                                            <i
+                                                className="fas fa-times"
+                                                style={{ color: "red" }}
+                                            ></i>
+                                        )}
+                                    </td>
+
+                                    <td>
+                                        <LinkContainer to={`/user/${user.id}/`}>
+                                            <Button
+                                                variant="light"
+                                                className="btn"
+                                            >
+                                                Edit
+                                            </Button>
+                                        </LinkContainer>
+                                        <Button
+                                            variant="danger"
+                                            onClick={() =>
+                                                deleteHandler(user.id)
+                                            }
+                                        >
+                                            <i className="fas fa-trash"></i>
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                )
             )}
             {pages > 1 && <PaginationComponent page={page} pages={pages} />}
         </Container>

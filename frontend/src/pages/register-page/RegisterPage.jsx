@@ -14,6 +14,7 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [visible, setIsVisible] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -42,18 +43,23 @@ const RegisterPage = () => {
         }
 
         dispatch(register(name, email, password));
+        const isVisible = setTimeout(() => {
+            setIsVisible(false);
+            console.log("set");
+        }, 3000);
+        return () => clearTimeout(isVisible);
     };
 
     return (
         <div>
             <Container style={{ marginTop: "100px", minHeight: "90vh" }}>
-                {message && (
+                {message && visible && (
                     <Row className="m-5 justify-content-center">
                         <Message variant="danger">{message}</Message>
                     </Row>
                 )}
 
-                {error && (
+                {error && visible && (
                     <Row className="m-5 justify-content-md-center">
                         <Message variant="danger">{error}</Message>
                     </Row>

@@ -20,6 +20,7 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
     - [Typography](#typography)
     - [Images](#images)
     - [Icons](#icons)
+    - [Wireframes](#wireframes)
   - [Features](#features)
     - [Existing features](#existing-features)
       - [Navigation](#navigation)
@@ -44,7 +45,7 @@ Fabrique is an ecommerce platform where customers can browse through hundreds of
     - [AWS S3 Bucket](#aws-s3-bucket)
     - [Heroku Deployment](#heroku-deployment)
   - [Testing](#testing)
-  - [Defensive Programming](#defensive-programming)
+  - [Defensive Programming and Security](#defensive-programming-and-security)
   - [Performance](#performance)
     - [Lazy Loading](#lazy-loading)
   - [Credits](#credits)
@@ -119,6 +120,11 @@ As a user I would like to:
 ### Icons
 
 -   Several icons have been used in this project for the navigation and the social media links in the footer. All icons have been obtained from Font Awsome.
+
+### Wireframes
+
+I have created wirefame designs for both desktop and mobile. The file can be found here
+[Wirefames](data/Milestone4-Wireframes.pdf).
 
 ---
 
@@ -391,9 +397,28 @@ The testing information can be located in the following link.
 
 ---
 
-## Defensive Programming
+## Defensive Programming and Security
 
 ---
+
+Envirnoment Variables
+
+-   I used the os.environ package to implement my environment variables
+-   I created a .env file to store the variables and made sure that it was added to my git ignore file before my first push to Gibhub.
+-   When deploying the app to Heroku, I haded to variables to the Heroku Config Vars.
+
+Django REST Permission Classes
+
+-   I used the Django REST frameworks permission classes to define the permission of each user.
+-   Permission decorators were added to each view.
+-   If any permission check fails an exceptions.PermissionDenied or exceptions.NotAuthenticated exception will be raised.
+
+Authentication
+
+-   I used Simple JWT to provide JSON Web Tokens to authenticate the backend for this project.
+-   The web token define a compact and self-contained way for securely transmitting information between parties as a JSON object.
+-   The web tokens are stored in the users local storage after logging in.
+-   The tokens are also cofigured to last for a 30 day period.
 
 ---
 

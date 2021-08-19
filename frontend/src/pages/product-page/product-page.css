@@ -5,3 +5,9 @@ img {
 .list-group-item {
     background: #f4f5f7;
 }
+
+@media screen and (max-width: 450px) {
+    .container {
+        margin: 0 !important;
+    }
+}
