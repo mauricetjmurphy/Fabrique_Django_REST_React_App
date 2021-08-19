@@ -403,7 +403,7 @@ The testing information can be located in the following link.
 
 Envirnoment Variables
 
--   I used the os.environ package to implement my environment variables
+-   I used the python decouple package to implement my environment variables
 -   I created a .env file to store the variables and made sure that it was added to my git ignore file before my first push to Gibhub.
 -   When deploying the app to Heroku, I haded to variables to the Heroku Config Vars.
 
