@@ -166,7 +166,7 @@ const CartPage = ({ match, location, history }) => {
                             <ListGroup.Item style={{ background: "#f4f5f7" }}>
                                 <Button
                                     type="button"
-                                    className="btn-block btn-dark"
+                                    className="btn-block btn-dark mt-4 mb-5"
                                     disabled={cartItems.length === 0}
                                     onClick={checkoutHandler}
                                 >

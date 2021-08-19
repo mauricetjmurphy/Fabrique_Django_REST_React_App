@@ -73,7 +73,7 @@ const PaginationComponent = ({ page, pages }) => {
     }
 
     return (
-        <di>
+        <div className="justify-content-center">
             <ul className="pageNumbers">
                 <Link to={`${searchParam}&page=${page - 1}`}>
                     <li className="prev">
@@ -112,7 +112,7 @@ const PaginationComponent = ({ page, pages }) => {
                     </li>
                 </Link>
             </ul>
-        </di>
+        </div>
     );
 };
 

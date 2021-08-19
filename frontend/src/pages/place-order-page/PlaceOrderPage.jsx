@@ -207,7 +207,7 @@ function PlaceOrderPage() {
                                     stripeKey={publishableKey}
                                     triggerEvent="onClick"
                                 />
-                                <p style={{ marginTop: "20px", color: "red" }}>
+                                <p style={{ margin: "20px 0", color: "red" }}>
                                     To test the Stripe payment method please use
                                     the following details:<br></br> Card No:
                                     4242424242424242<br></br> CVC: 111<br></br>{" "}

@@ -86,26 +86,6 @@ function Dropdown({ dropdownToggle, isDropdownOpen, sidemenuToggle }) {
         <DropdownContainer isDropdownOpen={isDropdownOpen}>
             <DropdownWrapper>
                 <DropdownMenu>
-                    <DropdownLink>
-                        {userInfo && userInfo.isAdmin && (
-                            <NavDropdown title="Admin" id="adminmenu">
-                                <LinkContainer
-                                    onClick={dropdownToggle}
-                                    to="/user-list/?param="
-                                >
-                                    <NavDropdown.Item>Users</NavDropdown.Item>
-                                </LinkContainer>
-                                <LinkContainer
-                                    onClick={dropdownToggle}
-                                    to="/product-list/?category="
-                                >
-                                    <NavDropdown.Item>
-                                        Products
-                                    </NavDropdown.Item>
-                                </LinkContainer>
-                            </NavDropdown>
-                        )}
-                    </DropdownLink>
                     <LinkContainer
                         style={{
                             color: "#fff",
@@ -161,9 +141,27 @@ function Dropdown({ dropdownToggle, isDropdownOpen, sidemenuToggle }) {
                             </Nav.Link>
                         </LinkContainer>
                     </DropdownLink>
-                    <SearchContainer>
-                        <SearchBox />
-                    </SearchContainer>
+
+                    <DropdownLink>
+                        {userInfo && userInfo.isAdmin && (
+                            <NavDropdown title="Admin" id="adminmenu">
+                                <LinkContainer
+                                    onClick={dropdownToggle}
+                                    to="/user-list/?param="
+                                >
+                                    <NavDropdown.Item>Users</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer
+                                    onClick={dropdownToggle}
+                                    to="/product-list/?category="
+                                >
+                                    <NavDropdown.Item>
+                                        Products
+                                    </NavDropdown.Item>
+                                </LinkContainer>
+                            </NavDropdown>
+                        )}
+                    </DropdownLink>
                 </DropdownMenu>
             </DropdownWrapper>
         </DropdownContainer>
