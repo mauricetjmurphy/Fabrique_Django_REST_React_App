@@ -3,6 +3,9 @@ import { Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Hero from "../../components/hero/Hero";
 import styled from "styled-components";
+import MensImageOne from "../../static/images/s2_img1.jpg";
+import MensImageTwo from "../../static/images/s2_img2.jpg";
+import MensImageThree from "../../static/images/s3_img1.jpg";
 
 const SectionTwo = styled.div`
     display: grid;
@@ -84,7 +87,7 @@ function HomePage() {
                     >
                         <div>
                             <SectionTwoImg
-                                src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/s2_img1.jpg"
+                                src={MensImageOne}
                                 alt="Fashion image"
                             />
                             <SectionTwoContent>
@@ -99,7 +102,7 @@ function HomePage() {
                     >
                         <div>
                             <SectionTwoImg
-                                src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/s2_img2.jpg"
+                                src={MensImageTwo}
                                 alt="Fashion image"
                             />
                             <SectionTwoContent>
@@ -115,7 +118,7 @@ function HomePage() {
                 >
                     <SectionThree>
                         <SectionThreeImg
-                            src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/s3_img1.jpg"
+                            src={MensImageThree}
                             alt="Fashion image"
                         />
                         <SectionThreeContent>

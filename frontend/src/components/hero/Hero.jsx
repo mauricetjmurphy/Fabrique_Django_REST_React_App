@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import HeroImg from "../../static/images/hero_img3.jpg";
 
 const HeroSection = styled.section`
     height: 100vh;
+    margin-top: 70px;
     max-height: 1100px;
     position: relative;
     overflow: hidden;
@@ -129,7 +131,7 @@ function Hero({ SlideData }) {
 
                 <HeroSlide>
                     <HeroSlider style={{ background: "#111" }}>
-                        <HeroImage src="https://fabrique-bucket.s3.eu-west-1.amazonaws.com/hero_img3.jpg"></HeroImage>
+                        <HeroImage src={HeroImg}></HeroImage>
                     </HeroSlider>
                 </HeroSlide>
             </HeroWrapper>
