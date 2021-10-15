@@ -16,6 +16,13 @@ from datetime import timedelta
 from decouple import config
 from django.conf import settings
 import dj_database_url
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+env_path = Path('.')/'.env'
+load_dotenv(dotenv_path=env_path)
 
 
 
@@ -31,7 +38,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -74,7 +81,7 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
 
     'ALGORITHM': 'HS256',
-    # 'SIGNING_KEY': config('SECRET_KEY'),
+    'SIGNING_KEY': os.environ.get(SECRET_KEY),
     'VERIFYING_KEY': None,
     'AUDIENCE': None,
     'ISSUER': None,
@@ -143,8 +150,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
@@ -190,10 +198,8 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    # os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'frontend/build/static')
-    
-    
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
